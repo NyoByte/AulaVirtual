@@ -1,44 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Title</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="/css/index.css">
-    </head>
 
-    <body class="container">
-        <div>
-            Encabezado
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
+
+<body>
+    <div>
+        Encabezado
+    </div>
+    <div>
+        <div class="row">
+            <header class="col-md-12 mt-12">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand " href="#">Aula Virtual</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Profesores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Alumnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cursos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Secciones</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
         </div>
-        <div>
-            Encabezado opciones
-        </div>
-        <div class="row"> <!--Marco blanco...-->
-            <div class="col-auto">
-                <div>
-                    titulo
+    </div>
+    <div class="row">
+
+        <!--Marco blanco...-->
+        <div class="col-auto">
+            <div>
+                <p>Datos del Nuevo Alumno</p>
+            </div>
+            <div class="row">
+                <div class="col-auto">
+                    <p>Codigo</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
                 </div>
-                <div>
-                    datos fila 1
+                <div class="col-auto">
+                    <p>Nombres</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
                 </div>
-                <div>
-                    datos fila 2
-                </div>
-                <div>
-                    datos fila 3
-                </div>
-                <div>
-                    datos y botones fila 4
+                <div class="col-auto">
+                    <p>Apellidos</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
                 </div>
             </div>
-            <div class="col-auto">
-                foto
+            <div class="row">
+                <div class="col-auto">
+                    <p>Correo de la Universidad</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
+                </div>
+                <div class="col-auto">
+                    <p>Correo Personal</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <label for="carrera" class="control-label">Género</label>
+                        <select class="form-control" id="carrera">
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-auto">
+                    <p>Pais</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
+                </div>
+                <div class="col-auto">
+                    <p>TeamViewer User</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
+                </div>
+                <div class="col-auto">
+                    <p>TeamViewer Password</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
+                </div>
+                <div class="col-auto">
+                    <p>Anydesk Credentials</p>
+                    <input class="d-block" type="text" name="codigo" id="" />
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-auto">
+                        <label>Carrera</label>
+                        <div class="col-auto">
+                            <select class="form-control">
+                                <option>Ingenieria</option>
+                                <option>Contabilidad</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label>&nbsp</label>
+                        <button class="d-block btn btn-primary" type="submit">Actualizar</button>
+                    </div>
+                    <div class="col-auto">
+                        <label>&nbsp</label>
+                        <button class="d-block btn btn-success" type="submit">Seleccionar</button>
+                    </div>
+                    <div class="col-auto">
+                        <label>&nbsp</label>
+                        <button class="d-block btn btn-warning" type="submit">Subir</button>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <div>
-            pie de página
+        <div class="col-auto">
+            <img class="img-fluid" alt="Imagen responsive"
+                src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAwICRAREBEQEhEQEBAVEBYREBAQEBoPEBAfIx4vIyAnHyoxNzs8MTQ3NR8rPkg1OT0/Q0VaMDBLUUpBUDtCQ0ABDQ4OBgUGGAgIGEAnHydAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQP/AABEIAQMAwgMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAwUBAgQGB//EAD8QAAICAQEEBQoEBQIHAQAAAAABAgMRBAUSITFBUXGxwQYTIiMyUmGBkaEUYnJzM0LR4fBjkjRTgqKywvEk/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APqoAAAAAAAAAAAGu8utAbA1311r6mQMgAAAAAAAAAAAAAAAAAAAAAAAAAAat9RhvPAZAwzVoy2aNgayRE5SjyePhzRI2RTYE1WqTe7L0X0dTOop7Vkm0Os4qqb4/wAkn0/BgWQAAAAAAAAAAAAAAAAAAAAAaTeEbkF0vSS6lkDKYcjTeNXIDZyNXI1bNHIDaUiGUg5EU5Aa2SOO2XSnhrimuaJ7JHLZID0Oh1Hnaoz/AJuUl1NczpKLYF3p2V9aU18nh95egAAAAAAAAAAAAAAAAAAAOK6XrJfLuO0rdW8Wv4pPw8AN94w5EW+auYErkRykaORHKYG8pEM5mJSIZTATkc9kjM5nPOQHbsaeNTD4qS+2fA9SeU2Et7VQ+ClL7Y8T1YAAAAAAAAAAAAAAAAAAACu2pHDjP/pfevEsSLUVKyEoPpXB9XUBTecMOZBLMZOMuEk8NGHMCZzNHMiczRyA3lMhnM1lM57LQN7LDnlYRWXGtW9OShFOUm0opc3kD0XktVmVtrXJKuPe/A9GcmztIqaYV82lmT95vizrAAAAAAAAAAAAAAAAAAAAAAK7aWh84t+H8RLl75RSbTaeU08NPg12nrji1uzq7uL9GfROK4/MDzjkRSmdGv0FtKcpLfrX88OKXaV0rUBtZacd1rM23I7tgbN/FWOU4T8wotb6e6nJPgl19OQKlZbwstvCSXFvJ7Dyf2M6UrbV61r0Y/8ALT6/j3HVpdkaaifnIQ9PGFKcnJx7P6nY7n1/YCeUkllnLLaFSjKe8nGMtybX8r6c/VEF+qkscU12fQpatYnSspYlrJbyfT63p+SA9TCyMm0nxXBrk0SHnNLrJ/ibnF4TUE01nln+pYvV2dDX0QFkCs/G2/l/2ndppuUIyeMvOcASgAAAAAAAAAAAAAAAw2ceo2hGHsxlN/D0Ym2ps5roX3K/fTbXSBxa7VX3ei2oV54whzkvi/8A4V9umZeyqILakB5q/TMs/JKy6Fs6nNunzcpqDXCMt5cvqS21Il2RHduk/wDTfegL1yI3Iw2agR3VqcXF9JVWbMwkouWE97n0lyzVxArdJp3Btt5yWC5DdMpAatFlpV6uPYcBY6f+HHsAlAAAAAAAAAAAAACK2eFjp7jeUsJsr9ZbJRclFyfPEVlgR6q3CZ5mvXSe0a6ov0XCcpdXDgvuzXaO3XvebULFNvdjF1yUpZ5Y6SbR7PnTdU7Fi50OyxZzub0sKPy3OPawPRZ4ENnLPRyNoSzhLmzl1tq366k87uZ2Y6OGF9wIrjOzH66X7b70RWTTNtlv17/bfegLcAZAMBmGBgAACyo9iP6UVpZU+xH9KAkAAAAAAAAAAAAAR2puLS5tNLwK+u/OVLg08NPoLQ5NVoo2ekswn7y6e0CNqMvD4HDrdHJy87FuUt1RafFtLlj6ksq76vajvx96Hpf3MLXxAn0tO7FN+21x+BXa7Z9m9J1xUt570vSUX/nA6HrF0FTtbVWQxZXqJ0rphKtWQl4/QCRaG9c65fJpm+z4Sje1JNPcfB9qOPTbTunHLsbfXuuGfE6tDdKV7k3vPca49oFuAmAAYAGADAAs6vYj+lFWWtfsx/SgNwAAAAAAAAAAAAAAAY+J4LWaOU5Tnl+lJyfFrm8nudQ8Qm/yPuKJ1IDzddV1fszkvm2jeesvxhy/7UXNlCOW7TICqrsect5bLTYss3P9t96OWWnS6Ds2HHF8v2n3oC8RsYAAAADBkxgAWsOS7EV0YFjHkuxAbAAAAAAAAAAAAAAAAg1b9XPswVLZbaz+FPsRUWAaSZDYka2TwQu4CO6JJshYvl+2+9ETlk69mR9a3+R96AszJgAAAkASJYQEIHTXX1gYrqOhGrfQjcAAAAAAAAAAAAAAAACHVL1U/wBLKWUi9sWYyXXFo8/JgcmrfArtkqU9p6WLb3VKc2ujhB4z82d+o6SLybhnaKfVRN/dLxA6PKdS/HU45PT8fjiX9zME0sptPHQ8E/lHD/8AVS/9Fr6S/uQvl8gOe22z35/7meh2JDOnhKXpNuTzL0nzx4HnLeZ6zZ9e5RVHp3E32vi+8CXzcfdj9DPm4+6vojcAaebj1L6GyRkxkBgyYyZAAAAAAAAAAAAAAAAAHntVHdsnHqk/7fY9CU21IYtz1xT+nACo1Bt5Lf8AG29f4Z/+SM3rgbeStedVfPojSo/WWf8A1A6vKN+v06/JZ3o5Zcjs8oY+vol+Sa+jX9TknyA566t+yEPekov5vievcjzWyIb2oUuiMXLwXeXzmBNvmN853YauwDq3jG8c3nDPnAOlSMqRzKwyrAOlSG8QqRspATJg0jI2TA2BgAZAAAAAAAAK3a8fYfavEsiv1zU3u9Cz9wKHUyxksPJSrFd1vv27q7Ir+rZw66rCfEsPJm5fhIrpVlifzlnxAk8oo+rqn7tqT7Gsd+CrlLgWO27s0467IJfJ58DihVvICXYjw7pfpXiWErCpobplJfyyxx6mjo87kDpdhq7CFNs3UWBupmykaKDJFBgbKRIjVQJYxAIlRhQJYxAxFEkUEjYDAMgAAAAAAAEd092EpdSbAh1Wo3fRj7XS+orpywS76fHOW+LZBeBX66fos4dia1xldUnzsU+zKx4G2ulZZYqKo+culyjnCj1t/BF7sXyfr00PTfnLm96yeMJv4eAHBtGbaqzy333cDoofAttXs6u2Dg+HU1zj1YKeNVlM1XZjj7Fi4Rsx/nFd4ElleUR0LElCXJ8It+J1YWDj1dkEnlgW1ekJVpjTY+pd1EZvj0Z97HA7wOb8OZ8wdAA5lUbqsmAGiibJGQAAAAAAAAAAAA1lFNNPinwa6zYAU12xpJt03Ote5ZDzsV2cU/q2QPY+rlwlfVCPS41SnL5cVj7noABwbN2XVpovdzKcuNlkuM5v/Og7wABDqKIWRcJLMX9V2EwApLtiXPhDVOMeqylWS+qa7jFXk3VlO6yy/wDI/V1fReLZeADSFcYxUYpRilhRSwkbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2Q==">
         </div>
-    </body>
+
+    </div>
+    <div>
+        pie de página
+    </div>
+</body>
+
 </html>
