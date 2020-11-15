@@ -14,3 +14,7 @@
 .login-off{
     visibility: hidden;
 }
+
+.main-container{
+    margin: 1vw; background-color: white; border: darkkhaki 2px solid; padding: 1vw
+}
