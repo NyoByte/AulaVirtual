@@ -1,0 +1,16 @@
+.fondo{
+    background-color: beige;
+}
+.bg-gray{
+    /*Es para el color de fondo del segundo nav el que tendrá las opciones*/
+    background-color: dimgray;
+}
+.subt{
+    font-size: 2rem;
+}
+.login-on{
+    visibility: visible;
+}
+.login-off{
+    visibility: hidden;
+}
