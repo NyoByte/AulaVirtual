@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!-- *Reemplazar su codigo abajo de esta linea* -->
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -128,18 +131,18 @@
                     </select>
                 </div>
                 <div class="form-row m-0">
-                    <div class="col-auto">
-                        <label>&nbsp</label>
-                        <button class="form-control btn btn-primary" type="submit">Actualizar</button>
-                    </div>
-                    <div class="col-auto">
-                        <label>&nbsp</label>
-                        <button class="form-control btn btn-success" type="submit">Seleccionar</button>
-                    </div>
-                    <div class="col-auto">
-                        <label>&nbsp</label>
-                        <button class="form-control btn btn-warning" type="submit">Subir</button>
-                    </div>
+                <div class="col-auto">
+                    <label>&nbsp</label>
+                    <button class="form-control btn btn-primary" type="submit">Actualizar</button>
+                </div>
+                <div class="col-auto">
+                    <label>&nbsp</label>
+                    <button class="form-control btn btn-success" type="submit">Seleccionar</button>
+                </div>
+                <div class="col-auto">
+                    <label>&nbsp</label>
+                    <button class="form-control btn btn-warning" type="submit">Subir</button>
+                </div>
                 </div>
             </div>
         </div>

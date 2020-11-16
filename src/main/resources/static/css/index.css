@@ -3,7 +3,7 @@
 }
 .bg-gray{
     /*Es para el color de fondo del segundo nav el que tendrá las opciones*/
-    background-color: dimgray;
+    background-color: #444343;
 }
 .subt{
     font-size: 2rem;
@@ -14,7 +14,15 @@
 .login-off{
     visibility: hidden;
 }
-
+.main-border{
+    background-color: white;
+    border: 2px solid #dee2e6;
+    margin: 1rem;
+    padding: 1rem;
+}
 .main-container{
-    margin: 1vw; background-color: white; border: darkkhaki 2px solid; padding: 1vw
+    margin: 1vw;
+    background-color: white;
+    border: darkkhaki 2px solid;
+    padding: 1vw
 }
