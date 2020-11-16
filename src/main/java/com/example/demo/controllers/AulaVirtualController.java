@@ -8,19 +8,87 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AulaVirtualController {
 
-    // http://localhost:8080/
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    //LOGIN:
+    // http://localhost:8080/aula_virtual/login/profesor
+    @RequestMapping(value = "/aula_virtual/login/profesor", method = RequestMethod.GET)
+    public String mostrarLogin_Profesor(){
+        return "Login_Profesor";
+    }
+    // http://localhost:8080/aula_virtual/login/estudiante
+    @RequestMapping(value = "/aula_virtual/login/estudiante", method = RequestMethod.GET)
+    public String mostrarLogin_Estudiante(){
+        return "Login_Estudiante";
+    }
+    // http://localhost:8080/aula_virtual/login/administrador
+    @RequestMapping(value = "/aula_virtual/login/administrador", method = RequestMethod.GET)
+    public String mostrarLogin_Administrador(){
+        return "Login_Administrador";
+    }
+    
+    //ALUMNO:
+    // http://localhost:8080/aula_virtual/alumno
+    @RequestMapping(value = "/aula_virtual/alumno", method = RequestMethod.GET)
     public String mostrarAlumno(){
         return "Alumno";
     }
 
-    // http://localhost:8080/aulaVirtual/administrador/alumnos
-    @RequestMapping(value="/aulaVirtual/administrador/alumnos", method = RequestMethod.GET)
+    //PROFESOR:
+    // http://localhost:8080/aula_virtual/profesor/datos
+    @RequestMapping(value="/aula_virtual/profesor/datos", method = RequestMethod.GET)
+    public String mostrarProfesor(){
+        return "Profesor.jsp";
+    }
+    // http://localhost:8080/aula_virtual/profesor/secciones
+    @RequestMapping(value="/aula_virtual/profesor/secciones", method = RequestMethod.GET)
+    public String mostrarProfesor_Sección(){
+        return "Profesor_Sección.jsp";
+    }
+
+    //ADMINISTRADOR:
+    //*CARGAS
+    // http://localhost:8080/aula_virtual/administrador/alumnos
+    @RequestMapping(value="/aula_virtual/administrador/alumnos", method = RequestMethod.GET)
     public String mostrarAdmin_CargaAlumnos(){
         return "Admin_CargaAlumnos.jsp";
     }
-
+    // http://localhost:8080/aula_virtual/administrador/cursos
+    @RequestMapping(value="/aula_virtual/administrador/cursos", method = RequestMethod.GET)
+    public String mostrarAdmin_CargaCursos(){
+        return "Admin_CargaCursos.jsp";
+    }
+    // http://localhost:8080/aula_virtual/administrador/profesores
+    @RequestMapping(value="/aula_virtual/administrador/profesores", method = RequestMethod.GET)
+    public String mostrarAdmin_CargaProfesores(){
+        return "Admin_CargaProfesores.jsp";
+    }
+    // http://localhost:8080/aula_virtual/administrador/secciones
+    @RequestMapping(value="/aula_virtual/administrador/secciones", method = RequestMethod.GET)
+    public String mostrarAdmin_CargaSecciones(){
+        return "Admin_CargaSecciones.jsp";
+    }
+    //*CRUDS:
+    // http://localhost:8080/aula_virtual/administrador/alumnos/edit
+    @RequestMapping(value="/aula_virtual/administrador/alumnos/edit", method = RequestMethod.GET)
+    public String mostrarAdmin_CrudAlumno(){
+        return "Admin_CrudAlumno.jsp";
+    }
+    // http://localhost:8080/aula_virtual/administrador/cursos/edit
+    @RequestMapping(value="/aula_virtual/administrador/cursos/edit", method = RequestMethod.GET)
+    public String mostrarAdmin_CrudCurso(){
+        return "Admin_CrudCurso.jsp";
+    }
+    // http://localhost:8080/aula_virtual/administrador/profesores/edit
+    @RequestMapping(value="/aula_virtual/administrador/profesores/edit", method = RequestMethod.GET)
+    public String mostrarAdmin_CrudProfesor(){
+        return "Admin_CrudProfesor.jsp";
+    }
+    // http://localhost:8080/aula_virtual/administrador/secciones/edit
+    @RequestMapping(value="/aula_virtual/administrador/secciones/edit", method = RequestMethod.GET)
+    public String mostrarAdmin_CrudSección(){
+        return "Admin_CrudSección.jsp";
+    }
     
+    //TESTER
     // http://localhost:8080/test
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String mostrarTest(){
