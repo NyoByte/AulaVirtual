@@ -36,12 +36,12 @@ public class AulaVirtualController {
     // http://localhost:8080/aula_virtual/profesor/datos
     @RequestMapping(value="/aula_virtual/profesor/datos", method = RequestMethod.GET)
     public String mostrarProfesor(){
-        return "Profesor.jsp";
+        return "Profesor";
     }
     // http://localhost:8080/aula_virtual/profesor/secciones
     @RequestMapping(value="/aula_virtual/profesor/secciones", method = RequestMethod.GET)
     public String mostrarProfesor_Sección(){
-        return "Profesor_Sección.jsp";
+        return "Profesor_Sección";
     }
 
     //ADMINISTRADOR:
@@ -49,43 +49,43 @@ public class AulaVirtualController {
     // http://localhost:8080/aula_virtual/administrador/alumnos
     @RequestMapping(value="/aula_virtual/administrador/alumnos", method = RequestMethod.GET)
     public String mostrarAdmin_CargaAlumnos(){
-        return "Admin_CargaAlumnos.jsp";
+        return "Admin_CargaAlumnos";
     }
     // http://localhost:8080/aula_virtual/administrador/cursos
     @RequestMapping(value="/aula_virtual/administrador/cursos", method = RequestMethod.GET)
     public String mostrarAdmin_CargaCursos(){
-        return "Admin_CargaCursos.jsp";
+        return "Admin_CargaCursos";
     }
     // http://localhost:8080/aula_virtual/administrador/profesores
     @RequestMapping(value="/aula_virtual/administrador/profesores", method = RequestMethod.GET)
     public String mostrarAdmin_CargaProfesores(){
-        return "Admin_CargaProfesores.jsp";
+        return "Admin_CargaProfesores";
     }
     // http://localhost:8080/aula_virtual/administrador/secciones
     @RequestMapping(value="/aula_virtual/administrador/secciones", method = RequestMethod.GET)
     public String mostrarAdmin_CargaSecciones(){
-        return "Admin_CargaSecciones.jsp";
+        return "Admin_CargaSecciones";
     }
     //*CRUDS:
     // http://localhost:8080/aula_virtual/administrador/alumnos/edit
     @RequestMapping(value="/aula_virtual/administrador/alumnos/edit", method = RequestMethod.GET)
     public String mostrarAdmin_CrudAlumno(){
-        return "Admin_CrudAlumno.jsp";
+        return "Admin_CrudAlumno";
     }
     // http://localhost:8080/aula_virtual/administrador/cursos/edit
     @RequestMapping(value="/aula_virtual/administrador/cursos/edit", method = RequestMethod.GET)
     public String mostrarAdmin_CrudCurso(){
-        return "Admin_CrudCurso.jsp";
+        return "Admin_CrudCurso";
     }
     // http://localhost:8080/aula_virtual/administrador/profesores/edit
     @RequestMapping(value="/aula_virtual/administrador/profesores/edit", method = RequestMethod.GET)
     public String mostrarAdmin_CrudProfesor(){
-        return "Admin_CrudProfesor.jsp";
+        return "Admin_CrudProfesor";
     }
     // http://localhost:8080/aula_virtual/administrador/secciones/edit
     @RequestMapping(value="/aula_virtual/administrador/secciones/edit", method = RequestMethod.GET)
     public String mostrarAdmin_CrudSección(){
-        return "Admin_CrudSección.jsp";
+        return "Admin_CrudSección";
     }
     
     //TESTER
