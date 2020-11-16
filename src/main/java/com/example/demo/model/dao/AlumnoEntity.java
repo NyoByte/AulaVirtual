@@ -12,6 +12,14 @@ public class AlumnoEntity {
     @Column(name = "Código",length = 8)
     private int cod;
 
+    @Column(name = "Nombres", length = 50)
+    private String first_name;
+
+    @Column(name = "Apellidos", length = 50)
+    private String last_name;
+
+    @Column(name = "Correo_Universidad", length = 50)
+    private String email_univ;  //HMM
 
     @Column(name = "Correo_Personal", length = 50)
     private String email_priv;  //HMM

@@ -95,4 +95,15 @@ public class AulaVirtualController {
         //Copia tu código en el archivo test.jsp
         return "test";
     }
+
+    /* FUNCIONES */
+    @RequestMapping(value = "/aula_virtual/administrador/alumnos/edit/${cod}", method = RequestMethod.GET)
+    public String mostrarAdmin_CrudAlumno_Cod(Model model, @PathVariable String cod){
+        Optional<AlumnoEntity> tempAlumno = alumnoRep.findById(Long.parseLong(cod));
+        if(tempAlumno.isPresent()){
+            model.addAtribute("alumno",tempAlumno.get());
+        }
+        List<
+
+    }
 }
