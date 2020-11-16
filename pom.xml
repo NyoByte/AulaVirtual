@@ -42,16 +42,11 @@
 			</exclusions>
 		</dependency>
 
-
-
 		<!-- del JPA-->
-		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		ACTIVAR CUANDO SE USE LA BD-->
-
 
 		<!-- driver del postgresql-->
 		<dependency>
@@ -71,8 +66,6 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
-
 
 	</dependencies>
 

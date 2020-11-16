@@ -27,7 +27,7 @@
                     <div class="login-on">
                         <ul class="navbar-nav mrauto">
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Name</a>
+                                <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#">Salir</a>
