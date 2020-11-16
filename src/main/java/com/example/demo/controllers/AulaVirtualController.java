@@ -11,9 +11,16 @@ public class AulaVirtualController {
     // http://localhost:8080/
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mostrarAlumno(){
-        return "alumno";
+        return "Alumno";
     }
 
+    // http://localhost:8080/aulaVirtual/administrador/alumnos
+    @RequestMapping(value="/aulaVirtual/administrador/alumnos", method = RequestMethod.GET)
+    public String mostrarAdmin_CargaAlumnos(){
+        return "Admin_CargaAlumnos.jsp";
+    }
+
+    
     // http://localhost:8080/test
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String mostrarTest(){
