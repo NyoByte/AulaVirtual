@@ -1,12 +1,23 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.model.dao.AlumnoEntity;
+import com.example.demo.model.repositories.AlumnoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Optional;
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Controller
 public class AulaVirtualController {
+    @Autowired
+    private AlumnoRepository alumnoRep;
 
     //LOGIN:
     // http://localhost:8080/aula_virtual/login/profesor
@@ -96,14 +107,14 @@ public class AulaVirtualController {
         return "test";
     }
 
-    /* FUNCIONES */
-    @RequestMapping(value = "/aula_virtual/administrador/alumnos/edit/${cod}", method = RequestMethod.GET)
-    public String mostrarAdmin_CrudAlumno_Cod(Model model, @PathVariable String cod){
-        Optional<AlumnoEntity> tempAlumno = alumnoRep.findById(Long.parseLong(cod));
-        if(tempAlumno.isPresent()){
-            model.addAtribute("alumno",tempAlumno.get());
-        }
-        List<
 
+    /* FUNCIONES */
+    @RequestMapping(value = "/aula_virtual/administrador/alumnos/edit/{cod}", method = RequestMethod.GET)
+    public String mostrar_Admin(Model model, @PathVariable String cod) {
+        Optional<AlumnoEntity> tempAlumno = alumnoRep.findById(Long.parseLong(cod));
+        if (tempAlumno.isPresent())
+            model.addAttribute("alumno", tempAlumno.get());
+        return "";
     }
+
 }
