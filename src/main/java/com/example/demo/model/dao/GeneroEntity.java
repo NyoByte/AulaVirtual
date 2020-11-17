@@ -4,32 +4,28 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Carreras")
-public class CarreraEntity {
+@Table(name = "Géneros")
+public class GeneroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre", length = 25)
+    @Column(name = "Nombre", length = 15)
     private String name;
 
-    @OneToMany(mappedBy = "career")
+    @OneToMany(mappedBy = "gender")
     private List<AlumnoEntity> listAlumnos;
 
-    //[Curso]M-------1[Carrera]
-    @OneToMany(mappedBy = "career")
-    private List<CursoEntity> listCursos;
-
     /* Constructor */
-    public CarreraEntity() {
+    public GeneroEntity() {
     }
 
-    public CarreraEntity(Long id, String name) {
+    public GeneroEntity(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    /* Constructor */
+    /* Getter & Setter */
     public Long getId() {
         return id;
     }
@@ -45,13 +41,4 @@ public class CarreraEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-    public List<AlumnoEntity> getListAlumnos() {
-        return listAlumnos;
-    }
-
-    public void setListAlumnos(List<AlumnoEntity> listAlumnos) {
-        this.listAlumnos = listAlumnos;
-    }
 }
-

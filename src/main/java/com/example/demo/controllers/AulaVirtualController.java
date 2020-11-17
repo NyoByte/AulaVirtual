@@ -110,11 +110,12 @@ public class AulaVirtualController {
 
     /* FUNCIONES */
     @RequestMapping(value = "/aula_virtual/administrador/alumnos/edit/{cod}", method = RequestMethod.GET)
-    public String mostrar_Admin(Model model, @PathVariable String cod) {
+    public String editarAlumno(Model model, @PathVariable String cod) {
         Optional<AlumnoEntity> tempAlumno = alumnoRep.findById(Long.parseLong(cod));
-        if (tempAlumno.isPresent())
+        if (tempAlumno.isPresent()){
             model.addAttribute("alumno", tempAlumno.get());
-        return "";
+        }
+        return "Admin_CrudAlumno";
     }
 
 }

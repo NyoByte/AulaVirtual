@@ -10,7 +10,7 @@ public class PaisEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre",length = 25)
+    @Column(name = "Nombre",length = 30)
     private String name;
 
     @OneToMany(mappedBy = "pais")
@@ -25,7 +25,7 @@ public class PaisEntity {
         this.name = name;
     }
 
-    /* Getter & Setter */
+    /* Constructor */
     public Long getId() {
         return id;
     }

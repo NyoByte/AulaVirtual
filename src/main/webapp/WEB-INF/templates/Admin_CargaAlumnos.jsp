@@ -132,9 +132,9 @@
                             <td>Jenni Iris Alabone Radbornejenni</td>
                             <td>Ingeniería</td>
                             <td>Female</td>
-                            <td class="pl-4 ope-td"><a href="/aula_virtual/administrador/alumnos/edit/${cod}"><svg width="1em" height="1em" viewBox="0 0 16 16"
-                                        class="bi bi-pencil-fill" fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg">
+                            <td class="pl-4 ope-td"><a href="/aula_virtual/administrador/alumnos/edit/${cod}"><svg
+                                        width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                                     </svg></a></td>
@@ -187,70 +187,53 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalInstrucciones" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div id="ayudaModal" class="modal fade " tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Integrantes del Grupo:</h5>
+                    <h5 class="modal-title font-weight-bold">Integrantes del Grupo:</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row row-cols-1 row-cols-md-2">
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="..." class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Integrante 1</h5>
-                                        <p class="card-text">descripcion</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="..." class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Integrante 2</h5>
-                                        <p class="card-text">descripcion</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Andy Lazo</div>
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="col mb-4">
-                            <div class="card">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a
-                                        natural
-                                        lead-in to additional content.</p>
-                                </div>
-                            </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Gabriel Carmelo</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="col mb-4">
-                            <div class="card">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a
-                                        natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Dante Córdova</div>
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Edgar Rodriguez</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Fin Modal -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
     <script src="/js/index.js"></script>
 </body>
 

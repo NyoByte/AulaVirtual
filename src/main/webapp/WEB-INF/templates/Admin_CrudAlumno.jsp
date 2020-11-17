@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -27,7 +28,7 @@
                     <div class="login-on">
                         <ul class="navbar-nav mrauto">
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Name</a>
+                                <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#">Salir</a>
@@ -65,158 +66,225 @@
         </header>
     </div>
     <!--Marco blanco...-->
-    <div class="main-border">
-        <div class="row">
-            <div class="col-9">
-                <div>
-                    <p class="font-weight-bold">Datos del Nuevo Alumno</p>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="col-auto">
-                        <p class="mb-1">Codigo</p>
-                        <input class="form-control" type="text" name="codigo" />
-                    </div>
-                    <div class="col-auto">
-                        <p class="mb-1">Nombres</p>
-                        <input class="form-control" type="text" name="nombres" />
-                    </div>
-                    <div class="col-auto">
-                        <p class="mb-1">Apellidos</p>
-                        <input class="form-control" type="text" name="apellidos" />
-                    </div>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="col-auto">
-                        <p class="mb-1">Correo de la Universidad</p>
-                        <input class="form-control" type="text" name="correo_univ" />
-                    </div>
-                    <div class="col-auto">
-                        <p class="mb-1">Correo Personal</p>
-                        <input class="form-control" type="text" name="correo_personal" />
-                    </div>
-                    <div class="col-auto">
-                        <p class="mb-1">Género</p>
-                        <select class="form-control" id="carrera">
-                            <option>Masculino</option>
-                            <option>Femenino</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="col-auto">
-                        <p class="mb-1">País</p>
-                        <input class="form-control" type="text" name="país" />
-                    </div>
-                    <div class="col-auto">
-                        <p class="mb-1">TeamViewer Usuario</p>
-                        <input class="form-control" type="text" name="TW_user" />
-                    </div>
-                    <div class="col-auto">
-                        <p class="mb-1">TeamViewer Contraseña</p>
-                        <input class="form-control" type="text" name="TW_pw" />
-                    </div>
-                    <div class="col-auto">
-                        <p class="mb-1">AnyDesk Credencial</p>
-                        <input class="form-control" type="text" name="AD_cred" />
-                    </div>
-                </div>
-                <div class="form-row mb-0">
-                    <div class="col-auto">
-                        <p class="mb-1">Carrera</p>
-                        <select class="form-control">
-                            <option>Ingenieria</option>
-                            <option>Contabilidad</option>
-                        </select>
-                    </div>
-                    <div class="form-row m-0">
-                        <div class="col-auto">
-                            <label>&nbsp</label>
-                            <button class="form-control btn btn-primary" type="submit">Actualizar</button>
+    <c:choose>
+        <c:when test="${alumno==null}">
+            <form action="/aula_virtual/administrador/alumnos/guardar" method="post">
+                <div class="main-border">
+                    <div class="row">
+                        <div class="col-9">
+                            <div>
+                                <p class="font-weight-bold">Datos del Nuevo Alumno</p>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    <p class="mb-1">Código</p>
+                                    <input class="form-control" type="text" name="cod" value="2020546"/>
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Nombres</p>
+                                    <input class="form-control" type="text" name="first_name" />
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Apellidos</p>
+                                    <input class="form-control" type="text" name="last_name" />
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    <p class="mb-1">Correo de la Universidad</p>
+                                    <input class="form-control" type="text" name="email_univ" />
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Correo Personal</p>
+                                    <input class="form-control" type="text" name="email_priv" />
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Género</p>
+                                    <select class="form-control" name="gender" >
+                                        <option>Masculino</option>
+                                        <option>Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    <p class="mb-1">País</p>
+                                    <input class="form-control" type="text" name="pais" />
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">TeamViewer Usuario</p>
+                                    <input class="form-control" type="text" name="TV_user" />
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">TeamViewer Contraseña</p>
+                                    <input class="form-control" type="text" name="TV_pw" />
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">AnyDesk Credencial</p>
+                                    <input class="form-control" type="text" name="AD_cred" />
+                                </div>
+                            </div>
+                            <div class="form-row mb-0">
+                                <div class="col">
+                                    <p class="mb-1">Carrera</p>
+                                    <select class="form-control" name="career">
+                                        <option>Ingenieria</option>
+                                        <option>Contabilidad</option>
+                                    </select>
+                                </div>
+                                <div class="form-row m-0">
+                                    <div class="col">
+                                        <label>&nbsp</label>
+                                        <button class="form-control btn btn-primary" type="submit">Actualizar</button>
+                                    </div>
+                                    <div class="col">
+                                        <label>&nbsp</label>
+                                        <button class="form-control btn btn-success" type="button">Seleccionar</button>
+                                    </div>
+                                    <div class="col">
+                                        <label>&nbsp</label>
+                                        <button class="form-control btn btn-warning" type="button">Subir</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <label>&nbsp</label>
-                            <button class="form-control btn btn-success" type="submit">Seleccionar</button>
-                        </div>
-                        <div class="col-auto">
-                            <label>&nbsp</label>
-                            <button class="form-control btn btn-warning" type="submit">Subir</button>
+                        <div class="col-3">
+                            <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-3">
-                <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
-            </div>
-        </div>
-
-    </div>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <form action="/aula_virtual/administrador/alumnos/actualizar" method="post">
+                <div class="main-border">
+                    <div class="row">
+                        <div class="col-9">
+                            <div>
+                                <p class="font-weight-bold">Datos del Nuevo Alumno</p>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    <p class="mb-1">Codigo</p>
+                                    <input class="form-control" type="text" name="cod" value="${alumno.cod}"/>
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Nombres</p>
+                                    <input class="form-control" type="text" name="first_name" value="${alumno.first_name}"/>
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Apellidos</p>
+                                    <input class="form-control" type="text" name="last_name" value="${alumno.last_name}"/>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    <p class="mb-1">Correo de la Universidad</p>
+                                    <input class="form-control" type="text" name="email_univ" value="${alumno.email_univ}"/>
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Correo Personal</p>
+                                    <input class="form-control" type="text" name="email_priv" value="${alumno.email_priv}"/>
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">Género</p>
+                                    <select class="form-control" name="gender" value="">
+                                        <option value="">----Seleccionar una género-----</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col">
+                                    <p class="mb-1">País</p>
+                                    <input class="form-control" type="text" name="pais" value="${alumno.pais}"/>
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">TeamViewer Usuario</p>
+                                    <input class="form-control" type="text" name="TV_user" value="${alumno.TV_user}" />
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">TeamViewer Contraseña</p>
+                                    <input class="form-control" type="text" name="TV_pw" value="${alumno.TV_pw}"/>
+                                </div>
+                                <div class="col">
+                                    <p class="mb-1">AnyDesk Credencial</p>
+                                    <input class="form-control" type="text" name="AD_cred" value="${alumno.AD_cred}"/>
+                                </div>
+                            </div>
+                            <div class="form-row mb-0">
+                                <div class="col">
+                                    <p class="mb-1">Carrera</p>
+                                    <select class="form-control" name="career" value="">
+                                        <option value="">----Seleccionar una carrera-----</option>
+                                    </select>
+                                </div>
+                                <div class="form-row m-0">
+                                    <div class="col">
+                                        <label>&nbsp</label>
+                                        <button class="form-control btn btn-primary" type="submit">Actualizar</button>
+                                    </div>
+                                    <div class="col">
+                                        <label>&nbsp</label>
+                                        <button class="form-control btn btn-success" type="button">Seleccionar</button>
+                                    </div>
+                                    <div class="col">
+                                        <label>&nbsp</label>
+                                        <button class="form-control btn btn-warning" type="button">Subir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </c:otherwise>
+    </c:choose>
     <div class="m-3">
         <p class="text-right font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="ayudaModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div id="ayudaModal" class="modal fade " tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Integrantes del Grupo:</h5>
+                    <h5 class="modal-title font-weight-bold">Integrantes del Grupo:</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row row-cols-1 row-cols-md-2">
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="..." class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Integrante 1</h5>
-                                        <p class="card-text">descripcion</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="..." class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Integrante 2</h5>
-                                        <p class="card-text">descripcion</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Andy Lazo</div>
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="col mb-4">
-                            <div class="card">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in to additional content.</p>
-                                </div>
-                            </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Gabriel Carmelo</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="col mb-4">
-                            <div class="card">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Dante Córdova</div>
+                        <div class="col-3">
+                            <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Edgar Rodriguez</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Fin Modal -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
