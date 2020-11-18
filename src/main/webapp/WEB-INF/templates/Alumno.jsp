@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-9">
                     <div>
-                        <p class="font-weight-bold">Datos del Nuevo Alumno</p>
+                        <p class="font-weight-bold">Datos del Alumno</p>
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
