@@ -19,6 +19,8 @@ public class AulaVirtualController {
     @Autowired
     private AlumnoRepository alumnoRep;
 
+    // Si se sube a la nube "localhost:8080" -> "aula_virtual"
+
     //LOGIN:
     // http://localhost:8080/aula_virtual/login/profesor
     @RequestMapping(value = "/aula_virtual/login/profesor", method = RequestMethod.GET)
@@ -35,7 +37,24 @@ public class AulaVirtualController {
     public String mostrarLogin_Administrador(){
         return "Login_Administrador";
     }
-    
+
+    /*
+    @RequestMapping(value = "/aula_virtual/alumno", method = RequestMethod.GET)
+    public String mostrar(){
+        if(){
+            //profe
+            return "";
+        }else if (){
+            //alumno
+            return "";
+        }else{
+            //admin
+            return "";
+        }
+    }
+
+    */
+
     //ALUMNO:
     // http://localhost:8080/aula_virtual/alumno
     @RequestMapping(value = "/aula_virtual/alumno", method = RequestMethod.GET)
