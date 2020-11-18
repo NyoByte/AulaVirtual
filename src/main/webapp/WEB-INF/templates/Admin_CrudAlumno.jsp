@@ -78,7 +78,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="text" name="cod" value="2020546"/>
+                                    <input class="form-control" type="text" name="cod" value="2020546" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" name="gender" >
+                                    <select class="form-control" name="gender">
                                         <option>Masculino</option>
                                         <option>Femenino</option>
                                     </select>
@@ -133,17 +133,35 @@
                                     </select>
                                 </div>
                                 <div class="form-row m-0">
-                                    <div class="col">
-                                        <label>&nbsp</label>
-                                        <button class="form-control btn btn-primary" type="submit">Actualizar</button>
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <a class="btn btn-primary" type="submit"><svg width="2em" height="2em"
+                                                viewBox="0 0 16 16" class="bi bi-check" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                            </svg>Actualizar Datos</a>
                                     </div>
-                                    <div class="col">
-                                        <label>&nbsp</label>
-                                        <button class="form-control btn btn-success" type="button">Seleccionar</button>
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em"
+                                                viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
+                                            </svg>Seleccionar Foto</a>
                                     </div>
-                                    <div class="col">
-                                        <label>&nbsp</label>
-                                        <button class="form-control btn btn-warning" type="button">Subir</button>
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <a class="btn btn-warning" type="submit"><svg width="2em" height="1.5em"
+                                                viewBox="0 0 16 16" class="bi bi-cloud-arrow-up-fill"
+                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 1 0V6.707l1.146 1.147a.5.5 0 0 0 .708-.708z" />
+                                            </svg>Subir</a>
                                     </div>
                                 </div>
                             </div>
@@ -166,25 +184,29 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Codigo</p>
-                                    <input class="form-control" type="text" name="cod" value="${alumno.cod}"/>
+                                    <input class="form-control" type="text" name="cod" value="${alumno.cod}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
-                                    <input class="form-control" type="text" name="first_name" value="${alumno.first_name}"/>
+                                    <input class="form-control" type="text" name="first_name"
+                                        value="${alumno.first_name}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
-                                    <input class="form-control" type="text" name="last_name" value="${alumno.last_name}"/>
+                                    <input class="form-control" type="text" name="last_name"
+                                        value="${alumno.last_name}" />
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="text" name="email_univ" value="${alumno.email_univ}"/>
+                                    <input class="form-control" type="text" name="email_univ"
+                                        value="${alumno.email_univ}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
-                                    <input class="form-control" type="text" name="email_priv" value="${alumno.email_priv}"/>
+                                    <input class="form-control" type="text" name="email_priv"
+                                        value="${alumno.email_priv}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
@@ -196,7 +218,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <input class="form-control" type="text" name="pais" value="${alumno.pais}"/>
+                                    <input class="form-control" type="text" name="pais" value="${alumno.pais}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
@@ -204,11 +226,11 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Contraseña</p>
-                                    <input class="form-control" type="text" name="TV_pw" value="${alumno.TV_pw}"/>
+                                    <input class="form-control" type="text" name="TV_pw" value="${alumno.TV_pw}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">AnyDesk Credencial</p>
-                                    <input class="form-control" type="text" name="AD_cred" value="${alumno.AD_cred}"/>
+                                    <input class="form-control" type="text" name="AD_cred" value="${alumno.AD_cred}" />
                                 </div>
                             </div>
                             <div class="form-row mb-0">
@@ -219,17 +241,35 @@
                                     </select>
                                 </div>
                                 <div class="form-row m-0">
-                                    <div class="col">
-                                        <label>&nbsp</label>
-                                        <button class="form-control btn btn-primary" type="submit">Actualizar</button>
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <a class="btn btn-primary" type="submit"><svg width="2em" height="2em"
+                                                viewBox="0 0 16 16" class="bi bi-check" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                            </svg>Actualizar Datos</a>
                                     </div>
-                                    <div class="col">
-                                        <label>&nbsp</label>
-                                        <button class="form-control btn btn-success" type="button">Seleccionar</button>
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em"
+                                                viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
+                                            </svg>Seleccionar Foto</a>
                                     </div>
-                                    <div class="col">
-                                        <label>&nbsp</label>
-                                        <button class="form-control btn btn-warning" type="button">Subir</button>
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <a class="btn btn-warning" type="submit"><svg width="2em" height="1.5em"
+                                                viewBox="0 0 16 16" class="bi bi-cloud-arrow-up-fill"
+                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 1 0V6.707l1.146 1.147a.5.5 0 0 0 .708-.708z" />
+                                            </svg>Subir</a>
                                     </div>
                                 </div>
                             </div>
