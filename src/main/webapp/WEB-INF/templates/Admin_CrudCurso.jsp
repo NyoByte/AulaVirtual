@@ -50,10 +50,10 @@
                         <li class="nav-item pt-3">
                             <a class="nav-link" href="#">Profesores</a>
                         </li>
-                        <li class="nav-item pt-3 active">
+                        <li class="nav-item pt-3">
                             <a class="nav-link" href="#">Alumnos</a>
                         </li>
-                        <li class="nav-item pt-3">
+                        <li class="nav-item pt-3 active">
                             <a class="nav-link" href="#">Cursos</a>
                         </li>
                         <li class="nav-item pt-3">
@@ -91,10 +91,11 @@
                     <div class="btn-group col-3 pl-3">
                         <div class="px-2">
                             <p class="mb-1">&nbsp</p>
-                            <a class="btn btn-primary" type="submit"><svg width="2em" height="2em" viewBox="0 0 16 16"
-                                    class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em" stroke="white"
+                                    viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
-                                        d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                                 </svg>Actualizar Datos</a>
                         </div>
                     </div>
