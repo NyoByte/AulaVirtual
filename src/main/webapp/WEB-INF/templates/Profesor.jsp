@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesor-Secciones</title>
+    <title>Profesor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -47,10 +47,10 @@
                         <li class="nav-item">
                             <div class="font-weight-bold subt navbar-brand">Aula Virtual</div>
                         </li>
-                        <li class="nav-item pt-3">
+                        <li class="nav-item pt-3 active">
                             <a class="nav-link" href="/aula_virtual/profesor/datos">Mis Datos</a>
                         </li>
-                        <li class="nav-item pt-3 active">
+                        <li class="nav-item pt-3">
                             <a class="nav-link" href="/aula_virtual/profesor/secciones">Mis Secciones</a>
                         </li>
                     </ul>
@@ -61,80 +61,87 @@
     <!--Marco blanco...-->
     <div class="main-border">
         <div class="row">
-            <div class="col-12">
+            <div class="col-9">
+                <div>
+                    <p class="font-weight-bold">
+                    <h2>Datos del Profesor</h2>
+                    </p>
+                </div>
                 <div class="form-row mb-3">
-                    <div class="col-3">
-                        <h3 class="mb-1">Secciones</h3>
-                        <input class="form-control" type="text" name="seccion" />
+                    <div class="col">
+                        <p class="mb-1">Codigo</p>
+                        <input class="form-control" type="text" name="codigo" disabled/>
+                    </div>
+                    <div class="col">
+                        <p class="mb-1">Nombres</p>
+                        <input class="form-control" type="text" name="nombres" disabled/>
+                    </div>
+                    <div class="col">
+                        <p class="mb-1">Apellidos</p>
+                        <input class="form-control" type="text" name="apellidos" disabled/>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col">
+                        <p class="mb-1">Correo de la Universidad</p>
+                        <input class="form-control" type="text" name="correo_univ" disabled/>
+                    </div>
+                    <div class="col">
+                        <p class="mb-1">Correo Personal</p>
+                        <input class="form-control" type="text" name="correo_personal" />
+                    </div>
+                    <div class="col">
+                        <p class="mb-1">Género</p>
+                        <select class="form-control" id="carrera" disabled>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col">
+                        <p class="mb-1">País</p>
+                        <input class="form-control" type="text" name="país" disabled/>
+                    </div>
+                    <div class="col">
+                        <p class="mb-1">Tipo de Docente</p>
+                        <select class="form-control" disabled>
+                            <option></option>
+                        </select>
                     </div>
                     <div class="px-2">
-                        <h3 class="mb-1">&nbsp</h3>
-                        <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em" viewBox="0 0 16 16"
-                                class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <p class="mb-1">&nbsp</p>
+                        <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em" stroke="white"
+                                viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
-                                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                                <path fill-rule="evenodd"
-                                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                            </svg>Ver Alumnos</a>
+                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                            </svg>Actualizar Datos</a>
                     </div>
                 </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">AnyDesk-Credencial</th>
-                            <th scope="col">TeamViewer-Usuario</th>
-                            <th scope="col">TeamViewer-Contraseña</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">2020001</td>
-                            <td>Jenni Iris Alabone Radbornejenni</td>
-                            <td>123 123 123</td>
-                            <td>123 123 123</td>
-                            <td>NL82Hh</td>
-                            <td class="pl-4 ope-td"><a href="#"><svg width="1.5em" height="1.5em" stroke="black" viewBox="0 0 16 16"
-                                        class="bi bi-arrow-repeat" fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-                                        <path fill-rule="evenodd"
-                                            d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
-                                    </svg></a></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">2020001</td>
-                            <td>Jenni Iris Alabone Radbornejenni</td>
-                            <td>123 123 123</td>
-                            <td>123 123 123</td>
-                            <td>NL82Hh</td>
-                            <td class="pl-4 ope-td"><a href="#"><svg width="1.5em" height="1.5em" stroke="black" viewBox="0 0 16 16"
-                                        class="bi bi-arrow-repeat" fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-                                        <path fill-rule="evenodd"
-                                            d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
-                                    </svg></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="row">
-                    <!--ultima linea-->
-                    <div class="col text-right">
-                        paginacion
+                <!--<div class="form-row mb-0 pl-5">
+                    <div class="form-row m-0">
+                        <div class="px-2">
+                            <p class="mb-1">&nbsp</p>
+                            <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em" stroke="white"
+                                    viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                </svg>Actualizar Datos</a>
+                        </div>
                     </div>
-                </div>
+                </div>-->
+            </div>
+            <div class="col-3">
+                <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
             </div>
         </div>
+
     </div>
     <div class="m-3">
         <p class="text-right font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
     </div>
-
     <!-- Modal -->
     <div id="ayudaModal" class="modal fade " tabindex="-1">
         <div class="modal-dialog modal-dialog-centered ">
