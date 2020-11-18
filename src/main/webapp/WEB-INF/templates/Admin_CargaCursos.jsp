@@ -48,16 +48,16 @@
                             <div class="font-weight-bold subt navbar-brand">Aula Virtual</div>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="#">Profesores</a>
+                            <a class="nav-link" href="/aula_virtual/administrador/profesores">Profesores</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="#">Alumnos</a>
+                            <a class="nav-link" href="/aula_virtual/administrador/alumnos">Alumnos</a>
                         </li>
                         <li class="nav-item pt-3 active">
-                            <a class="nav-link" href="#">Cursos</a>
+                            <a class="nav-link" href="/aula_virtual/administrador/cursos">Cursos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="#">Secciones</a>
+                            <a class="nav-link" href="/aula_virtual/administrador/secciones">Secciones</a>
                         </li>
                     </ul>
                 </div>
