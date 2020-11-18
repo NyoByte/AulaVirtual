@@ -25,13 +25,16 @@ public class AlumnoEntity {
     private String email_priv;
 
     @Column(name = "TeamViewer_Usuario", length = 15)
-    private String TV_user;
+    private String tv_user;
 
     @Column(name = "TeamViewer_Contraseña", length = 15)
-    private String TV_pw;
+    private String tv_pw;
 
     @Column(name = "AnyDesk_Credencial", length = 10)
-    private String AD_cred;
+    private String ad_cred;
+
+    @Column(name = "Foto_Url", length = 100)
+    private String photo_url;
 
     //[Alumno]M-------1[Género]
     @ManyToOne
@@ -48,16 +51,17 @@ public class AlumnoEntity {
     public AlumnoEntity() {
     }
 
-    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String TV_user, String TV_pw, String AD_cred) {
+    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, String photo_url) {
         this.id = id;
         this.cod = cod;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_univ = email_univ;
         this.email_priv = email_priv;
-        this.TV_user = TV_user;
-        this.TV_pw = TV_pw;
-        this.AD_cred = AD_cred;
+        this.tv_user = tv_user;
+        this.tv_pw = tv_pw;
+        this.ad_cred = ad_cred;
+        this.photo_url = photo_url;
     }
 
     public Long getId() {
@@ -108,28 +112,36 @@ public class AlumnoEntity {
         this.email_priv = email_priv;
     }
 
-    public String getTV_user() {
-        return TV_user;
+    public String getTv_user() {
+        return tv_user;
     }
 
-    public void setTV_user(String TV_user) {
-        this.TV_user = TV_user;
+    public void setTv_user(String tv_user) {
+        this.tv_user = tv_user;
     }
 
-    public String getTV_pw() {
-        return TV_pw;
+    public String getTv_pw() {
+        return tv_pw;
     }
 
-    public void setTV_pw(String TV_pw) {
-        this.TV_pw = TV_pw;
+    public void setTv_pw(String tv_pw) {
+        this.tv_pw = tv_pw;
     }
 
-    public String getAD_cred() {
-        return AD_cred;
+    public String getAd_cred() {
+        return ad_cred;
     }
 
-    public void setAD_cred(String AD_cred) {
-        this.AD_cred = AD_cred;
+    public void setAd_cred(String ad_cred) {
+        this.ad_cred = ad_cred;
+    }
+
+    public String getPhoto_url() {
+        return photo_url;
+    }
+
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
     }
 
     public GeneroEntity getGender() {
