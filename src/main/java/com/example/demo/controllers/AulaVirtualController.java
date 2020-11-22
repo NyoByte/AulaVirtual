@@ -177,15 +177,6 @@ public class AulaVirtualController {
         else return "Admin_CargaSecciones";
     }
 
-    //TESTER
-    // http://localhost:8080/test
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String mostrarTest(){
-        //Copia tu código en el archivo test.jsp
-        return "test";
-    }
-
-
     /* FUNCIONES */
     @RequestMapping(value = "/aula_virtual/administrador/alumnos/edit/{cod}", method = RequestMethod.GET)
     public String editarAlumno(Model model, @PathVariable String cod) {
