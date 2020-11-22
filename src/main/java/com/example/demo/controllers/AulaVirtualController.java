@@ -22,6 +22,10 @@ public class AulaVirtualController {
     private AlumnoRepository alumnoRep;
 
     // Si se sube a la nube "localhost:8080" -> "aula_virtual"
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String principal() {
+        return "redirect:/inicio";
+    }
 
     @RequestMapping(value = "/inicio", method = RequestMethod.GET)
     public String mostrarInicio() {
@@ -62,7 +66,7 @@ public class AulaVirtualController {
     */
 
     //DATOS profesor/alumno
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/temporal", method = RequestMethod.GET) //cambié de / -> temporal porque la pagina principal es la de inicio
     public String mostrarPagPrincipal(){
         //Primero se debe verificar si el usuario esta logueado con la sesion.
         /*HttpSession sesion = obtenerSesion();
