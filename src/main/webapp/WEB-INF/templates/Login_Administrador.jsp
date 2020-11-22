@@ -20,7 +20,7 @@
                 <div class="navbar-collapse">
                     <ul class="navbar-nav flex-row">
                         <li class="nav-item mr-3">
-                            <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="/inicio">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="m-3">
-        <p class="text-right font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
+        <p class="text-center font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
     </div>
     <!-- Modal -->
     <div id="ayudaModal" class="modal fade " tabindex="-1">
