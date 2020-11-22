@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -20,7 +20,7 @@
                 <div class="navbar-collapse">
                     <ul class="navbar-nav flex-row">
                         <li class="nav-item mr-3">
-                            <a class="nav-link" href="/inicio">Inicio</a>
+                            <a class="nav-link" href="#">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
@@ -33,31 +33,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <form class="col-6 justify-content-center main-container">
-                <div class="form-group text-center">
-                    <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-emoji-smile-upside-down"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0-1a8 8 0 1 1 0 16A8 8 0 0 1 8 0z"></path>
-                        <path fill-rule="evenodd"
-                            d="M4.285 6.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 4.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 3.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z">
-                        </path>
-                        <path
-                            d="M7 9.5C7 8.672 6.552 8 6 8s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5zm4 0c0-.828-.448-1.5-1-1.5s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5z">
-                        </path>
-                    </svg>
-                </div>
-                <div class="form-group ">
-                    <input type="text" class="form-control" placeholder="Usuario ">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña">
-                </div>
-                <div class="row form-group">
-                    <a class="col text-left text-primary" href="/login/administrador">Soy Admin</a>
-                    <a class="col text-right text-primary" href="/login/profesor">Soy Profesor</a>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
+                <h1 class="form-group text-center">
+                    Bienvenido al Aula Virtual
+                </h1>
+                <div class="btn-group-vertical col">
+                    <a type="button" class="btn btn-outline-success mb-2" href="/login/administrador">Administrador</a>
+                    <a type="button" class="btn btn-outline-primary mb-2" href="/login/profesor">Profesor</a>
+                    <a type="button" class="btn btn-outline-secondary mb-2" href="/login/alumno">Alumno</a>
                 </div>
             </form>
         </div>
