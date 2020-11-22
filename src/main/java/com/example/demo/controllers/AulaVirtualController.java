@@ -84,13 +84,13 @@ public class AulaVirtualController {
             return "redirect:/login";
         }
     }
-
+    /*
     //Profesor - Ver seccion
     @RequestMapping(value = "/seccion", method = RequestMethod.GET)
     public String mostrarProfesor_Sección(){
         //Se deberia verificar tambien si esta logueado. Y verificar que sea profesor.
         return "Profesor_Sección";
-    }
+    }*/
 
     //ADMINISTRADOR:
     //Gestionar alumnos
