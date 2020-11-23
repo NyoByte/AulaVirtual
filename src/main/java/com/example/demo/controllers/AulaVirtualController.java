@@ -141,7 +141,11 @@ public class AulaVirtualController {
             return "Admin_CrudAlumno";
         }
         //http://localhost:8080/alumno
-        else return "Admin_CargaAlumnos";
+        else{
+            List<AlumnoEntity> alumnos = alumnoRep.findAll();
+            model.addAttribute("listaAlumnos",alumnos);
+            return "Admin_CargaAlumnos";
+        }
     }
 
     //Gestionar profesores
