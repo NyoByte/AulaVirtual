@@ -85,7 +85,7 @@
                     <div class="btn-group col-6 pl-3">
                         <div class="px-2">
                             <p class="mb-1">&nbsp</p>
-                            <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em" viewBox="0 0 16 16"
+                            <a class="btn btn-success" type="button"><svg width="2em" height="1.5em" viewBox="0 0 16 16"
                                     class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
@@ -134,7 +134,7 @@
                             <td>Jenni Iris Alabone Radbornejenni</td>
                             <td>Ingeniería</td>
                             <td>Female</td>
-                            <td class="pl-4 ope-td"><a href="/aula_virtual/administrador/alumnos/edit/${cod}"><svg
+                            <td class="pl-4 ope-td"><a href="/aula_virtual/alumno?edit=true&alumno_id={alumno.id}"><svg
                                         width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -170,7 +170,7 @@
                 <div class="row">
                     <!--ultima linea-->
                     <div class="col">
-                        <a class="btn btn-primary" type="button" href="/aula_virtual/administrador/alumnos/edit"><svg
+                        <a class="btn btn-primary" type="button" href="/aula_virtual/alumno?edit=true"><svg
                                 width="2em" height="2em" stroke="white" viewBox="0 0 16 16" class="bi bi-plus"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"

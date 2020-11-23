@@ -1,8 +1,8 @@
 package com.example.demo.controllers;
 
 
-import com.example.demo.model.dao.AlumnoEntity;
-import com.example.demo.model.repositories.AlumnoRepository;
+import com.example.demo.model.dao.*;
+import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +12,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -20,6 +21,18 @@ import java.util.Optional;
 public class AulaVirtualController {
     @Autowired
     private AlumnoRepository alumnoRep;
+    @Autowired
+    private CarreraRepository carreraRep;
+    @Autowired
+    private CursoRepository cursoRep;
+    @Autowired
+    private GeneroRepository generoRep;
+    @Autowired
+    private PaisRepository paisRep;
+    @Autowired
+    private ProfesorTipoRepository profesorTipoRep;
+    @Autowired
+    private SeccionRepostitory seccionRep;
 
     // Si se sube a la nube "localhost:8080" -> "aula_virtual"
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -100,20 +113,30 @@ public class AulaVirtualController {
     //Gestionar alumnos
     @RequestMapping(value = "/alumno", method = RequestMethod.GET)
     public String mostrarGestionAlumnos(@RequestParam(name = "edit", defaultValue = "false") String edit,
-                                        @RequestParam(name = "student_id", required = false) Optional<String> studentId,
+                                        @RequestParam(name = "alumno_id", required = false) Optional<String> alumnoId,
                                         Model model){
         //Verificar si esta logueado. Verificar si es cuenta de administrador.
         if(edit.equalsIgnoreCase("true")){
             //Para editar
             //http://localhost:8080/alumno?edit=true (CRUD)
+            List<PaisEntity> paises = paisRep.findAll();
+            model.addAttribute("listaPaises",paises);
+            List<GeneroEntity> generos = generoRep.findAll();
+            model.addAttribute("listaGeneros",generos);
+            List<CarreraEntity> carreras = carreraRep.findAll();
+            model.addAttribute("listaCarreras",carreras);
 
             //Ahora se debe diferenciar si se ingreso a edit a traves del boton de agregar alumno o del lapiz de editar junto a cada alumno de la lista.
-            if(!studentId.isEmpty()){
+            if(!alumnoId.isEmpty()){
                 /*Si se ingreso a traves del lapiz, es para editar un alumno ya existente, entonces se debio pasar el
-                id del alumno como parametro (http://localhost:8080/alumno?edit=true&student_id={id}).
+                id del alumno como parametro (http://localhost:8080/alumno?edit=true&alumno_id={id}).
                 En este caso se deberia buscar el id en la base de datos para llenar los datos en el template "Admin_CrudAlumno".
-                Este if entonces solo se ejecuta cuando studentId no esta vacio y aca se hace la consulta a bd.
-                Nota: Como es un opcional, para obtener el id se debe usar studentId.get*/
+                Este if entonces solo se ejecuta cuando alumnoId no esta vacio y aca se hace la consulta a bd.
+                Nota: Como es un opcional, para obtener el id se debe usar alumnoId.get*/
+                Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
+                if(alumnoSeleccionado.isPresent()){
+                    model.addAttribute("alumno",alumnoSeleccionado.get());
+                }
             }
             return "Admin_CrudAlumno";
         }

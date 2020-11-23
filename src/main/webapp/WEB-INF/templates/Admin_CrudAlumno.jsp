@@ -68,7 +68,7 @@
     <!--Marco blanco...-->
     <c:choose>
         <c:when test="${alumno==null}">
-            <form action="/aula_virtual/administrador/alumnos/guardar" method="post">
+            <form action="/alumno/guardar" method="post">
                 <div class="main-border">
                     <div class="row">
                         <div class="col-9">
@@ -80,7 +80,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="text" name="cod" value="2020546" />
+                                    <input class="form-control" type="text" name="cod"/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em"
+                                        <a class="btn btn-success" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-warning" type="submit"><svg width="2em" height="1.5em"
+                                        <a class="btn btn-warning" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-cloud-arrow-up-fill"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -176,7 +176,7 @@
             </form>
         </c:when>
         <c:otherwise>
-            <form action="/aula_virtual/administrador/alumnos/actualizar" method="post">
+            <form action="/alumno/guardar" method="post">
                 <div class="main-border">
                     <div class="row">
                         <div class="col-9">
@@ -190,37 +190,35 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
-                                    <input class="form-control" type="text" name="first_name"
-                                        value="${alumno.first_name}" />
+                                    <input class="form-control" type="text" name="first_name" value="${alumno.first_name}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
-                                    <input class="form-control" type="text" name="last_name"
-                                        value="${alumno.last_name}" />
+                                    <input class="form-control" type="text" name="last_name" value="${alumno.last_name}" />
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="text" name="email_univ"
-                                        value="${alumno.email_univ}" />
+                                    <input class="form-control" type="text" name="email_univ" value="${alumno.email_univ}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
-                                    <input class="form-control" type="text" name="email_priv"
-                                        value="${alumno.email_priv}" />
+                                    <input class="form-control" type="text" name="email_priv" value="${alumno.email_priv}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" name="gender" value="">
-                                        <option value="">----Seleccionar una género-----</option>
+                                    <select class="form-control" name="gender">
+                                        <option value="0">----Seleccionar una género-----</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <input class="form-control" type="text" name="pais" value="${alumno.pais}" />
+                                    <select class="form-control" name="pais">
+                                        <option value="0">----Seleccionar una país-----</option>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
