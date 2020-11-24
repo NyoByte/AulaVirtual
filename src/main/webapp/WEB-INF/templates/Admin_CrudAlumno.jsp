@@ -222,15 +222,15 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
-                                    <input class="form-control" type="text" name="TV_user" value="${alumno.TV_user}" />
+                                    <input class="form-control" type="text" name="TV_user" value="${alumno.tv_user}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Contraseña</p>
-                                    <input class="form-control" type="text" name="TV_pw" value="${alumno.TV_pw}" />
+                                    <input class="form-control" type="text" name="TV_pw" value="${alumno.tv_pw}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">AnyDesk Credencial</p>
-                                    <input class="form-control" type="text" name="AD_cred" value="${alumno.AD_cred}" />
+                                    <input class="form-control" type="text" name="AD_cred" value="${alumno.ad_cred}" />
                                 </div>
                             </div>
                             <div class="form-row mb-0">
