@@ -132,7 +132,7 @@
                         <c:forEach var="alumno" items="${listaAlumnos}">
                             <tr>
                                 <td scope="row">2020001</td>
-                                <td>Jenni Iris Alabone Radbornejenni</td>
+                                <td>${alumno.first_name}</td>
                                 <td>Ingeniería</td>
                                 <td>Female</td>
                                 <td class="pl-4 ope-td"><a href="/alumno?edit=true&alumno_id=${alumno.id}"><svg
