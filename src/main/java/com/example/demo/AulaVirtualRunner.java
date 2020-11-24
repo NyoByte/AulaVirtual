@@ -14,11 +14,13 @@ public class AulaVirtualRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception{
+
         AlumnoEntity alumno1 = new AlumnoEntity(null,20173527,"Andy","Lazo",
                 "20173527@aloe.ulima.edu.pe","andyLazo@hotmail.com",
                 "andy","andyl","154165171","fotito.jpe");
 
         alumnoRep.save(alumno1);
+
 
     }
 }

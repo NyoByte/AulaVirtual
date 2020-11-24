@@ -131,7 +131,7 @@
                     <tbody>
                         <c:forEach var="alumno" items="${listaAlumnos}">
                             <tr>
-                                <td scope="row">2020001</td>
+                                <td scope="row">${alumno.cod}</td>
                                 <td>${alumno.first_name}</td>
                                 <td>Ingeniería</td>
                                 <td>Female</td>
