@@ -103,15 +103,20 @@
                                 <div class="col">
                                     <p class="mb-1">Género</p>
                                     <select class="form-control" name="gender">
-                                        <option>Masculino</option>
-                                        <option>Femenino</option>
+                                        <c:forEach var="genero" items="${listaGeneros}">
+                                            <option value="${genero.id}">${genero.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <input class="form-control" type="text" name="pais" />
+                                    <select class="form-control" type="text" name="pais" />
+                                        <c:forEach var="pais" items="${listaPaises}">
+                                            <option value="${pais.id}">${pais.name}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
@@ -130,8 +135,9 @@
                                 <div class="col">
                                     <p class="mb-1">Carrera</p>
                                     <select class="form-control" name="career">
-                                        <option>Ingenieria</option>
-                                        <option>Contabilidad</option>
+                                        <c:forEach var="carrera" items="${listaCarreras}">
+                                            <option value="${carrera.id}">${carrera.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-row m-0">
@@ -146,7 +152,7 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-success" type="button"><svg width="2em" height="1.5em"
+                                        <a class="btn btn-success" id="boton-selec-foto" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -209,7 +215,12 @@
                                 <div class="col">
                                     <p class="mb-1">Género</p>
                                     <select class="form-control" name="gender">
-                                        <option value="0">----Seleccionar una género-----</option>
+                                        <option value="${alumno.genero.id}">${alumno.genero.name}</option>
+                                        <c:forEach var="genero" items="${listaGeneros}">
+                                            <c:if test = "${genero.name != alumno.genero.name}" >
+                                                <option value="${genero.id}">${genero.name}</option>
+                                            </c:if>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -217,7 +228,9 @@
                                 <div class="col">
                                     <p class="mb-1">País</p>
                                     <select class="form-control" name="pais">
-                                        <option value="0">----Seleccionar una país-----</option>
+                                        <c:forEach var="pais" items="${listaPaises}">
+                                            <option value="${pais.id}">${pais.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -237,7 +250,9 @@
                                 <div class="col">
                                     <p class="mb-1">Carrera</p>
                                     <select class="form-control" name="career" value="">
-                                        <option value="">----Seleccionar una carrera-----</option>
+                                        <c:forEach var="carrera" items="${listaCarreras}">
+                                            <option value="${carrera.id}">${carrera.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-row m-0">
@@ -252,7 +267,7 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em"
+                                        <a class="btn btn-success" id="boton-selec-foto" type="submit"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -261,6 +276,8 @@
                                                 <path fill-rule="evenodd"
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                                             </svg>Seleccionar Foto</a>
+                                        <span id="visor_archivo"></span>
+                                        <input type="file" id="input_file" onchange="handleFiles(this.files)" style="display: none">
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
