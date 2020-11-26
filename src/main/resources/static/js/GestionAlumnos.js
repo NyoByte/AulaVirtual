@@ -20,7 +20,7 @@ var leerArchivo = function(){
 
 var activarFotoFile = function(){
     var inputFoto = document.querySelector("#input_Foto")
-    inputFile.click();
+    inputFoto.click();
 }
 
 var seleccionarFotoOnClick = function(){
