@@ -105,8 +105,8 @@
                                     <path fill-rule="evenodd"
                                         d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                                 </svg>Seleccionar Archivo</button>
-                            <span id="visor_foto"></span>
-                            <input type="file" id="input_Foto" onchange="handleIMG(this.files)" style="display: none">
+                            <span id="visor_archivo"></span>
+                            <input type="file" id="input_file" onchange="handleFiles(this.files)" style="display: none">
                         </div>
                         <div class="px-2">
                             <p class="mb-1">&nbsp</p>
