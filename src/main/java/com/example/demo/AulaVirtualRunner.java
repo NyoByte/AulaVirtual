@@ -40,7 +40,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
          */
 
 
-        /*
+        
         PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
         PaisEntity pais2 = new PaisEntity(null,"Argentina");    paisRep.save(pais2);
         PaisEntity pais3 = new PaisEntity(null,"Chile");        paisRep.save(pais3);
@@ -70,7 +70,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
                 "andy","andyl","154165171","fotito.jpe",genero1,carrera9,pais1);
 
         alumnoRep.save(alumno1);
-         */
+
 
 
         //CursoEntity curso1 = new CursoEntity(null,)
