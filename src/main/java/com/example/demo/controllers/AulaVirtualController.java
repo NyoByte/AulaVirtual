@@ -4,6 +4,7 @@ package com.example.demo.controllers;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -119,12 +120,12 @@ public class AulaVirtualController {
         if(edit.equalsIgnoreCase("true")){
             //Para editar
             //http://localhost:8080/alumno?edit=true (CRUD)
-            /*List<PaisEntity> paises = paisRep.findAll();
+            List<PaisEntity> paises = paisRep.findAll();
             model.addAttribute("listaPaises",paises);
             List<GeneroEntity> generos = generoRep.findAll();
             model.addAttribute("listaGeneros",generos);
             List<CarreraEntity> carreras = carreraRep.findAll();
-            model.addAttribute("listaCarreras",carreras);*/
+            model.addAttribute("listaCarreras",carreras);
 
             //Ahora se debe diferenciar si se ingreso a edit a traves del boton de agregar alumno o del lapiz de editar junto a cada alumno de la lista.
             if(!alumnoId.isEmpty()){
