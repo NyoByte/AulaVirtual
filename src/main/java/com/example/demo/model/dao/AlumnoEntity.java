@@ -64,6 +64,22 @@ public class AlumnoEntity {
         this.photo_url = photo_url;
     }
 
+    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, String photo_url, GeneroEntity gender, CarreraEntity career, PaisEntity pais) {
+        this.id = id;
+        this.cod = cod;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_univ = email_univ;
+        this.email_priv = email_priv;
+        this.tv_user = tv_user;
+        this.tv_pw = tv_pw;
+        this.ad_cred = ad_cred;
+        this.photo_url = photo_url;
+        this.gender = gender;
+        this.career = career;
+        this.pais = pais;
+    }
+
     public Long getId() {
         return id;
     }

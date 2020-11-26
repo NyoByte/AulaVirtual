@@ -18,29 +18,8 @@ var leerArchivo = function(){
     //Con FileReader. TODO...
 }
 
-var activarFotoFile = function(){
-    var inputFoto = document.querySelector("#input_Foto")
-    inputFoto.click();
-}
-
-var seleccionarFotoOnClick = function(){
-    var boton2 = document.querySelector("#boton_selec_foto");
-    boton2.addEventListener("click", activarFotoFile);
-}
-
-var handleIMG = function (files){
-    var fotoElegido = files[0];
-
-    document.querySelector("#visor_foto").innerHTML = fotoElegido.name
-}
-
-var leerFoto= function(){
-    //Con FileReader. TODO...
-}
-
 var main = function(){
     seleccionarArchivoOnClick();
-    seleccionarFotoOnClick();
 }
 
 window.addEventListener("load", main);
