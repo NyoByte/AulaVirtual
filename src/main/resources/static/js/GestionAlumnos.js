@@ -18,13 +18,6 @@ var leerArchivo = function(){
     //Con FileReader. TODO...
 }
 
-var main = function(){
-    seleccionarArchivoOnClick();
-    seleccionarFotoOnClick();
-}
-
-window.addEventListener("load", main);
-
 var activarFotoFile = function(){
     var inputFoto = document.querySelector("#input_Foto")
     inputFile.click();
@@ -44,3 +37,10 @@ var handleIMG = function (files){
 var leerFoto= function(){
     //Con FileReader. TODO...
 }
+
+var main = function(){
+    seleccionarArchivoOnClick();
+    seleccionarFotoOnClick();
+}
+
+window.addEventListener("load", main);
