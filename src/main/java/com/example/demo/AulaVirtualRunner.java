@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -23,9 +25,11 @@ public class AulaVirtualRunner implements CommandLineRunner {
     @Autowired
     private PeriodoRepository periodoRep;
     @Autowired
-    private ProfesorTipoRepository profesoreRep;
+    private ProfesorRepository profesoresRep;
     @Autowired
-    private ProfesorTipoRepository profesorTipoRep;
+    private ProfesorTipoRepository tiposRep;
+    @Autowired
+    private SeccionRepostitory seccionRep;
 
     @Override
     public void run(String... args) throws Exception{
@@ -42,7 +46,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
 
          */
 
-        /*
+
         // PAISES:
         PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
         PaisEntity pais2 = new PaisEntity(null,"Argentina");    paisRep.save(pais2);
@@ -199,17 +203,79 @@ public class AulaVirtualRunner implements CommandLineRunner {
         PeriodoEntity periodo8 = new PeriodoEntity(null,"2020-II",2020);    periodoRep.save(periodo8);
 
         // TIPOS PROFESORES:
-        ProfesorTipoEntity tipo1 = new ProfesorTipoEntity(null,"Profesor");             profesorTipoRep.save(tipo1);
-        ProfesorTipoEntity tipo2 = new ProfesorTipoEntity(null,"Jefe de Prácticas");    profesorTipoRep.save(tipo2);
+        ProfesorTipoEntity tipo1 = new ProfesorTipoEntity(null,"Profesor");             tiposRep.save(tipo1);
+        ProfesorTipoEntity tipo2 = new ProfesorTipoEntity(null,"Jefe de Prácticas");    tiposRep.save(tipo2);
 
         // ALUMNOS:
         AlumnoEntity alumno1 = new AlumnoEntity(null,20173527,"Andy","Lazo",
                 "20173527@aloe.ulima.edu.pe","andyLazo@hotmail.com",
                 "andy","andyl","154165171","fotito.jpe",genero1,carrera12,pais1);
 
-        alumnoRep.save(alumno1);
+        AlumnoEntity alumno2 = new AlumnoEntity(null,20173240,"Dante","Cordova",
+                "20173240@aloe.ulima.edu.pe","DanteCordova@hotmail.com",
+                "dante","danteC","154165184","fotito.jpe",genero1,carrera6,pais1);
 
-         */
+        AlumnoEntity alumno3 = new AlumnoEntity(null,20170001,"Nombre3","Apellido3",
+                "20170001@aloe.ulima.edu.pe","andyLazo@hotmail.com",
+                "user3","pw3","1541985171","fotito.jpe",genero1,carrera7,pais3);
+
+        AlumnoEntity alumno4 = new AlumnoEntity(null,20170002,"Nombre4","Apellido4",
+                "20170002@aloe.ulima.edu.pe","andyLazo@hotmail.com",
+                "user4","pw4","151005171","fotito.jpe",genero2,carrera12,pais2);
+
+        AlumnoEntity alumno5 = new AlumnoEntity(null,20170003,"Nombre5","Apellido5",
+                "20170003@aloe.ulima.edu.pe","andyLazo@hotmail.com",
+                "user5","pw4","154163571","fotito.jpe",genero2,carrera7,pais1);
+
+        alumnoRep.save(alumno1);
+        alumnoRep.save(alumno2);
+        alumnoRep.save(alumno3);
+        alumnoRep.save(alumno4);
+        alumnoRep.save(alumno5);
+
+        // SECCIONES:
+        SeccionEntity seccion1 = new SeccionEntity(null,101,c3_Curso2,periodo8);    seccionRep.save(seccion1);
+        SeccionEntity seccion2 = new SeccionEntity(null,102,c7_Curso8,periodo7);    seccionRep.save(seccion2);
+        SeccionEntity seccion3 = new SeccionEntity(null,103,c6_Curso5,periodo8);    seccionRep.save(seccion3);
+
+        // PROFESORES:
+        ProfesorEntity profesor1 = new ProfesorEntity(null,2015065,"Hernan","Quintana",
+                "2015065@aloe.ulima.edu.pe","HQuintana@hotmail.com","fotito.jpe",genero1,pais1,tipo1);
+        ProfesorEntity profesor2 = new ProfesorEntity(null,2015066,"Hernan2","Quintana2",
+                "2015066@aloe.ulima.edu.pe","HQuintana2@hotmail.com","fotito.jpe",genero1,pais2,tipo1);
+
+        profesoresRep.save(profesor1);
+        profesoresRep.save(profesor2);
+
+        // RELACIONES:
+        List<AlumnoEntity> listaAlumno1 = new ArrayList<>();
+        listaAlumno1.add(alumno1);
+        listaAlumno1.add(alumno2);
+        listaAlumno1.add(alumno3);
+
+        List<AlumnoEntity> listaAlumno2 = new ArrayList<>();
+        listaAlumno2.add(alumno2);
+        listaAlumno2.add(alumno5);
+
+        List<AlumnoEntity> listaAlumno3 = new ArrayList<>();
+        listaAlumno3.add(alumno1);
+        listaAlumno3.add(alumno4);
+
+        seccion1.setAlumnos(listaAlumno1);  seccionRep.save(seccion1);
+        seccion2.setAlumnos(listaAlumno2);  seccionRep.save(seccion2);
+        seccion3.setAlumnos(listaAlumno3);  seccionRep.save(seccion3);
+
+        List<ProfesorEntity> profe1 = new ArrayList<>();
+        profe1.add(profesor1);
+
+        List<ProfesorEntity> profe2 = new ArrayList<>();
+        profe2.add(profesor2);
+
+        seccion1.setProfesor(profe1);    seccionRep.save(seccion1);
+        seccion2.setProfesor(profe2);    seccionRep.save(seccion2);
+        seccion3.setProfesor(profe1);    seccionRep.save(seccion3);
+
+
 
     }
 }

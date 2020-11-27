@@ -13,14 +13,14 @@ public class CursoEntity {
     @Column(name = "Código")
     private int cod;
 
-    @Column(name = "Nombre",length = 25)
+    @Column(name = "Nombre",length = 50)
     private String name;
 
     //[Curso]M-------1[Carrera]
     @ManyToOne
     private CarreraEntity career;
 
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "course")
     private List<SeccionEntity> listSecciones;
 
     /* Constructor */

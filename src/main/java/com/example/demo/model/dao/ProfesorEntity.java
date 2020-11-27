@@ -1,6 +1,7 @@
 package com.example.demo.model.dao;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Profesores")
@@ -38,6 +39,9 @@ public class ProfesorEntity {
     //[Profesor]M-------1[Tipo]
     @ManyToOne
     private ProfesorTipoEntity type;
+
+    @ManyToMany(mappedBy = "profesor")
+    private List<SeccionEntity> secciones;
 
     public ProfesorEntity() {
     }
@@ -143,5 +147,13 @@ public class ProfesorEntity {
 
     public void setType(ProfesorTipoEntity type) {
         this.type = type;
+    }
+
+    public List<SeccionEntity> getSecciones() {
+        return secciones;
+    }
+
+    public void setSecciones(List<SeccionEntity> secciones) {
+        this.secciones = secciones;
     }
 }

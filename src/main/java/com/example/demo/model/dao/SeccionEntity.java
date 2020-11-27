@@ -1,5 +1,7 @@
 package com.example.demo.model.dao;
 
+import org.hibernate.annotations.ManyToAny;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,27 +13,33 @@ public class SeccionEntity {
     private Long id;
 
     @Column(name = "Código")
-    private String cod;
+    private int cod;
 
     @ManyToOne
     private CursoEntity course;
 
     @ManyToOne
-    private PeriodoEntity period;
+    private PeriodoEntity periodo;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<AlumnoEntity> alumnos;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<ProfesorEntity> profesor;
 
     public SeccionEntity() {
     }
 
-    public SeccionEntity(Long id, String cod) {
+    public SeccionEntity(Long id, int cod) {
         this.id = id;
         this.cod = cod;
     }
 
-    public SeccionEntity(Long id, String cod, CursoEntity course, PeriodoEntity period) {
+    public SeccionEntity(Long id, int cod, CursoEntity course, PeriodoEntity periodo) {
         this.id = id;
         this.cod = cod;
         this.course = course;
-        this.period = period;
+        this.periodo = periodo;
     }
 
     public Long getId() {
@@ -42,11 +50,11 @@ public class SeccionEntity {
         this.id = id;
     }
 
-    public String getCod() {
+    public int getCod() {
         return cod;
     }
 
-    public void setCod(String cod) {
+    public void setCod(int cod) {
         this.cod = cod;
     }
 
@@ -58,11 +66,27 @@ public class SeccionEntity {
         this.course = course;
     }
 
-    public PeriodoEntity getPeriod() {
-        return period;
+    public PeriodoEntity getPeriodo() {
+        return periodo;
     }
 
-    public void setPeriod(PeriodoEntity period) {
-        this.period = period;
+    public void setPeriodo(PeriodoEntity periodo) {
+        this.periodo = periodo;
+    }
+
+    public List<AlumnoEntity> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(List<AlumnoEntity> alumnos) {
+        this.alumnos = alumnos;
+    }
+
+    public List<ProfesorEntity> getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(List<ProfesorEntity> profesor) {
+        this.profesor = profesor;
     }
 }

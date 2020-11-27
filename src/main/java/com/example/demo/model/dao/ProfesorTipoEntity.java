@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Tipos de Profesor")
+@Table(name = "TiposProfesor")
 public class ProfesorTipoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre")
+    @Column(name = "Nombre", length = 20)
     private String name;
+
 
     @OneToMany(mappedBy = "type")
     private List<ProfesorEntity> listProfesores;

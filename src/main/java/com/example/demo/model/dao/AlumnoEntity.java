@@ -1,6 +1,7 @@
 package com.example.demo.model.dao;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Alumnos")
@@ -47,6 +48,9 @@ public class AlumnoEntity{
     //[Alumno]M-------1[País]
     @ManyToOne
     private PaisEntity pais;
+
+    @ManyToMany(mappedBy = "alumnos")
+    private List<SeccionEntity> secciones;
 
 
     public AlumnoEntity() {
@@ -183,6 +187,14 @@ public class AlumnoEntity{
 
     public void setPais(PaisEntity pais) {
         this.pais = pais;
+    }
+
+    public List<SeccionEntity> getSecciones() {
+        return secciones;
+    }
+
+    public void setSecciones(List<SeccionEntity> secciones) {
+        this.secciones = secciones;
     }
 }
 
