@@ -10,7 +10,7 @@ public class PaisEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre",length = 30)
+    @Column(name = "Nombre", unique = true, length = 30)
     private String name;
 
     @OneToMany(mappedBy = "pais")

@@ -31,6 +31,11 @@ public class AulaVirtualRunner implements CommandLineRunner {
     @Autowired
     private SeccionRepostitory seccionRep;
 
+    @Autowired
+    private UsuarioRepository usuarioRep;
+
+
+
     @Override
     public void run(String... args) throws Exception{
         /*Optional<AlumnoEntity> temp = alumnoRep.findById(Long.parseLong("1"));
@@ -46,7 +51,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
 
          */
 
-
+/*
         // PAISES:
         PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
         PaisEntity pais2 = new PaisEntity(null,"Argentina");    paisRep.save(pais2);
@@ -216,15 +221,15 @@ public class AulaVirtualRunner implements CommandLineRunner {
                 "dante","danteC","154165184","fotito.jpe",genero1,carrera6,pais1);
 
         AlumnoEntity alumno3 = new AlumnoEntity(null,20170001,"Nombre3","Apellido3",
-                "20170001@aloe.ulima.edu.pe","andyLazo@hotmail.com",
+                "20170001@aloe.ulima.edu.pe","correo3@hotmail.com",
                 "user3","pw3","1541985171","fotito.jpe",genero1,carrera7,pais3);
 
         AlumnoEntity alumno4 = new AlumnoEntity(null,20170002,"Nombre4","Apellido4",
-                "20170002@aloe.ulima.edu.pe","andyLazo@hotmail.com",
+                "20170002@aloe.ulima.edu.pe","correo4@hotmail.com",
                 "user4","pw4","151005171","fotito.jpe",genero2,carrera12,pais2);
 
         AlumnoEntity alumno5 = new AlumnoEntity(null,20170003,"Nombre5","Apellido5",
-                "20170003@aloe.ulima.edu.pe","andyLazo@hotmail.com",
+                "20170003@aloe.ulima.edu.pe","correo5@hotmail.com",
                 "user5","pw4","154163571","fotito.jpe",genero2,carrera7,pais1);
 
         alumnoRep.save(alumno1);
@@ -275,6 +280,17 @@ public class AulaVirtualRunner implements CommandLineRunner {
         seccion2.setProfesor(profe2);    seccionRep.save(seccion2);
         seccion3.setProfesor(profe1);    seccionRep.save(seccion3);
 
+        UsuarioAlumnoEntity userAlum1 = new UsuarioAlumnoEntity(null,"User1","Pass1",alumno2);  usuarioRep.save(userAlum1);
+        UsuarioAlumnoEntity userAlum2 = new UsuarioAlumnoEntity(null,"User2","Pass2",alumno3);  usuarioRep.save(userAlum2);
+
+        UsuarioProfesorEntity userProf1 = new UsuarioProfesorEntity(null,"User3","Pass3",profesor1);    usuarioRep.save(userProf1);
+        UsuarioProfesorEntity userProf2 = new UsuarioProfesorEntity(null,"User4","Pass4",profesor2);    usuarioRep.save(userProf2);
+
+        UsuarioAdministradorEntity userAdm1 = new UsuarioAdministradorEntity(null,"Nyo","Byte");        usuarioRep.save(userAdm1);
+        UsuarioAdministradorEntity userAdm2 = new UsuarioAdministradorEntity(null,"Admin2","Pass6");    usuarioRep.save(userAdm2);
+        UsuarioAdministradorEntity userAdm3 = new UsuarioAdministradorEntity(null,"Admin3","Pass7");    usuarioRep.save(userAdm3);
+
+ */
 
 
     }

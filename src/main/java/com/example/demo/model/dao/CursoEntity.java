@@ -10,10 +10,10 @@ public class CursoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Código")
+    @Column(name = "Código", unique = true)
     private int cod;
 
-    @Column(name = "Nombre",length = 50)
+    @Column(name = "Nombre", unique = true, length = 50)
     private String name;
 
     //[Curso]M-------1[Carrera]

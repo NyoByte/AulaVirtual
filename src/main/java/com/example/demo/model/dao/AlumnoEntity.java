@@ -10,7 +10,7 @@ public class AlumnoEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Código",length = 8)
+    @Column(name = "Código", unique = true, length = 8)
     private int cod;
 
     @Column(name = "Nombres", length = 50)
@@ -19,19 +19,19 @@ public class AlumnoEntity{
     @Column(name = "Apellidos", length = 50)
     private String last_name;
 
-    @Column(name = "Correo_Universidad", length = 50)
+    @Column(name = "Correo_Universidad", unique = true, length = 50)
     private String email_univ;
 
-    @Column(name = "Correo_Personal", length = 50)
+    @Column(name = "Correo_Personal", unique = true, length = 50)
     private String email_priv;
 
-    @Column(name = "TeamViewer_Usuario", length = 15)
+    @Column(name = "TeamViewer_Usuario", unique = true, length = 15)
     private String tv_user;
 
     @Column(name = "TeamViewer_Contraseña", length = 15)
     private String tv_pw;
 
-    @Column(name = "AnyDesk_Credencial", length = 10)
+    @Column(name = "AnyDesk_Credencial", unique = true, length = 10)
     private String ad_cred;
 
     @Column(name = "Foto_Url", length = 100)
@@ -51,6 +51,9 @@ public class AlumnoEntity{
 
     @ManyToMany(mappedBy = "alumnos")
     private List<SeccionEntity> secciones;
+
+    @OneToMany(mappedBy = "alumno")
+    private List<UsuarioAlumnoEntity> usuarioAlumnos;
 
 
     public AlumnoEntity() {
@@ -195,6 +198,14 @@ public class AlumnoEntity{
 
     public void setSecciones(List<SeccionEntity> secciones) {
         this.secciones = secciones;
+    }
+
+    public List<UsuarioAlumnoEntity> getUsuarioAlumnos() {
+        return usuarioAlumnos;
+    }
+
+    public void setUsuarioAlumnos(List<UsuarioAlumnoEntity> usuarioAlumnos) {
+        this.usuarioAlumnos = usuarioAlumnos;
     }
 }
 

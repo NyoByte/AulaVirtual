@@ -10,7 +10,7 @@ public class GeneroEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre", length = 15)
+    @Column(name = "Nombre", unique = true, length = 15)
     private String name;
 
     @OneToMany(mappedBy = "gender")

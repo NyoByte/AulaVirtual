@@ -10,7 +10,7 @@ public class ProfesorTipoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre", length = 20)
+    @Column(name = "Nombre", unique = true, length = 20)
     private String name;
 
 

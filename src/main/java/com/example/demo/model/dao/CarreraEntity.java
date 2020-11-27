@@ -10,7 +10,7 @@ public class CarreraEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre", length = 25)
+    @Column(name = "Nombre", unique = true, length = 25)
     private String name;
 
     @OneToMany(mappedBy = "career")

@@ -10,7 +10,7 @@ public class ProfesorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Código",length = 8)
+    @Column(name = "Código", unique = true, length = 8)
     private int cod;
 
     @Column(name = "Nombres", length = 50)
@@ -19,10 +19,10 @@ public class ProfesorEntity {
     @Column(name = "Apellidos", length = 50)
     private String last_name;
 
-    @Column(name = "Correo_Universidad", length = 50)
+    @Column(name = "Correo_Universidad", unique = true, length = 50)
     private String email_univ;
 
-    @Column(name = "Correo_Personal", length = 50)
+    @Column(name = "Correo_Personal", unique = true, length = 50)
     private String email_priv;
 
     @Column(name = "Foto_Url", length = 100)
@@ -42,6 +42,9 @@ public class ProfesorEntity {
 
     @ManyToMany(mappedBy = "profesor")
     private List<SeccionEntity> secciones;
+
+    @OneToMany(mappedBy = "profesor")
+    private List<UsuarioProfesorEntity> usuarioProfesores;
 
     public ProfesorEntity() {
     }
