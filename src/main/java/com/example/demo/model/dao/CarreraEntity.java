@@ -53,5 +53,13 @@ public class CarreraEntity {
     public void setListAlumnos(List<AlumnoEntity> listAlumnos) {
         this.listAlumnos = listAlumnos;
     }
+
+    public List<CursoEntity> getListCursos() {
+        return listCursos;
+    }
+
+    public void setListCursos(List<CursoEntity> listCursos) {
+        this.listCursos = listCursos;
+    }
 }
 

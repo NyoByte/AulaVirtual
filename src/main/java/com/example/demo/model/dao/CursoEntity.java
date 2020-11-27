@@ -20,6 +20,9 @@ public class CursoEntity {
     @ManyToOne
     private CarreraEntity career;
 
+    @OneToMany(mappedBy = "curso")
+    private List<SeccionEntity> listSecciones;
+
     /* Constructor */
     public CursoEntity() {
     }
@@ -28,6 +31,13 @@ public class CursoEntity {
         this.id = id;
         this.cod = cod;
         this.name = name;
+    }
+
+    public CursoEntity(Long id, int cod, String name, CarreraEntity career) {
+        this.id = id;
+        this.cod = cod;
+        this.name = name;
+        this.career = career;
     }
 
     /* Getter & Setter*/

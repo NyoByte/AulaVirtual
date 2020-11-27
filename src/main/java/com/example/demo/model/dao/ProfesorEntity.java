@@ -3,8 +3,8 @@ package com.example.demo.model.dao;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Alumnos")
-public class AlumnoEntity{
+@Table(name = "Profesores")
+public class ProfesorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,61 +24,45 @@ public class AlumnoEntity{
     @Column(name = "Correo_Personal", length = 50)
     private String email_priv;
 
-    @Column(name = "TeamViewer_Usuario", length = 15)
-    private String tv_user;
-
-    @Column(name = "TeamViewer_Contraseña", length = 15)
-    private String tv_pw;
-
-    @Column(name = "AnyDesk_Credencial", length = 10)
-    private String ad_cred;
-
     @Column(name = "Foto_Url", length = 100)
     private String photo_url;
 
-    //[Alumno]M-------1[Género]
+    //[Profesor]M-------1[Género]
     @ManyToOne
     private GeneroEntity gender;
 
-    //[Alumno]M-------1[Carrera]
-    @ManyToOne
-    private CarreraEntity career;
-
-    //[Alumno]M-------1[País]
+    //[Profesor]M-------1[País]
     @ManyToOne
     private PaisEntity pais;
 
+    //[Profesor]M-------1[Tipo]
+    @ManyToOne
+    private ProfesorTipoEntity type;
 
-    public AlumnoEntity() {
+    public ProfesorEntity() {
     }
 
-    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, String photo_url) {
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String photo_url) {
         this.id = id;
         this.cod = cod;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_univ = email_univ;
         this.email_priv = email_priv;
-        this.tv_user = tv_user;
-        this.tv_pw = tv_pw;
-        this.ad_cred = ad_cred;
         this.photo_url = photo_url;
     }
 
-    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, String photo_url, GeneroEntity gender, CarreraEntity career, PaisEntity pais) {
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String photo_url, GeneroEntity gender, PaisEntity pais, ProfesorTipoEntity type) {
         this.id = id;
         this.cod = cod;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_univ = email_univ;
         this.email_priv = email_priv;
-        this.tv_user = tv_user;
-        this.tv_pw = tv_pw;
-        this.ad_cred = ad_cred;
         this.photo_url = photo_url;
         this.gender = gender;
-        this.career = career;
         this.pais = pais;
+        this.type = type;
     }
 
     public Long getId() {
@@ -129,30 +113,6 @@ public class AlumnoEntity{
         this.email_priv = email_priv;
     }
 
-    public String getTv_user() {
-        return tv_user;
-    }
-
-    public void setTv_user(String tv_user) {
-        this.tv_user = tv_user;
-    }
-
-    public String getTv_pw() {
-        return tv_pw;
-    }
-
-    public void setTv_pw(String tv_pw) {
-        this.tv_pw = tv_pw;
-    }
-
-    public String getAd_cred() {
-        return ad_cred;
-    }
-
-    public void setAd_cred(String ad_cred) {
-        this.ad_cred = ad_cred;
-    }
-
     public String getPhoto_url() {
         return photo_url;
     }
@@ -169,14 +129,6 @@ public class AlumnoEntity{
         this.gender = gender;
     }
 
-    public CarreraEntity getCareer() {
-        return career;
-    }
-
-    public void setCareer(CarreraEntity career) {
-        this.career = career;
-    }
-
     public PaisEntity getPais() {
         return pais;
     }
@@ -184,5 +136,12 @@ public class AlumnoEntity{
     public void setPais(PaisEntity pais) {
         this.pais = pais;
     }
-}
 
+    public ProfesorTipoEntity getType() {
+        return type;
+    }
+
+    public void setType(ProfesorTipoEntity type) {
+        this.type = type;
+    }
+}

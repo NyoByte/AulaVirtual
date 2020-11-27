@@ -16,6 +16,9 @@ public class PaisEntity {
     @OneToMany(mappedBy = "pais")
     private List<AlumnoEntity> listAlumnos;
 
+    @OneToMany(mappedBy = "pais")
+    private List<ProfesorEntity> listProfesores;
+
     /* Constructor */
     public PaisEntity() {
     }
@@ -25,7 +28,6 @@ public class PaisEntity {
         this.name = name;
     }
 
-    /* Constructor */
     public Long getId() {
         return id;
     }
@@ -50,4 +52,11 @@ public class PaisEntity {
         this.listAlumnos = listAlumnos;
     }
 
+    public List<ProfesorEntity> getListProfesores() {
+        return listProfesores;
+    }
+
+    public void setListProfesores(List<ProfesorEntity> listProfesores) {
+        this.listProfesores = listProfesores;
+    }
 }
