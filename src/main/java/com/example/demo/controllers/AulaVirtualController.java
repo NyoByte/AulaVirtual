@@ -73,8 +73,8 @@ public class AulaVirtualController {
     public String procesarLogin(LoginForm form, @PathVariable String type_user){
         HttpSession sesion = ObtenerSesion();
         if(type_user.equalsIgnoreCase("profesor")){
-            String usuario = "";
-            String password = "";
+            String usuario = "test";
+            String password = "profe";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("profesor",true);
@@ -84,8 +84,8 @@ public class AulaVirtualController {
             }
 
         }else if(type_user.equalsIgnoreCase("alumno")){
-            String usuario = "";
-            String password = "";
+            String usuario = "test";
+            String password = "alumno";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("alumno",true);
@@ -94,8 +94,8 @@ public class AulaVirtualController {
                 return "redirect:/login/alumno?logeado=false";
             }
         }else{
-            String usuario = "";
-            String password = "";
+            String usuario = "test";
+            String password = "administrador";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("administrador",true);
@@ -195,7 +195,7 @@ public class AulaVirtualController {
     //Gestionar profesores
     @RequestMapping(value = "/profesor", method = RequestMethod.GET)
     public String mostrarGestionProfesores(@RequestParam(name = "edit", defaultValue = "false") String edit,
-                                           @RequestParam(name = "prof_id", required = false) Optional<String> profesorId,
+                                           @RequestParam(name = "profesor_id", required = false) Optional<String> profesorId,
                                            Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -229,7 +229,7 @@ public class AulaVirtualController {
     //Gestionar cursos
     @RequestMapping(value = "/curso", method = RequestMethod.GET)
     public String mostrarGestionCursos(@RequestParam(name = "edit", defaultValue = "false") String edit,
-                                       @RequestParam(name = "course_id", required = false) Optional<String> cursoId,
+                                       @RequestParam(name = "curso_id", required = false) Optional<String> cursoId,
                                        Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -260,7 +260,7 @@ public class AulaVirtualController {
     //Gestionar secciones
     @RequestMapping(value = "/secciones", method = RequestMethod.GET)
     public String mostrarGestionSecciones(@RequestParam(name = "edit", defaultValue = "false") String edit,
-                                          @RequestParam(name = "section_id", required = false) Optional<String> seccionId,
+                                          @RequestParam(name = "seccion_id", required = false) Optional<String> seccionId,
                                           Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){

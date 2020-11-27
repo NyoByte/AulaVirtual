@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud Alumnos</title>
+    <title>Alumnos-Editar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
@@ -49,16 +49,16 @@
                             <div class="font-weight-bold subt navbar-brand">Aula Virtual</div>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/profesores">Profesores</a>
+                            <a class="nav-link" href="/profesor">Profesores</a>
                         </li>
                         <li class="nav-item pt-3 active">
-                            <a class="nav-link" href="/aula_virtual/administrador/alumnos">Alumnos</a>
+                            <a class="nav-link" href="/alumno">Alumnos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/cursos">Cursos</a>
+                            <a class="nav-link" href="/curso">Cursos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/secciones">Secciones</a>
+                            <a class="nav-link" href="/seccion">Secciones</a>
                         </li>
                     </ul>
                 </div>
