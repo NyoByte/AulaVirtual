@@ -126,7 +126,7 @@ public class AulaVirtualController {
             //No hay pagina principal para administrador, se le redirige a gestionar alumnos
             return "Admin_CargaAlumnos";
         }else{
-            return "redirect:/inicio";
+            return "redirect:/";
         }
     }
     /* SE COMENTÓ PORQUE SE REALIZA MÁS ABAJO LA VALIDACIÓN
@@ -153,7 +153,7 @@ public class AulaVirtualController {
                                         Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
-            return "redirect:/inicio";
+            return "redirect:/";
         }
         //Verificar si esta logueado. Verificar si es cuenta de administrador.
         if((boolean)sesion.getAttribute("administrador")){
@@ -199,7 +199,7 @@ public class AulaVirtualController {
                                            Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
-            return "redirect:/inicio";
+            return "redirect:/";
         }
         if((boolean)sesion.getAttribute("administrador")){
             if(edit.equalsIgnoreCase("true")){
@@ -233,7 +233,7 @@ public class AulaVirtualController {
                                        Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
-            return "redirect:/inicio";
+            return "redirect:/";
         }
         if((boolean)sesion.getAttribute("administrador")){
             if(edit.equalsIgnoreCase("true")){
@@ -258,13 +258,13 @@ public class AulaVirtualController {
     }
 
     //Gestionar secciones
-    @RequestMapping(value = "/secciones", method = RequestMethod.GET)
+    @RequestMapping(value = "/seccion", method = RequestMethod.GET)
     public String mostrarGestionSecciones(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                           @RequestParam(name = "seccion_id", required = false) Optional<String> seccionId,
                                           Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
-            return "redirect:/inicio";
+            return "redirect:/";
         }
         if((boolean)sesion.getAttribute("administrador")){
             if(edit.equalsIgnoreCase("true")){
