@@ -30,7 +30,6 @@ public class AulaVirtualRunner implements CommandLineRunner {
     private ProfesorTipoRepository tiposRep;
     @Autowired
     private SeccionRepostitory seccionRep;
-
     @Autowired
     private UsuarioRepository usuarioRep;
 
