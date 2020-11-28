@@ -95,7 +95,7 @@
                                 <td>${seccion.course.cod}</td>
                                 <td>${seccion.course.career.name}</td>
                                 <td>${seccion.periodo.name}</td>
-                                <td>${profesor.first_name} ${profesor.last_name}</td>
+                                <td>${seccion.profesor.first_name} ${seccion.profesor.last_name}</td>
                                 <td class="pl-4 ope-td"><a href="/seccion?edit=true&seccion_id=${seccion.id}"><svg
                                     width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
