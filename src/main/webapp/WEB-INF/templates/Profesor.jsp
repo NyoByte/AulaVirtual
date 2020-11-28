@@ -48,10 +48,10 @@
                             <div class="font-weight-bold subt navbar-brand">Aula Virtual</div>
                         </li>
                         <li class="nav-item pt-3 active">
-                            <a class="nav-link" href="/aula_virtual/profesor/datos">Mis Datos</a>
+                            <a class="nav-link" href="/">Mis Datos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/profesor/secciones">Mis Secciones</a>
+                            <a class="nav-link" href="/seccion">Mis Secciones</a>
                         </li>
                     </ul>
                 </div>

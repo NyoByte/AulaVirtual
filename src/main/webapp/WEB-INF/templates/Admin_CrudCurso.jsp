@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud-Curso</title>
+    <title>Cursos-Editar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -48,16 +49,16 @@
                             <div class="font-weight-bold subt navbar-brand">Aula Virtual</div>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/profesores">Profesores</a>
+                            <a class="nav-link" href="/profesor">Profesores</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/alumnos">Alumnos</a>
+                            <a class="nav-link" href="/alumno">Alumnos</a>
                         </li>
                         <li class="nav-item pt-3 active">
-                            <a class="nav-link" href="/aula_virtual/administrador/cursos">Cursos</a>
+                            <a class="nav-link" href="/curso">Cursos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/secciones">Secciones</a>
+                            <a class="nav-link" href="/seccion">Secciones</a>
                         </li>
                     </ul>
                 </div>
@@ -65,45 +66,55 @@
         </header>
     </div>
     <!--Marco blanco...-->
-    <div class="main-border">
-        <div class="row">
-            <div class="col-12">
-                <div>
-                    <p class="font-weight-bold">
-                    <h2>Datos del Nuevo Curso</h2>
-                    </p>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="col-3">
-                        <p class="mb-1">Codigo</p>
-                        <input class="form-control" type="text" name="codigo" />
-                    </div>
-                    <div class="col-3">
-                        <p class="mb-1">Nombre</p>
-                        <input class="form-control" type="text" name="nombre" />
-                    </div>
-                    <div class="col-3">
-                        <p class="mb-1">Carrera</p>
-                        <select class="form-control" name="career" value="">
-                            <option value="">----Seleccionar una carrera-----</option>
-                        </select>
-                    </div>
-                    <div class="btn-group col-3 pl-3">
-                        <div class="px-2">
-                            <p class="mb-1">&nbsp</p>
-                            <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em" stroke="white"
-                                    viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                </svg>Actualizar Datos</a>
+    <c:choose>
+        <c:when test="${curso==null}">
+            <form action="/curso/guardar" method="post">
+                <div class="main-border">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <p class="font-weight-bold">
+                                <h2>Datos del Nuevo Curso</h2>
+                                </p>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col-3">
+                                    <p class="mb-1">Codigo</p>
+                                    <input class="form-control" type="text" name="codigo" />
+                                </div>
+                                <div class="col-3">
+                                    <p class="mb-1">Nombre</p>
+                                    <input class="form-control" type="text" name="nombre" />
+                                </div>
+                                <div class="col-3">
+                                    <p class="mb-1">Carrera</p>
+                                    <select class="form-control" name="career" value="">
+                                        <option value="">----Seleccionar una carrera-----</option>
+                                    </select>
+                                </div>
+                                <div class="btn-group col-3 pl-3">
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
+                                                stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
+                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                            </svg>Actualizar Datos</a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </div>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <form action="/curso/guardar" method="post"></form>
+            </form>
+        </c:otherwise>
+    </c:choose>
     <div class="m-3">
         <p class="text-right font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
     </div>
@@ -127,17 +138,20 @@
                         <div class="col-3">
                             <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Gabriel Carmelo</div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Gabriel Carmelo
+                        </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-3">
                             <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Dante Córdova</div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Dante Córdova
+                        </div>
                         <div class="col-3">
                             <img class="w-100 h-100" src="/images/spidy.jpeg">
                         </div>
-                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Edgar Rodriguez</div>
+                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Edgar Rodriguez
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud Alumnos</title>
+    <title>Alumnos-Editar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
@@ -49,16 +49,16 @@
                             <div class="font-weight-bold subt navbar-brand">Aula Virtual</div>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/profesores">Profesores</a>
+                            <a class="nav-link" href="/profesor">Profesores</a>
                         </li>
                         <li class="nav-item pt-3 active">
-                            <a class="nav-link" href="/aula_virtual/administrador/alumnos">Alumnos</a>
+                            <a class="nav-link" href="/alumno">Alumnos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/cursos">Cursos</a>
+                            <a class="nav-link" href="/curso">Cursos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/secciones">Secciones</a>
+                            <a class="nav-link" href="/seccion">Secciones</a>
                         </li>
                     </ul>
                 </div>
@@ -103,15 +103,20 @@
                                 <div class="col">
                                     <p class="mb-1">Género</p>
                                     <select class="form-control" name="gender">
-                                        <option>Masculino</option>
-                                        <option>Femenino</option>
+                                        <c:forEach var="genero" items="${listaGeneros}">
+                                            <option value="${genero.id}">${genero.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <input class="form-control" type="text" name="pais" />
+                                    <select class="form-control" type="text" name="pais" />
+                                        <c:forEach var="pais" items="${listaPaises}">
+                                            <option value="${pais.id}">${pais.name}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
@@ -130,8 +135,9 @@
                                 <div class="col">
                                     <p class="mb-1">Carrera</p>
                                     <select class="form-control" name="career">
-                                        <option>Ingenieria</option>
-                                        <option>Contabilidad</option>
+                                        <c:forEach var="carrera" items="${listaCarreras}">
+                                            <option value="${carrera.id}">${carrera.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-row m-0">
@@ -146,7 +152,7 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-success" type="button"><svg width="2em" height="1.5em"
+                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -154,7 +160,9 @@
                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                 <path fill-rule="evenodd"
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
-                                            </svg>Seleccionar Foto</a>
+                                            </svg>Seleccionar Foto</button>
+                                        <span id="visor_foto"></span>
+                                        <input type="file" id="input_foto" onchange="handleIMG(this.files)" style="display: none">
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
@@ -209,7 +217,12 @@
                                 <div class="col">
                                     <p class="mb-1">Género</p>
                                     <select class="form-control" name="gender">
-                                        <option value="0">----Seleccionar una género-----</option>
+                                        <option value="${alumno.gender.id}">${alumno.gender.name}</option>
+                                        <c:forEach var="genero" items="${listaGeneros}">
+                                            <c:if test = "${genero.id != alumno.gender.id}" >
+                                                <option value="${genero.id}">${genero.name}</option>
+                                            </c:if>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -217,7 +230,12 @@
                                 <div class="col">
                                     <p class="mb-1">País</p>
                                     <select class="form-control" name="pais">
-                                        <option value="0">----Seleccionar una país-----</option>
+                                        <option value="${alumno.pais.id}">${alumno.pais.name}</option>
+                                        <c:forEach var="pais" items="${listaPaises}">
+                                            <c:if test = "${pais.id != alumno.pais.id}" >
+                                                <option value="${pais.id}">${pais.name}</option>
+                                            </c:if>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -237,7 +255,12 @@
                                 <div class="col">
                                     <p class="mb-1">Carrera</p>
                                     <select class="form-control" name="career" value="">
-                                        <option value="">----Seleccionar una carrera-----</option>
+                                        <option value="${alumno.career.id}">${alumno.career.name}</option>
+                                        <c:forEach var="carrera" items="${listaCarreras}">
+                                            <c:if test = "${carrera.id != alumno.career.id}" >
+                                                <option value="${carrera.id}">${carrera.name}</option>
+                                            </c:if>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-row m-0">
@@ -252,7 +275,7 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em"
+                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -260,11 +283,13 @@
                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                 <path fill-rule="evenodd"
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
-                                            </svg>Seleccionar Foto</a>
+                                            </svg>Seleccionar Foto</button>
+                                        <span id="visor_foto"></span>
+                                        <input type="file" id="input_foto" onchange="handleIMG(this.files)" style="display: none">
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-warning" type="submit"><svg width="2em" height="1.5em"
+                                        <a class="btn btn-warning" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-cloud-arrow-up-fill"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -335,6 +360,7 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
     <script src="/js/index.js"></script>
+    <script src="/js/SeleccionarFoto.js"></script>
 </body>
 
 </html>

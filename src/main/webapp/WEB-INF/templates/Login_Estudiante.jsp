@@ -20,7 +20,7 @@
                 <div class="navbar-collapse">
                     <ul class="navbar-nav flex-row">
                         <li class="nav-item mr-3">
-                            <a class="nav-link" href="/inicio">Inicio</a>
+                            <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>

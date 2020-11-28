@@ -4,17 +4,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Paises")
+@Table(name = "Países")
 public class PaisEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre",length = 30)
+    @Column(name = "Nombre", unique = true, length = 30)
     private String name;
 
     @OneToMany(mappedBy = "pais")
     private List<AlumnoEntity> listAlumnos;
+
+    @OneToMany(mappedBy = "pais")
+    private List<ProfesorEntity> listProfesores;
 
     /* Constructor */
     public PaisEntity() {
@@ -25,7 +28,6 @@ public class PaisEntity {
         this.name = name;
     }
 
-    /* Constructor */
     public Long getId() {
         return id;
     }
@@ -50,4 +52,11 @@ public class PaisEntity {
         this.listAlumnos = listAlumnos;
     }
 
+    public List<ProfesorEntity> getListProfesores() {
+        return listProfesores;
+    }
+
+    public void setListProfesores(List<ProfesorEntity> listProfesores) {
+        this.listProfesores = listProfesores;
+    }
 }

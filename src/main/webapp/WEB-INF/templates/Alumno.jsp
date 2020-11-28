@@ -54,7 +54,7 @@
         </header>
     </div>
     <!--Marco blanco...-->
-
+    <c:if test="${alumno!=null}">
     <form action="/aula_virtual/administrador/alumnos/actualizar" method="post">
         <div class="main-border">
             <div class="row">
@@ -103,15 +103,15 @@
                         </div>
                         <div class="col">
                             <p class="mb-1">TeamViewer Usuario</p>
-                            <input class="form-control" type="text" name="TV_user" value="${alumno.TV_user}" />
+                            <input class="form-control" type="text" name="TV_user" value="${alumno.tv_user}" />
                         </div>
                         <div class="col">
                             <p class="mb-1">TeamViewer Contraseña</p>
-                            <input class="form-control" type="text" name="TV_pw" value="${alumno.TV_pw}" />
+                            <input class="form-control" type="text" name="TV_pw" value="${alumno.tv_pw}" />
                         </div>
                         <div class="col">
                             <p class="mb-1">AnyDesk Credencial</p>
-                            <input class="form-control" type="text" name="AD_cred" value="${alumno.AD_cred}" />
+                            <input class="form-control" type="text" name="AD_cred" value="${alumno.ad_cred}" />
                         </div>
                     </div>
                     <div class="form-row mb-0">
@@ -140,6 +140,7 @@
             </div>
         </div>
     </form>
+    </c:if>
     <div class="m-3">
         <p class="text-right font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
     </div>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,7 +19,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
@@ -48,16 +49,16 @@
                             <div class="font-weight-bold subt navbar-brand">Aula Virtual</div>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/profesores">Profesores</a>
+                            <a class="nav-link" href="/profesor">Profesores</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/alumnos">Alumnos</a>
+                            <a class="nav-link" href="/alumno">Alumnos</a>
                         </li>
                         <li class="nav-item pt-3">
-                            <a class="nav-link" href="/aula_virtual/administrador/cursos">Cursos</a>
+                            <a class="nav-link" href="/curso">Cursos</a>
                         </li>
                         <li class="nav-item pt-3 active">
-                            <a class="nav-link" href="/aula_virtual/administrador/secciones">Secciones</a>
+                            <a class="nav-link" href="/seccion">Secciones</a>
                         </li>
                     </ul>
                 </div>
@@ -87,26 +88,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row">2020001</td>
-                            <td>Matemáticas</td>
-                            <td>2020001</td>
-                            <td>Estudios Generales</td>
-                            <td>2020-II</td>
-                            <td>Jenni Iris Alabone Radbornejenni</td>
-                            <td class="pl-4 ope-td"><a href="/aula_virtual/administrador/secciones/edit/${cod}"><svg
-                                        width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
-                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                                    </svg></a></td>
-                            <td class="pl-4 ope-td"><a href="#"><svg width="2em" height="1.5em" stroke="black"
-                                        viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg></a></td>
-                        </tr>
+                        <c:forEach var="seccion" items="${listaSecciones}">
+                            <tr>
+                                <td scope="row">${seccion.cod}</td>
+                                <td>${seccion.course.name}</td>
+                                <td>${seccion.course.cod}</td>
+                                <td>${seccion.course.career.name}</td>
+                                <td>${seccion.periodo.name}</td>
+                                <td>${seccion.profesor.first_name} ${seccion.profesor.last_name}</td>
+                                <td class="pl-4 ope-td"><a href="/seccion?edit=true&seccion_id=${seccion.id}"><svg
+                                    width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                </svg></a></td>
+                        <td class="pl-4 ope-td"><a href="#"
+                                onclick="return confirm('¿Está seguro de eliminar?')"><svg width="2em"
+                                    height="1.5em" stroke="black" viewBox="0 0 16 16" class="bi bi-x"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                </svg></a></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <div class="row">

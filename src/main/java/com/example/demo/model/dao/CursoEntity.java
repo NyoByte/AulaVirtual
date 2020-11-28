@@ -10,15 +10,18 @@ public class CursoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Código")
+    @Column(name = "Código", unique = true)
     private int cod;
 
-    @Column(name = "Nombre",length = 25)
+    @Column(name = "Nombre", unique = true, length = 50)
     private String name;
 
     //[Curso]M-------1[Carrera]
     @ManyToOne
     private CarreraEntity career;
+
+    @OneToMany(mappedBy = "course")
+    private List<SeccionEntity> listSecciones;
 
     /* Constructor */
     public CursoEntity() {
@@ -28,6 +31,13 @@ public class CursoEntity {
         this.id = id;
         this.cod = cod;
         this.name = name;
+    }
+
+    public CursoEntity(Long id, int cod, String name, CarreraEntity career) {
+        this.id = id;
+        this.cod = cod;
+        this.name = name;
+        this.career = career;
     }
 
     /* Getter & Setter*/
