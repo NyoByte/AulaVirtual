@@ -61,11 +61,11 @@ public class AulaVirtualController {
                 model.addAttribute("loginCorrecto",false);
             }
             if (user.equalsIgnoreCase("profesor")) {
-                model.addAttribute("usuario","esProfesor");
+                model.addAttribute("usuario","profesor");
             } else if (user.equalsIgnoreCase("alumno")) {
-                model.addAttribute("usuario","esAlumno");
+                model.addAttribute("usuario","alumno");
             } else if (user.equalsIgnoreCase("administrador")){
-                model.addAttribute("usuario","esAdministrador");
+                model.addAttribute("usuario","administrador");
             }else{
                 return "redirect:/";
             }
@@ -291,6 +291,7 @@ public class AulaVirtualController {
     @RequestMapping(value = "/curso", method = RequestMethod.GET)
     public String mostrarGestionCursos(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                        @RequestParam(name = "curso_id", required = false) Optional<String> cursoId,
+                                       @RequestParam(name = "page", defaultValue = "0") String pagina,
                                        Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -309,8 +310,18 @@ public class AulaVirtualController {
                 return "Admin_CrudCurso";
             }
             else{
-                List<CursoEntity> cursos = cursoRep.findAll();
-                model.addAttribute("listaCursos",cursos);
+                //Setear numero y tamaño de pagina
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 3);
+                //Obtener pagina de cursos
+                Page<CursoEntity> paginaCursos = cursoRep.findAll(pageSizeTen);
+                //Enviar numero de paginas y pagina actual al modelo
+                model.addAttribute("numPaginas", paginaCursos.getTotalPages());
+                model.addAttribute("pagActual", pagina);
+                //Convertir pagina de alumnos a lista
+                List<CursoEntity> listaCursos = paginaCursos.getContent();
+                //Añadir lista de cursos al modelo
+                model.addAttribute("listaCursos", listaCursos);
+
                 return "Admin_CargaCursos";
             }
         }else{
@@ -322,6 +333,7 @@ public class AulaVirtualController {
     @RequestMapping(value = "/seccion", method = RequestMethod.GET)
     public String mostrarGestionSecciones(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                           @RequestParam(name = "seccion_id", required = false) Optional<String> seccionId,
+                                          @RequestParam(name = "page", defaultValue = "0") String pagina,
                                           Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -344,7 +356,14 @@ public class AulaVirtualController {
                 return "Admin_CrudSeccion";
             }
             else{
-                List<SeccionEntity> secciones = seccionRep.findAll();
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina),10);
+                Page<SeccionEntity> paginaSecciones = seccionRep.findAll(pageSizeTen);
+
+                model.addAttribute("numPaginas", paginaSecciones.getTotalPages());
+                model.addAttribute("pagActual", pagina);
+
+
+                List<SeccionEntity> secciones = paginaSecciones.getContent();
                 model.addAttribute("listaSecciones",secciones);
                 return "Admin_CargaSecciones";
             }
