@@ -142,21 +142,6 @@ public class AulaVirtualController {
             return "redirect:/";
         }
     }
-    /* SE COMENTÓ PORQUE SE REALIZA MÁS ABAJO LA VALIDACIÓN
-    //Profesor - Ver seccion
-    @RequestMapping(value = "/seccion", method = RequestMethod.GET)
-    public String mostrarProfesor_Sección(){
-        HttpSession sesion =  ObtenerSesion();
-        if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
-            return "redirect:/inicio";
-        }
-        if((boolean)sesion.getAttribute("profesor")){
-            return "Profesor_Sección";
-        }else{
-            return "redirect:/";
-        }
-    }
-     */
 
     //ADMINISTRADOR:
     //Gestionar alumnos
@@ -301,7 +286,7 @@ public class AulaVirtualController {
                 return "Admin_CargaSecciones";
             }
         }else if((boolean)sesion.getAttribute("profesor")) {
-            return "Profesor_Sección";
+            return "Profesor_Seccion";
         }else{
             return "redirect:/";
         }
