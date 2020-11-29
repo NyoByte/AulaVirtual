@@ -185,7 +185,7 @@ public class AulaVirtualController {
 
     }
 
-    @RequestMapping(value = "/eliminar_alumno/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/alumno_eliminar/{id}", method = RequestMethod.GET)
     public String eliminarAlumno(@PathVariable String id){
         Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
         if(alumnoSeleccionado.isPresent()){
@@ -224,7 +224,6 @@ public class AulaVirtualController {
                 model.addAttribute("listaGeneros",generos);
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
-                System.out.println(alumnoId);
                 if(!alumnoId.isEmpty()){
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
@@ -246,7 +245,7 @@ public class AulaVirtualController {
 
                 //Convertir a lista
                 List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
-                model.addAttribute("listaAlumnos",alumnos);
+                model.addAttribute("listaAlumnos",alumnos); // devolver nueva lista de alumnos
                 return "Admin_CargaAlumnos";
             }
         }else{
