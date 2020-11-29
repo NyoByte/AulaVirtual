@@ -34,9 +34,9 @@ var crearFila = function(alumno){
     td3.innerHTML = "carrera"
 
     var td4 = document.createElement("td")
-    td4.innerHTML = "genero"
+    td4.innerHTML = "genero"}
 
-    var td5 = document.querySelector("#boton_edit").cloneNode(true)
+    /*var td5 = document.querySelector("#boton_edit").cloneNode(true)
     td5.firstChild.setAttribute("href", "/alumno?edit=true&alumno_id="+alumno.id)
 
 
@@ -74,16 +74,17 @@ var onAlumnosObtenidos = function(evt){
     }
 }
 
+
 var obtenerListadoAlumnos = function(){
     var req = new XMLHttpRequest();
     req.onreadystatechange = onAlumnosObtenidos;
     req.open("GET", "/resources/alumno", true);
     req.send(null);
 }
-
+*/
 var main = function(){
     seleccionarArchivoOnClick();
-    obtenerListadoAlumnos();
+    //obtenerListadoAlumnos();
 }
 
 window.addEventListener("load", main);
