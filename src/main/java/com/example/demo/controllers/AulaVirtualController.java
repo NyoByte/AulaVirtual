@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.forms.GuardarAlumnosForm;
 import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
@@ -147,26 +148,56 @@ public class AulaVirtualController {
         }
     }
 
+    @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String guardarAlumno(GuardarAlumnosForm form) {
+
+        AlumnoEntity a1 = new AlumnoEntity();
+        a1.setCod(Integer.parseInt(form.getCod()));
+        a1.setFirst_name(form.getFirst_name());
+        a1.setLast_name(form.getLast_name());
+        a1.setEmail_univ(form.getEmail_univ());
+        a1.setEmail_priv(form.getEmail_priv());
+        a1.setTv_user(form.getTv_user());
+        a1.setTv_pw(form.getTv_pw());
+        a1.setAd_cred(form.getAd_cred());
+        a1.setPhoto_url(form.getPhoto_url());
+
+        Long idCarrera = Long.parseLong(form.getCareer());
+        Optional<CarreraEntity> opCarrera = carreraRep.findById(idCarrera);
+        if (opCarrera.isPresent()) {
+            a1.setCareer(opCarrera.get());
+            alumnoRep.save(a1);
+        }
+        Long idPais = Long.parseLong(form.getPais());
+        Optional<PaisEntity> opPais = paisRep.findById(idPais);
+        if (opPais.isPresent()) {
+            a1.setPais(opPais.get());
+            alumnoRep.save(a1);
+        }
+        Long idGenero = Long.parseLong(form.getGender());
+        Optional<GeneroEntity> opGenero = generoRep.findById(idGenero);
+        if (opGenero.isPresent()) {
+            a1.setGender(opGenero.get());
+            alumnoRep.save(a1);
+        }
+
+        return "redirect:/alumno";
+
+    }
+
     @RequestMapping(value = "/eliminar_alumno/{id}", method = RequestMethod.GET)
     public String eliminarAlumno(@PathVariable String id){
         Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
         if(alumnoSeleccionado.isPresent()){
             List<SeccionEntity> secciones = alumnoSeleccionado.get().getSecciones();
             for(SeccionEntity seccion:secciones){
-                System.out.println("==0==");
-                System.out.println(seccion.getId());
                 List<AlumnoEntity> alumnos = seccion.getAlumnos();
                 List<AlumnoEntity> newAlumnos = new ArrayList<>();
                 for(AlumnoEntity alumno:alumnos){
-                    System.out.println("==1==");
-                    System.out.println(alumno.getId());
                     if(alumno.getId()!=Long.parseLong(id)){
-                        System.out.println("==2==");
                         newAlumnos.add(alumno);
                     }
                 }
-                System.out.println("==3==");
-                System.out.println(alumnos);
                 seccion.setAlumnos(newAlumnos);
                 seccionRep.save(seccion);
             }
