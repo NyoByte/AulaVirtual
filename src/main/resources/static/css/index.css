@@ -35,3 +35,16 @@ a{
 .stroke{
     stroke: white;
 }
+
+.svg_edit{
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}
+
+.svg_borrar{
+    width: 2em;
+    heigth: 1.5em;
+    stroke: black;
+    fill: currentColor;
+}

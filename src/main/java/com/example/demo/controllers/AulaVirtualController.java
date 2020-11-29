@@ -5,6 +5,9 @@ import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -148,6 +151,7 @@ public class AulaVirtualController {
     @RequestMapping(value = "/alumno", method = RequestMethod.GET)
     public String mostrarGestionAlumnos(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                         @RequestParam(name = "alumno_id", required = false) Optional<String> alumnoId,
+                                        @RequestParam(name = "page",defaultValue = "0") String pagina,
                                         Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -181,7 +185,16 @@ public class AulaVirtualController {
             }
             //http://localhost:8080/alumno
             else{
-                List<AlumnoEntity> alumnos = alumnoRep.findAll();
+                //Setear numero y tamaño de pagina
+                Pageable pageTen = PageRequest.of(Integer.parseInt(pagina),10);
+                //Obtener los alumnos
+                Page<AlumnoEntity> paginaAlumnos = alumnoRep.findAll(pageTen);
+                //Enviar numero de paginas al modelo
+                model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
+                model.addAttribute("pagActual", pagina);
+
+                //Convertir a lista
+                List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
                 model.addAttribute("listaAlumnos",alumnos);
                 return "Admin_CargaAlumnos";
             }

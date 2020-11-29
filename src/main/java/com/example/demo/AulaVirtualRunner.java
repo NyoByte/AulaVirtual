@@ -50,7 +50,8 @@ public class AulaVirtualRunner implements CommandLineRunner {
 
          */
 
-    /*
+
+/*
         // PAISES:
         PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
         PaisEntity pais2 = new PaisEntity(null,"Argentina");    paisRep.save(pais2);
@@ -290,9 +291,14 @@ public class AulaVirtualRunner implements CommandLineRunner {
         UsuarioAdministradorEntity userAdm3 = new UsuarioAdministradorEntity(null,"Admin3","Pass7");    usuarioRep.save(userAdm3);
 
 
-     */
-
-
-
+        int id = 20250000;
+        int ad = 888888880;
+        for(int i=6; i<30; i++){
+            String idString = String.valueOf(i);
+            AlumnoEntity alumno = new AlumnoEntity(null,id+i,"Nombre"+idString,"Apellido5"+idString,
+                    String.valueOf(id+i)+"@aloe.ulima.edu.pe","correo"+idString+"@hotmail.com",
+                    "user"+idString,"pw"+idString,String.valueOf(ad+i),"fotito.jpe",genero2,carrera7,pais1);
+            alumnoRep.save(alumno);
+        }*/
     }
 }
