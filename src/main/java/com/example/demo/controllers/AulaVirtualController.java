@@ -61,11 +61,11 @@ public class AulaVirtualController {
                 model.addAttribute("loginCorrecto",false);
             }
             if (user.equalsIgnoreCase("profesor")) {
-                model.addAttribute("usuario","esProfesor");
+                model.addAttribute("usuario","profesor");
             } else if (user.equalsIgnoreCase("alumno")) {
-                model.addAttribute("usuario","esAlumno");
+                model.addAttribute("usuario","alumno");
             } else if (user.equalsIgnoreCase("administrador")){
-                model.addAttribute("usuario","esAdministrador");
+                model.addAttribute("usuario","administrador");
             }else{
                 return "redirect:/";
             }
