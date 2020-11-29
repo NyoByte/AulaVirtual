@@ -298,8 +298,6 @@ public class AulaVirtualController {
             else{
                 List<SeccionEntity> secciones = seccionRep.findAll();
                 model.addAttribute("listaSecciones",secciones);
-                
-
                 return "Admin_CargaSecciones";
             }
         }else if((boolean)sesion.getAttribute("profesor")) {
