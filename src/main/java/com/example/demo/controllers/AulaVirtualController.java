@@ -334,6 +334,7 @@ public class AulaVirtualController {
     @RequestMapping(value = "/seccion", method = RequestMethod.GET)
     public String mostrarGestionSecciones(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                           @RequestParam(name = "seccion_id", required = false) Optional<String> seccionId,
+                                          @RequestParam(name = "page", defaultValue = "0") String pagina,
                                           Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -356,7 +357,14 @@ public class AulaVirtualController {
                 return "Admin_CrudSeccion";
             }
             else{
-                List<SeccionEntity> secciones = seccionRep.findAll();
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina),10);
+                Page<SeccionEntity> paginaSecciones = seccionRep.findAll(pageSizeTen);
+
+                model.addAttribute("numPaginas", paginaSecciones.getTotalPages());
+                model.addAttribute("pagActual", pagina);
+
+
+                List<SeccionEntity> secciones = paginaSecciones.getContent();
                 model.addAttribute("listaSecciones",secciones);
                 return "Admin_CargaSecciones";
             }

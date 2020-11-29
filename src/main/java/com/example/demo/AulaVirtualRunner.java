@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Component
 public class AulaVirtualRunner implements CommandLineRunner {
@@ -299,6 +300,14 @@ public class AulaVirtualRunner implements CommandLineRunner {
                     String.valueOf(id+i)+"@aloe.ulima.edu.pe","correo"+idString+"@hotmail.com",
                     "user"+idString,"pw"+idString,String.valueOf(ad+i),"fotito.jpe",genero2,carrera7,pais1);
             alumnoRep.save(alumno);
+        }*/
+
+        /*int cod = 104;
+        Optional<CursoEntity> cursox = cursoRep.findById(Long.valueOf(98));
+        Optional<PeriodoEntity> periodox = periodoRep.findById(Long.valueOf(7));
+        for(int i=0; i<27; i++) {
+            SeccionEntity sec1 = new SeccionEntity(null, cod+i, cursox.get(), periodox.get());
+            seccionRep.save(sec1);
         }*/
     }
 }
