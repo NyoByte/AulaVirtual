@@ -108,7 +108,8 @@
                                         d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                                 </svg>Seleccionar Archivo</button>
                             <span id="visor_archivo"></span>
-                            <input type="file" id="input_file" onchange="handleFiles(this.files)" accept=".csv" style="display: none">
+                            <input type="file" id="input_file" onchange="handleFiles(this.files)" accept=".csv"
+                                style="display: none">
                         </div>
                         <div class="px-2">
                             <p class="mb-1">&nbsp</p>
@@ -132,24 +133,25 @@
                         </tr>
                     </thead>
                     <tbody id="cuerpo_table">
-                    <c:forEach var="alumno" items="${listaAlumnos}">
-                        <tr>
-                            <td scope="row">${alumno.cod}</td>
-                            <td>${alumno.first_name} ${alumno.last_name}</td>
-                            <td>${alumno.career.name}</td>
-                            <td>${alumno.gender.name}</td>
-                            <td id="boton_edit" class="pl-4 ope-td"><a href="?edit=true&alumno_id=${alumno.id}"><svg
-                                    viewBox="0 0 16 16" class="bi bi-pencil-fill svg_edit">
-                                <path fill-rule="evenodd"
-                                      d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                            </svg></a></td>
-                            <td id="boton_borrar" class="pl-4 ope-td"><a href="#"
-                                                                         onclick="return confirm('¿Está seguro de eliminar?')"><svg viewBox="0 0 16 16" class="bi bi-x svg_borrar">
-                                <path fill-rule="evenodd"
-                                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                            </svg></a></td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach var="alumno" items="${listaAlumnos}">
+                            <tr>
+                                <td scope="row">${alumno.cod}</td>
+                                <td>${alumno.first_name} ${alumno.last_name}</td>
+                                <td>${alumno.career.name}</td>
+                                <td>${alumno.gender.name}</td>
+                                <td id="boton_edit" class="pl-4 ope-td"><a href="?edit=true&alumno_id=${alumno.id}"><svg
+                                            viewBox="0 0 16 16" class="bi bi-pencil-fill svg_edit">
+                                            <path fill-rule="evenodd"
+                                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                        </svg></a></td>
+                                <td id="boton_borrar" class="pl-4 ope-td"><a href="/eliminar_alumno/${alumno.id}"
+                                        onclick="return confirm('¿Está seguro de eliminar?')"><svg viewBox="0 0 16 16"
+                                            class="bi bi-x svg_borrar">
+                                            <path fill-rule="evenodd"
+                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                        </svg></a></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <div class="row">
@@ -167,32 +169,47 @@
                     </div>
                     <div class="col">
                         <c:if test="${pagActual>0}">
-                            <a href="?page=0" id="boton_primera_pag" class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                                <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                            </svg></a>
+                            <a href="?page=0" id="boton_primera_pag" class="btn btn-dark"><svg width="1em" height="1em"
+                                    viewBox="0 0 16 16" class="bi bi-chevron-double-left" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    <path fill-rule="evenodd"
+                                        d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                </svg></a>
                         </c:if>
                     </div>
                     <div class="col">
                         <c:if test="${pagActual>0}">
-                            <a href="?page=${pagActual-1}" type="button" id="boton_pag_anterior" class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                            </svg></a>
+                            <a href="?page=${pagActual-1}" type="button" id="boton_pag_anterior"
+                                class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                                    class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                </svg></a>
                         </c:if>
                     </div>
                     <div class="col">
                         <c:if test="${pagActual<numPaginas-1}">
-                            <a href="?page=${pagActual+1}" type="button" id="boton_sgte_pag" class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                            </svg></a>
+                            <a href="?page=${pagActual+1}" type="button" id="boton_sgte_pag" class="btn btn-dark"><svg
+                                    width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                </svg></a>
                         </c:if>
                     </div>
                     <div class="col">
                         <c:if test="${pagActual<numPaginas-1}">
-                            <a href="?page=${numPaginas-1}" type="button" id="boton_ultima_pag" class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-                                <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-                            </svg></a>
+                            <a href="?page=${numPaginas-1}" type="button" id="boton_ultima_pag"
+                                class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                                    class="bi bi-chevron-double-right" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    <path fill-rule="evenodd"
+                                        d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                                </svg></a>
                         </c:if>
                     </div>
                 </div>

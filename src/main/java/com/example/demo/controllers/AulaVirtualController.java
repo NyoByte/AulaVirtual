@@ -4,6 +4,7 @@ package com.example.demo.controllers;
 import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -59,11 +60,11 @@ public class AulaVirtualController {
                 model.addAttribute("loginCorrecto",false);
             }
             if (user.equalsIgnoreCase("profesor")) {
-                model.addAttribute("usuario","profesor");
+                model.addAttribute("usuario","esProfesor");
             } else if (user.equalsIgnoreCase("alumno")) {
-                model.addAttribute("usuario","alumno");
+                model.addAttribute("usuario","esAlumno");
             } else if (user.equalsIgnoreCase("administrador")){
-                model.addAttribute("usuario","administrador");
+                model.addAttribute("usuario","esAdministrador");
             }else{
                 return "redirect:/";
             }
@@ -83,9 +84,9 @@ public class AulaVirtualController {
             String password = "profe";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
-                sesion.setAttribute("profesor",true);
-                sesion.setAttribute("alumno",false);
-                sesion.setAttribute("administrador",false);
+                sesion.setAttribute("esProfesor",true);
+                sesion.setAttribute("esAlumno",false);
+                sesion.setAttribute("esAdministrador",false);
                 return "redirect:/";
             }else{
                 return "redirect:/login/profesor?logeado=false";
@@ -96,9 +97,9 @@ public class AulaVirtualController {
             String password = "alumno";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
-                sesion.setAttribute("profesor",false);
-                sesion.setAttribute("alumno",true);
-                sesion.setAttribute("administrador",false);
+                sesion.setAttribute("esProfesor",false);
+                sesion.setAttribute("esAlumno",true);
+                sesion.setAttribute("esAdministrador",false);
                 return "redirect:/";
             }else{
                 return "redirect:/login/alumno?logeado=false";
@@ -108,9 +109,9 @@ public class AulaVirtualController {
             String password = "administrador";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
-                sesion.setAttribute("profesor",false);
-                sesion.setAttribute("alumno",false);
-                sesion.setAttribute("administrador",true);
+                sesion.setAttribute("esProfesor",false);
+                sesion.setAttribute("esAlumno",false);
+                sesion.setAttribute("esAdministrador",true);
                 return "redirect:/";
             }else{
                 return "redirect:/login/administrador?logeado=false";
@@ -128,17 +129,17 @@ public class AulaVirtualController {
             return "Inicio";
         }
         //Adicionalmente, se deberia verificar el tipo de usuario que es, para devolverle un template u otro.
-        if((boolean)sesion.getAttribute("profesor")){
+        if((boolean)sesion.getAttribute("esProfesor")){
             //Si es profesor
             ProfesorEntity tempProf = new ProfesorEntity();
             model.addAttribute("profesor",tempProf);
             return "Profesor";
-        }else if((boolean)sesion.getAttribute("alumno")){
+        }else if((boolean)sesion.getAttribute("esAlumno")){
             //Si es alumno se debe enviar el alumno que se logeó
             AlumnoEntity newAlumno = new AlumnoEntity();
             model.addAttribute("alumno",newAlumno);
             return "Alumno";
-        }else if((boolean)sesion.getAttribute("administrador")){
+        }else if((boolean)sesion.getAttribute("esAdministrador")){
             //No hay pagina principal para administrador, se le redirige a gestionar profesores
             return "redirect:/profesor";
         }else{
@@ -146,6 +147,33 @@ public class AulaVirtualController {
         }
     }
 
+    @RequestMapping(value = "/eliminar_alumno/{id}", method = RequestMethod.GET)
+    public String eliminarAlumno(@PathVariable String id){
+        Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
+        if(alumnoSeleccionado.isPresent()){
+            List<SeccionEntity> secciones = alumnoSeleccionado.get().getSecciones();
+            for(SeccionEntity seccion:secciones){
+                System.out.println("==0==");
+                System.out.println(seccion.getId());
+                List<AlumnoEntity> alumnos = seccion.getAlumnos();
+                List<AlumnoEntity> newAlumnos = new ArrayList<>();
+                for(AlumnoEntity alumno:alumnos){
+                    System.out.println("==1==");
+                    System.out.println(alumno.getId());
+                    if(alumno.getId()!=Long.parseLong(id)){
+                        System.out.println("==2==");
+                        newAlumnos.add(alumno);
+                    }
+                }
+                System.out.println("==3==");
+                System.out.println(alumnos);
+                seccion.setAlumnos(newAlumnos);
+                seccionRep.save(seccion);
+            }
+            alumnoRep.delete(alumnoSeleccionado.get());
+        }
+        return  "redirect:/alumno";
+    }
     //ADMINISTRADOR:
     //Gestionar alumnos
     @RequestMapping(value = "/alumno", method = RequestMethod.GET)
@@ -157,33 +185,25 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        //Verificar si esta logueado. Verificar si es cuenta de administrador.
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
-                //Para editar
-                //http://localhost:8080/alumno?edit=true (CRUD)
                 List<PaisEntity> paises = paisRep.findAll();
                 model.addAttribute("listaPaises",paises);
                 List<GeneroEntity> generos = generoRep.findAll();
                 model.addAttribute("listaGeneros",generos);
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
-
-                //Ahora se debe diferenciar si se ingreso a edit a traves del boton de agregar alumno o del lapiz de editar junto a cada alumno de la lista.
+                System.out.println(alumnoId);
                 if(!alumnoId.isEmpty()){
-                /*Si se ingreso a traves del lapiz, es para editar un alumno ya existente, entonces se debio pasar el
-                id del alumno como parametro (http://localhost:8080/alumno?edit=true&alumno_id={id}).
-                En este caso se deberia buscar el id en la base de datos para llenar los datos en el template "Admin_CrudAlumno".
-                Este if entonces solo se ejecuta cuando alumnoId no esta vacio y aca se hace la consulta a bd.
-                Nota: Como es un opcional, para obtener el id se debe usar alumnoId.get*/
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
                         model.addAttribute("alumno",alumnoSeleccionado.get());
                     }
+                }else{
+                    model.addAttribute("alumno",null);
                 }
                 return "Admin_CrudAlumno";
             }
-            //http://localhost:8080/alumno
             else{
                 //Setear numero y tamaño de pagina
                 Pageable pageTen = PageRequest.of(Integer.parseInt(pagina),10);
@@ -212,7 +232,7 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
                 List<PaisEntity> paises = paisRep.findAll();
                 model.addAttribute("listaPaises",paises);
@@ -246,7 +266,7 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
@@ -277,7 +297,7 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
                 List<CursoEntity> cursos = cursoRep.findAll();
                 model.addAttribute("listaCursos",cursos);
@@ -291,14 +311,14 @@ public class AulaVirtualController {
                         model.addAttribute("seccion",seccionSeleccionado.get());
                     }
                 }
-                return "Admin_CrudSección";
+                return "Admin_CrudSeccion";
             }
             else{
                 List<SeccionEntity> secciones = seccionRep.findAll();
                 model.addAttribute("listaSecciones",secciones);
                 return "Admin_CargaSecciones";
             }
-        }else if((boolean)sesion.getAttribute("profesor")) {
+        }else if((boolean)sesion.getAttribute("esProfesor")) {
             return "Profesor_Seccion";
         }else{
             return "redirect:/";
