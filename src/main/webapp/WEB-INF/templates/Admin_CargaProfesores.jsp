@@ -96,7 +96,7 @@
                         </div>
                         <div class="px-2">
                             <p class="mb-1">Carga Masiva</p>
-                            <a class="btn btn-primary" type="submit"><svg width="2em" height="1.5em" viewBox="0 0 16 16"
+                            <button class="btn btn-primary" id="boton_selec_archivo" type="button"><svg width="2em" height="1.5em" viewBox="0 0 16 16"
                                     class="bi bi-file-earmark-code" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -104,7 +104,9 @@
                                     <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                     <path fill-rule="evenodd"
                                         d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
-                                </svg>Seleccionar Archivo</a>
+                                </svg>Seleccionar Archivo</button>
+                            <span id="nombre_archivo"></span>
+                            <input type="file"id="input_file" onchange="handleFiles(this.files)" accept=".csv" style="display: none">
                         </div>
                         <div class="px-2">
                             <p class="mb-1">&nbsp</p>
@@ -161,8 +163,52 @@
                                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>Agregar Profesor</a>
                     </div>
-                    <div class="col">
-                        paginacion
+                    <div class="col-3">
+                        <div class="row justify-content-around">
+                            <c:if test="${pagActual>0}">
+                                <a href="?page=0" id="boton_primera_pag">
+                                    <svg width="1em" height="1em"
+                                         viewBox="0 0 16 16" class="bi bi-chevron-double-left" fill="currentColor"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                    </svg>
+                                </a>
+                                <a href="?page=${pagActual-1}" id="boton_pag_anterior">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                         class="bi bi-chevron-left" fill="currentColor"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                    </svg>
+                                </a>
+                            </c:if>
+
+                            ${pagActual+1}/${numPaginas}
+
+                            <c:if test="${pagActual<numPaginas-1}">
+                                <a href="?page=${pagActual+1}" type="button" id="boton_sgte_pag">
+                                    <svg
+                                            width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </a>
+                                <a href="?page=${numPaginas-1}" id="boton_ultima_pag">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                         class="bi bi-chevron-double-right" fill="currentColor"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </a>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -221,6 +267,7 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
     <script src="/js/index.js"></script>
+    <script src="/js/GestionProfesores.js"></script>
 </body>
 
 </html>

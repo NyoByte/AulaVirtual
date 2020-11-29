@@ -258,6 +258,7 @@ public class AulaVirtualController {
     @RequestMapping(value = "/profesor", method = RequestMethod.GET)
     public String mostrarGestionProfesores(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                            @RequestParam(name = "profesor_id", required = false) Optional<String> profesorId,
+                                           @RequestParam(name = "page", defaultValue = "0") String pagina,
                                            Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -277,9 +278,15 @@ public class AulaVirtualController {
                 }
                 return "Admin_CrudProfesor";
             }
-            //http://localhost:8080/alumno
+            //http://localhost:8080/profesor
             else{
-                List<ProfesorEntity> profesores = profesorRep.findAll();
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 10);
+                Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
+
+                model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
+                model.addAttribute("pagActual", pagina);
+
+                List<ProfesorEntity> profesores = paginaProfesores.getContent();
                 model.addAttribute("listaProfesores",profesores);
                 return "Admin_CargaProfesores";
             }

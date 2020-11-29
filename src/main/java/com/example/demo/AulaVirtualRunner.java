@@ -309,5 +309,12 @@ public class AulaVirtualRunner implements CommandLineRunner {
             SeccionEntity sec1 = new SeccionEntity(null, cod+i, cursox.get(), periodox.get());
             seccionRep.save(sec1);
         }*/
+
+        /*int cod = 2080000;
+        for(int i=0; i<27; i++) {
+            ProfesorEntity profesor1 = new ProfesorEntity(null, cod+i, "XXXX", "YYYY",
+                    String.valueOf(cod+i)+"@aloe.ulima.edu.pe", String.valueOf(cod+i)+"@hotmail.com", "fotito.jpe");
+            profesoresRep.save(profesor1);
+        }*/
     }
 }
