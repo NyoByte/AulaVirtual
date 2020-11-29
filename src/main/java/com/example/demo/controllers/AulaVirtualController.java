@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.Filter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -211,6 +212,8 @@ public class AulaVirtualController {
     public String mostrarGestionAlumnos(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                         @RequestParam(name = "alumno_id", required = false) Optional<String> alumnoId,
                                         @RequestParam(name = "page",defaultValue = "0") String pagina,
+                                        @RequestParam(name = "param",required = false) String param,
+                                        String keyword,
                                         Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -233,7 +236,11 @@ public class AulaVirtualController {
                     model.addAttribute("alumno",null);
                 }
                 return "Admin_CrudAlumno";
-            }
+            }/*else if(filter.equalsIgnoreCase("true")){
+                //Darle la lista de alumnos filtrada
+
+                return "Admin_CurdAlumno";
+            }*/
             else{
                 //Setear numero y tamaño de pagina
                 Pageable pageTen = PageRequest.of(Integer.parseInt(pagina),10);
@@ -243,9 +250,23 @@ public class AulaVirtualController {
                 model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
                 model.addAttribute("pagActual", pagina);
 
+                // Parte de Filtro
+                /*List<AlumnoEntity> palumnos = null;
+                if(param!=null){
+                    palumnos = alumnoRep.findByCodStartWith(param);
+                }else{
+                    palumnos = alumnoRep.findAll();
+                }
+                */
+
                 //Convertir a lista
                 List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
-                model.addAttribute("listaAlumnos",alumnos); // devolver nueva lista de alumnos
+                if(keyword!=null){
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeyword(keyword);
+                    model.addAttribute("listaAlumnos", filterAlumnos);
+                }else {
+                    model.addAttribute("listaAlumnos", alumnos);
+                }
                 return "Admin_CargaAlumnos";
             }
         }else{

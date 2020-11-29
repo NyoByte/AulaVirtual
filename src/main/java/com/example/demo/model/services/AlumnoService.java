@@ -1,0 +1,18 @@
+package com.example.demo.model.services;
+
+import com.example.demo.model.dao.AlumnoEntity;
+import com.example.demo.model.repositories.AlumnoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class AlumnoService {
+    @Autowired
+    private AlumnoRepository alumnoRep;
+
+    public List<AlumnoEntity> findByKeyword(String keyword){
+        return alumnoRep.findByKeyword(keyword);
+    }
+}
