@@ -66,7 +66,11 @@
                 <div class="form-row mb-3">
                     <div class="col-3">
                         <h3 class="mb-1">Secciones</h3>
-                        <input class="form-control" type="text" name="seccion" />
+                        <select class="form-control" name="seccion">
+                            <c:forEach var="seccion" items="${listaSecciones}">
+                                <option value="${seccion.id}">${seccion.cod}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <div class="px-2">
                         <h3 class="mb-1">&nbsp</h3>

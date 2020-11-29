@@ -369,6 +369,16 @@ public class AulaVirtualController {
                 return "Admin_CargaSecciones";
             }
         }else if((boolean)sesion.getAttribute("esProfesor")) {
+            //Obtener la entidad del profesor actual
+            Optional<ProfesorEntity> opProfe = profesorRep.findById(Long.valueOf(1)); //Cambiar el id por el del profesor logueado
+
+            if(opProfe.isPresent()){
+                ProfesorEntity profeActual = opProfe.get();
+                //Obtener las secciones del profesor
+                List<SeccionEntity> listaSecciones = profeActual.getSecciones();
+                model.addAttribute("listaSecciones", listaSecciones);
+            }
+
             return "Profesor_Seccion";
         }else{
             return "redirect:/";
