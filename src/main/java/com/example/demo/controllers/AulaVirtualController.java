@@ -4,6 +4,7 @@ package com.example.demo.controllers;
 import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -143,6 +144,33 @@ public class AulaVirtualController {
         }
     }
 
+    @RequestMapping(value = "/eliminar_alumno/{id}", method = RequestMethod.GET)
+    public String eliminarAlumno(@PathVariable String id){
+        Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
+        if(alumnoSeleccionado.isPresent()){
+            List<SeccionEntity> secciones = alumnoSeleccionado.get().getSecciones();
+            for(SeccionEntity seccion:secciones){
+                System.out.println("==0==");
+                System.out.println(seccion.getId());
+                List<AlumnoEntity> alumnos = seccion.getAlumnos();
+                List<AlumnoEntity> newAlumnos = new ArrayList<>();
+                for(AlumnoEntity alumno:alumnos){
+                    System.out.println("==1==");
+                    System.out.println(alumno.getId());
+                    if(alumno.getId()!=Long.parseLong(id)){
+                        System.out.println("==2==");
+                        newAlumnos.add(alumno);
+                    }
+                }
+                System.out.println("==3==");
+                System.out.println(alumnos);
+                seccion.setAlumnos(newAlumnos);
+                seccionRep.save(seccion);
+            }
+            alumnoRep.delete(alumnoSeleccionado.get());
+        }
+        return  "redirect:/alumno";
+    }
     //ADMINISTRADOR:
     //Gestionar alumnos
     @RequestMapping(value = "/alumno", method = RequestMethod.GET)
@@ -163,13 +191,11 @@ public class AulaVirtualController {
                 model.addAttribute("listaCarreras",carreras);
                 System.out.println(alumnoId);
                 if(!alumnoId.isEmpty()){
-                    System.out.println("====NO NULL");
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
                         model.addAttribute("alumno",alumnoSeleccionado.get());
                     }
                 }else{
-                    System.out.println("====NULL");
                     model.addAttribute("alumno",null);
                 }
                 return "Admin_CrudAlumno";
