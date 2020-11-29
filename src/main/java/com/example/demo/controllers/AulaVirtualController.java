@@ -162,25 +162,15 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        //Verificar si esta logueado. Verificar si es cuenta de administrador.
         if((boolean)sesion.getAttribute("administrador")){
             if(edit.equalsIgnoreCase("true")){
-                //Para editar
-                //http://localhost:8080/alumno?edit=true (CRUD)
                 List<PaisEntity> paises = paisRep.findAll();
                 model.addAttribute("listaPaises",paises);
                 List<GeneroEntity> generos = generoRep.findAll();
                 model.addAttribute("listaGeneros",generos);
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
-
-                //Ahora se debe diferenciar si se ingreso a edit a traves del boton de agregar alumno o del lapiz de editar junto a cada alumno de la lista.
                 if(!alumnoId.isEmpty()){
-                /*Si se ingreso a traves del lapiz, es para editar un alumno ya existente, entonces se debio pasar el
-                id del alumno como parametro (http://localhost:8080/alumno?edit=true&alumno_id={id}).
-                En este caso se deberia buscar el id en la base de datos para llenar los datos en el template "Admin_CrudAlumno".
-                Este if entonces solo se ejecuta cuando alumnoId no esta vacio y aca se hace la consulta a bd.
-                Nota: Como es un opcional, para obtener el id se debe usar alumnoId.get*/
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
                         model.addAttribute("alumno",alumnoSeleccionado.get());
@@ -188,7 +178,6 @@ public class AulaVirtualController {
                 }
                 return "Admin_CrudAlumno";
             }
-            //http://localhost:8080/alumno
             else{
                 List<AlumnoEntity> alumnos = alumnoRep.findAll();
                 model.addAttribute("listaAlumnos",alumnos);
