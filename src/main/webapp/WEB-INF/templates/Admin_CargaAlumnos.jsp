@@ -132,7 +132,7 @@
                             <th scope="col" colspan=2>Operaciones</th>
                         </tr>
                     </thead>
-                    <tbody id="cuerpo_table">
+                    <tbody>
                         <c:forEach var="alumno" items="${listaAlumnos}">
                             <tr>
                                 <td scope="row">${alumno.cod}</td>
