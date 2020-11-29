@@ -76,25 +76,27 @@
                     <h2>Gestión de Alumnos</h2>
                     </p>
                 </div>
+                <form action="/alumno", method="GET">
                 <div class="form-row mb-3">
+
                     <div class="col-3">
                         <p class="mb-1">Codigo</p>
-                        <input class="form-control" type="text" name="codigo" />
+                        <input class="form-control" type="text" />
                     </div>
                     <div class="col-3">
                         <p class="mb-1">Nombre</p>
-                        <input class="form-control" type="text" name="nombre" />
+                        <input class="form-control" type="text" name="keyword" />
                     </div>
                     <div class="btn-group col-6 pl-3">
                         <div class="px-2">
                             <p class="mb-1">&nbsp</p>
-                            <a class="btn btn-success" type="button"><svg width="2em" height="1.5em" viewBox="0 0 16 16"
+                            <button class="btn btn-success" type="submit"><svg width="2em" height="1.5em" viewBox="0 0 16 16"
                                     class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
                                     <path fill-rule="evenodd"
                                         d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                                </svg>Buscar</a>
+                                </svg>Buscar</button>
                         </div>
                         <div class="px-2">
                             <p class="mb-1">Carga Masiva</p>
@@ -121,6 +123,7 @@
                                 </svg>Subir</button>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -144,7 +147,7 @@
                                             <path fill-rule="evenodd"
                                                 d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                                         </svg></a></td>
-                                <td id="boton_borrar" class="pl-4 ope-td"><a href="/eliminar_alumno/${alumno.id}"
+                                <td id="boton_borrar" class="pl-4 ope-td"><a href="/alumno_eliminar/${alumno.id}"
                                         onclick="return confirm('¿Está seguro de eliminar?')"><svg viewBox="0 0 16 16"
                                             class="bi bi-x svg_borrar">
                                             <path fill-rule="evenodd"
