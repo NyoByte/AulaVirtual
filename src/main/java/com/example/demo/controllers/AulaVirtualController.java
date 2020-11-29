@@ -56,11 +56,11 @@ public class AulaVirtualController {
                 model.addAttribute("loginCorrecto",false);
             }
             if (user.equalsIgnoreCase("profesor")) {
-                model.addAttribute("usuario","profesor");
+                model.addAttribute("usuario","esProfesor");
             } else if (user.equalsIgnoreCase("alumno")) {
-                model.addAttribute("usuario","alumno");
+                model.addAttribute("usuario","esAlumno");
             } else if (user.equalsIgnoreCase("administrador")){
-                model.addAttribute("usuario","administrador");
+                model.addAttribute("usuario","esAdministrador");
             }else{
                 return "redirect:/";
             }
@@ -80,9 +80,9 @@ public class AulaVirtualController {
             String password = "profe";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
-                sesion.setAttribute("profesor",true);
-                sesion.setAttribute("alumno",false);
-                sesion.setAttribute("administrador",false);
+                sesion.setAttribute("esProfesor",true);
+                sesion.setAttribute("esAlumno",false);
+                sesion.setAttribute("esAdministrador",false);
                 return "redirect:/";
             }else{
                 return "redirect:/login/profesor?logeado=false";
@@ -93,9 +93,9 @@ public class AulaVirtualController {
             String password = "alumno";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
-                sesion.setAttribute("profesor",false);
-                sesion.setAttribute("alumno",true);
-                sesion.setAttribute("administrador",false);
+                sesion.setAttribute("esProfesor",false);
+                sesion.setAttribute("esAlumno",true);
+                sesion.setAttribute("esAdministrador",false);
                 return "redirect:/";
             }else{
                 return "redirect:/login/alumno?logeado=false";
@@ -105,9 +105,9 @@ public class AulaVirtualController {
             String password = "administrador";
             if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
                 sesion.setAttribute("login",true);
-                sesion.setAttribute("profesor",false);
-                sesion.setAttribute("alumno",false);
-                sesion.setAttribute("administrador",true);
+                sesion.setAttribute("esProfesor",false);
+                sesion.setAttribute("esAlumno",false);
+                sesion.setAttribute("esAdministrador",true);
                 return "redirect:/";
             }else{
                 return "redirect:/login/administrador?logeado=false";
@@ -125,17 +125,17 @@ public class AulaVirtualController {
             return "Inicio";
         }
         //Adicionalmente, se deberia verificar el tipo de usuario que es, para devolverle un template u otro.
-        if((boolean)sesion.getAttribute("profesor")){
+        if((boolean)sesion.getAttribute("esProfesor")){
             //Si es profesor
             ProfesorEntity tempProf = new ProfesorEntity();
             model.addAttribute("profesor",tempProf);
             return "Profesor";
-        }else if((boolean)sesion.getAttribute("alumno")){
+        }else if((boolean)sesion.getAttribute("esAlumno")){
             //Si es alumno se debe enviar el alumno que se logeó
             AlumnoEntity newAlumno = new AlumnoEntity();
             model.addAttribute("alumno",newAlumno);
             return "Alumno";
-        }else if((boolean)sesion.getAttribute("administrador")){
+        }else if((boolean)sesion.getAttribute("esAdministrador")){
             //No hay pagina principal para administrador, se le redirige a gestionar profesores
             return "redirect:/profesor";
         }else{
@@ -153,7 +153,7 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
                 List<PaisEntity> paises = paisRep.findAll();
                 model.addAttribute("listaPaises",paises);
@@ -161,12 +161,15 @@ public class AulaVirtualController {
                 model.addAttribute("listaGeneros",generos);
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
+                System.out.println(alumnoId);
                 if(!alumnoId.isEmpty()){
+                    System.out.println("====NO NULL");
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
                         model.addAttribute("alumno",alumnoSeleccionado.get());
                     }
                 }else{
+                    System.out.println("====NULL");
                     model.addAttribute("alumno",null);
                 }
                 return "Admin_CrudAlumno";
@@ -190,7 +193,7 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
                 List<PaisEntity> paises = paisRep.findAll();
                 model.addAttribute("listaPaises",paises);
@@ -224,7 +227,7 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
@@ -255,7 +258,7 @@ public class AulaVirtualController {
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
             return "redirect:/";
         }
-        if((boolean)sesion.getAttribute("administrador")){
+        if((boolean)sesion.getAttribute("esAdministrador")){
             if(edit.equalsIgnoreCase("true")){
                 List<CursoEntity> cursos = cursoRep.findAll();
                 model.addAttribute("listaCursos",cursos);
@@ -276,7 +279,7 @@ public class AulaVirtualController {
                 model.addAttribute("listaSecciones",secciones);
                 return "Admin_CargaSecciones";
             }
-        }else if((boolean)sesion.getAttribute("profesor")) {
+        }else if((boolean)sesion.getAttribute("esProfesor")) {
             return "Profesor_Seccion";
         }else{
             return "redirect:/";
