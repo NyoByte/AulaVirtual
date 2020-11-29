@@ -292,6 +292,7 @@ public class AulaVirtualController {
     @RequestMapping(value = "/curso", method = RequestMethod.GET)
     public String mostrarGestionCursos(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                        @RequestParam(name = "curso_id", required = false) Optional<String> cursoId,
+                                       @RequestParam(name = "page", defaultValue = "0") String pagina,
                                        Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -310,8 +311,18 @@ public class AulaVirtualController {
                 return "Admin_CrudCurso";
             }
             else{
-                List<CursoEntity> cursos = cursoRep.findAll();
-                model.addAttribute("listaCursos",cursos);
+                //Setear numero y tamaño de pagina
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 3);
+                //Obtener pagina de cursos
+                Page<CursoEntity> paginaCursos = cursoRep.findAll(pageSizeTen);
+                //Enviar numero de paginas y pagina actual al modelo
+                model.addAttribute("numPaginas", paginaCursos.getTotalPages());
+                model.addAttribute("pagActual", pagina);
+                //Convertir pagina de alumnos a lista
+                List<CursoEntity> listaCursos = paginaCursos.getContent();
+                //Añadir lista de cursos al modelo
+                model.addAttribute("listaCursos", listaCursos);
+
                 return "Admin_CargaCursos";
             }
         }else{
