@@ -252,7 +252,8 @@
             </form>
         </c:when>
         <c:otherwise>
-            <form action="/seccion/guardar" method="post"></form>
+            <form action="/seccion/guardar" method="post">
+                Seccion: ${seccion.cod}
             </form>
         </c:otherwise>
     </c:choose>

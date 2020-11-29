@@ -116,7 +116,7 @@
                 <div class="row">
                     <!--ultima linea-->
                     <div class="col">
-                        <a class="btn btn-primary" type="button" href="/aula_virtual/administrador/secciones/edit"><svg
+                        <a class="btn btn-primary" type="button" href="?edit=true"><svg
                                 width="2em" height="2em" stroke="white" viewBox="0 0 16 16" class="bi bi-plus"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"

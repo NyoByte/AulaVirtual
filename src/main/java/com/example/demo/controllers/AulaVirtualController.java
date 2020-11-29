@@ -341,6 +341,7 @@ public class AulaVirtualController {
             return "redirect:/";
         }
         if((boolean)sesion.getAttribute("esAdministrador")){
+            /*SI ES ADMINISTRADOR*/
             if(edit.equalsIgnoreCase("true")){
                 List<CursoEntity> cursos = cursoRep.findAll();
                 model.addAttribute("listaCursos",cursos);
@@ -353,6 +354,8 @@ public class AulaVirtualController {
                     if(seccionSeleccionado.isPresent()){
                         model.addAttribute("seccion",seccionSeleccionado.get());
                     }
+                }else{
+                    model.addAttribute("seccion", null);
                 }
                 return "Admin_CrudSeccion";
             }
@@ -369,6 +372,7 @@ public class AulaVirtualController {
                 return "Admin_CargaSecciones";
             }
         }else if((boolean)sesion.getAttribute("esProfesor")) {
+            /*SI ES PROFESOR*/
             //Obtener la entidad del profesor actual
             Optional<ProfesorEntity> opProfe = profesorRep.findById(Long.valueOf(1)); //Cambiar el id por el del profesor logueado
 
@@ -377,6 +381,21 @@ public class AulaVirtualController {
                 //Obtener las secciones del profesor
                 List<SeccionEntity> listaSecciones = profeActual.getSecciones();
                 model.addAttribute("listaSecciones", listaSecciones);
+            }
+
+            if(seccionId.isPresent()){
+                //localhost:8080/seccion?seccion_id={idSeccion}
+                //Obtener la seccion seleccionada
+                long idSeccionABuscar = Long.valueOf(seccionId.get());
+                Optional<SeccionEntity> opSeccionSeleccionada = seccionRep.findById(idSeccionABuscar);
+                if(opSeccionSeleccionada.isPresent()){
+                    //Si existe la seccion seleccionada...
+                    SeccionEntity seccionSeleccionada = opSeccionSeleccionada.get();
+                    //Obtener la lista de alumnos pertenecientes a la seccion
+                    List<AlumnoEntity> listaAlumnos = seccionSeleccionada.getAlumnos();
+                    //Pasar la lista de alumnos al modelo
+                    model.addAttribute("listaAlumnos",listaAlumnos);
+                }
             }
 
             return "Profesor_Seccion";
