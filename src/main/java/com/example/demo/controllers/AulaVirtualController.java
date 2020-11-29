@@ -143,6 +143,15 @@ public class AulaVirtualController {
         }
     }
 
+    @RequestMapping(value = "/eliminar_alumno/{id}", method = RequestMethod.DELETE)
+    public String eliminar(@PathVariable String id){
+        Optional<AlumnoEntity> tempAlumno = alumnoRep.findById(Long.parseLong(id));
+        if(tempAlumno.isPresent()){
+            alumnoRep.delete(tempAlumno.get());
+        }
+        return "#";
+    }
+
     //ADMINISTRADOR:
     //Gestionar alumnos
     @RequestMapping(value = "/alumno", method = RequestMethod.GET)
@@ -278,7 +287,7 @@ public class AulaVirtualController {
                         model.addAttribute("seccion",seccionSeleccionado.get());
                     }
                 }
-                return "Admin_CrudSección";
+                return "Admin_CrudSeccion";
             }
             else{
                 List<SeccionEntity> secciones = seccionRep.findAll();
