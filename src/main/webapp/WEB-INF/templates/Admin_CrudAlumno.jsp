@@ -198,7 +198,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" maxlength="8" name="cod" value="${alumno.cod}" />
+                                    <input class="form-control" type="number" min=1 max=99999999 name="cod" value="${alumno.cod}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>

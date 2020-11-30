@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
@@ -31,7 +31,9 @@
                                 <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Salir</a>
+                                <form action="/saliendo" method="POST">
+                                    <button class="nav-link btn btn-link" type="submit">Salir</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -79,28 +81,30 @@
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col-3">
-                                    <p class="mb-1">Codigo</p>
-                                    <input class="form-control" type="text" name="codigo" />
+                                    <p class="mb-1">Código</p>
+                                    <input class="form-control" type="number" maxlength="8" name="cod" />
                                 </div>
                                 <div class="col-3">
                                     <p class="mb-1">Nombre</p>
-                                    <input class="form-control" type="text" name="nombre" />
+                                    <input class="form-control" type="text" maxlength="50" name="name" />
                                 </div>
                                 <div class="col-3">
                                     <p class="mb-1">Carrera</p>
-                                    <select class="form-control" name="career" value="">
-                                        <option value="">----Seleccionar una carrera-----</option>
+                                    <select class="form-control" name="career">
+                                        <c:forEach var="carrera" items="${listaCarreras}">
+                                            <option value="${carrera.id}">${carrera.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="btn-group col-3 pl-3">
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
+                                        <button class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
                                                 stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Actualizar Datos</a>
+                                            </svg>Actualizar Datos</button>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +115,53 @@
             </form>
         </c:when>
         <c:otherwise>
-            <form action="/curso/guardar" method="post"></form>
+            <form action="/curso/guardar" method="post">
+                <div class="main-border">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <p class="font-weight-bold">
+                                <h2>Datos del Nuevo Curso</h2>
+                                </p>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col-2">
+                                    <p class="mb-1">Código</p>
+                                    <input class="form-control" type="number" min="1" max="99999999" name="cod"
+                                        value="${curso.cod}" />
+                                </div>
+                                <div class="col-4">
+                                    <p class="mb-1">Nombre</p>
+                                    <input class="form-control" type="text" maxlength="50" name="name"
+                                        value="${curso.name}" />
+                                </div>
+                                <div class="col-3">
+                                    <p class="mb-1">Carrera</p>
+                                    <select class="form-control" name="career">
+                                        <option value="${curso.career.id}">${curso.career.name}</option>
+                                        <c:forEach var="carrera" items="${listaCarreras}">
+                                            <c:if test="${carrera.id != curso.career.id}">
+                                                <option value="${carrera.id}">${carrera.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="btn-group col-3 pl-3">
+                                    <div class="px-2">
+                                        <p class="mb-1">&nbsp</p>
+                                        <button class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
+                                                stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
+                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                            </svg>Actualizar Datos</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </form>
         </c:otherwise>
     </c:choose>

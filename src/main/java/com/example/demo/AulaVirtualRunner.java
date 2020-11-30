@@ -52,7 +52,9 @@ public class AulaVirtualRunner implements CommandLineRunner {
          */
 
 
+    /*
 
+/*
         // PAISES:
         PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
         PaisEntity pais2 = new PaisEntity(null,"Argentina");    paisRep.save(pais2);
@@ -290,6 +292,8 @@ public class AulaVirtualRunner implements CommandLineRunner {
         UsuarioAdministradorEntity userAdm1 = new UsuarioAdministradorEntity(null,"Nyo","Byte");        usuarioRep.save(userAdm1);
         UsuarioAdministradorEntity userAdm2 = new UsuarioAdministradorEntity(null,"Admin2","Pass6");    usuarioRep.save(userAdm2);
         UsuarioAdministradorEntity userAdm3 = new UsuarioAdministradorEntity(null,"Admin3","Pass7");    usuarioRep.save(userAdm3);
+
+ */
 
 
 
