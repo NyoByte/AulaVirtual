@@ -54,7 +54,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
 
 
         // PAISES:
-       /* PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
+        PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
         PaisEntity pais2 = new PaisEntity(null,"Argentina");    paisRep.save(pais2);
         PaisEntity pais3 = new PaisEntity(null,"Chile");        paisRep.save(pais3);
         PaisEntity pais4 = new PaisEntity(null,"Bolivia");      paisRep.save(pais4);
@@ -215,23 +215,23 @@ public class AulaVirtualRunner implements CommandLineRunner {
         // ALUMNOS:
         AlumnoEntity alumno1 = new AlumnoEntity(null,20173527,"Andy","Lazo",
                 "20173527@aloe.ulima.edu.pe","andyLazo@hotmail.com",
-                "andy","andyl","154165171","fotito.jpe",genero1,carrera12,pais1);
+                "andy","andyl","1TE465","fotito.jpe",genero1,carrera12,pais1);
 
         AlumnoEntity alumno2 = new AlumnoEntity(null,20173240,"Dante","Cordova",
                 "20173240@aloe.ulima.edu.pe","DanteCordova@hotmail.com",
-                "dante","danteC","154165184","fotito.jpe",genero1,carrera6,pais1);
+                "dante","danteC","154165","fotito.jpe",genero1,carrera6,pais1);
 
         AlumnoEntity alumno3 = new AlumnoEntity(null,20170001,"Nombre3","Apellido3",
                 "20170001@aloe.ulima.edu.pe","correo3@hotmail.com",
-                "user3","pw3","1541985171","fotito.jpe",genero1,carrera7,pais3);
+                "user3","pw3","1AB985","fotito.jpe",genero1,carrera7,pais3);
 
         AlumnoEntity alumno4 = new AlumnoEntity(null,20170002,"Nombre4","Apellido4",
                 "20170002@aloe.ulima.edu.pe","correo4@hotmail.com",
-                "user4","pw4","151005171","fotito.jpe",genero2,carrera12,pais2);
+                "user4","pw4","15ER05","fotito.jpe",genero2,carrera12,pais2);
 
         AlumnoEntity alumno5 = new AlumnoEntity(null,20170003,"Nombre5","Apellido5",
                 "20170003@aloe.ulima.edu.pe","correo5@hotmail.com",
-                "user5","pw4","154163571","fotito.jpe",genero2,carrera7,pais1);
+                "user5","pw4","1SG163","fotito.jpe",genero2,carrera7,pais1);
 
         alumnoRep.save(alumno1);
         alumnoRep.save(alumno2);
@@ -292,6 +292,8 @@ public class AulaVirtualRunner implements CommandLineRunner {
         UsuarioAdministradorEntity userAdm3 = new UsuarioAdministradorEntity(null,"Admin3","Pass7");    usuarioRep.save(userAdm3);
 
 
+
+        /*
         int id = 20250000;
         int ad = 888888880;
         for(int i=6; i<30; i++){
@@ -300,7 +302,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
                     String.valueOf(id+i)+"@aloe.ulima.edu.pe","correo"+idString+"@hotmail.com",
                     "user"+idString,"pw"+idString,String.valueOf(ad+i),"fotito.jpe",genero2,carrera7,pais1);
             alumnoRep.save(alumno);
-        }*/
+        }
 
         /*int cod = 104;
         Optional<CursoEntity> cursox = cursoRep.findById(Long.valueOf(98));
