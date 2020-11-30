@@ -198,7 +198,7 @@ public class AulaVirtualController {
 
     }
 
-    @RequestMapping(value = "/alumno_eliminar/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/alumno/eliminar/{id}", method = RequestMethod.POST)
     public String eliminarAlumno(@PathVariable String id){
         Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
         if(alumnoSeleccionado.isPresent()){
@@ -219,7 +219,7 @@ public class AulaVirtualController {
         return  "redirect:/alumno";
     }
 
-    @RequestMapping(value = "/profesor_eliminar/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/profesor/eliminar/{id}", method = RequestMethod.POST)
     public String eliminarProfesor(@PathVariable String id){
         Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(id));
         if(profesorSeleccionado.isPresent()){
@@ -238,6 +238,15 @@ public class AulaVirtualController {
             profesorRep.delete(profesorSeleccionado.get());
         }
         return  "redirect:/profesor";
+    }
+
+    @RequestMapping(value = "/curso/eliminar/{id}", method = RequestMethod.POST)
+    public String eliminarCurso(@PathVariable String id){
+        Optional<CursoEntity> cursoSeleccionado = cursoRep.findById(Long.parseLong(id));
+        if(cursoSeleccionado.isPresent()){
+            cursoRep.delete(cursoSeleccionado.get());
+        }
+        return  "redirect:/curso";
     }
 
     //ADMINISTRADOR:

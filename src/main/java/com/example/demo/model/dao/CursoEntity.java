@@ -72,4 +72,12 @@ public class CursoEntity {
     public void setCareer(CarreraEntity career) {
         this.career = career;
     }
+
+    public List<SeccionEntity> getListSecciones() {
+        return listSecciones;
+    }
+
+    public void setListSecciones(List<SeccionEntity> listSecciones) {
+        this.listSecciones = listSecciones;
+    }
 }
