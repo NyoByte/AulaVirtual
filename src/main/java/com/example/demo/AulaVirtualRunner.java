@@ -296,7 +296,6 @@ public class AulaVirtualRunner implements CommandLineRunner {
  */
 
 
-
         /*
         int id = 20250000;
         int ad = 888888880;

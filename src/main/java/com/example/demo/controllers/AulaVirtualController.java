@@ -489,8 +489,10 @@ public class AulaVirtualController {
 
     /* FUNCIONES */
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String testing() {
-        return "Admin_CrudAlumno"; // podría funcionar para test, pero se requiere parametros así que... zzzzz xD
+    public String testing(Model model) {
+        List<UsuarioAlumnoEntity> admin =  usuarioRep.findUsuarioAlumno();
+        model.addAttribute("listaUsuarios",admin);
+        return "testing";
     }
 
     private HttpSession ObtenerSesion(){

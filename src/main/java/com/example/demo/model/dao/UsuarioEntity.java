@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @Table(name = "Usuarios")
-public class UsuarioEntity{
+public abstract class UsuarioEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
