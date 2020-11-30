@@ -81,11 +81,11 @@
 
                     <div class="col-3">
                         <p class="mb-1">Codigo</p>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" type="text" name="kw_cod"/>
                     </div>
                     <div class="col-3">
                         <p class="mb-1">Nombre</p>
-                        <input class="form-control" type="text" name="keyword" />
+                        <input class="form-control" type="text" name="kw_name" />
                     </div>
                     <div class="btn-group col-6 pl-3">
                         <div class="px-2">

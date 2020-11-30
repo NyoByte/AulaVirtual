@@ -20,6 +20,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.Filter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.annotation.Inherited;
 import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
@@ -212,8 +213,8 @@ public class AulaVirtualController {
     public String mostrarGestionAlumnos(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                         @RequestParam(name = "alumno_id", required = false) Optional<String> alumnoId,
                                         @RequestParam(name = "page",defaultValue = "0") String pagina,
-                                        @RequestParam(name = "param",required = false) String param,
-                                        String keyword,
+                                        @RequestParam(name = "kw_name", defaultValue = "") String kw_name,
+                                        @RequestParam(name = "kw_cod", defaultValue = "") String kw_cod,
                                         Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -236,11 +237,7 @@ public class AulaVirtualController {
                     model.addAttribute("alumno",null);
                 }
                 return "Admin_CrudAlumno";
-            }/*else if(filter.equalsIgnoreCase("true")){
-                //Darle la lista de alumnos filtrada
-
-                return "Admin_CurdAlumno";
-            }*/
+            }
             else{
                 //Setear numero y tamaño de pagina
                 Pageable pageTen = PageRequest.of(Integer.parseInt(pagina),10);
@@ -250,21 +247,20 @@ public class AulaVirtualController {
                 model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
                 model.addAttribute("pagActual", pagina);
 
-                // Parte de Filtro
-                /*List<AlumnoEntity> palumnos = null;
-                if(param!=null){
-                    palumnos = alumnoRep.findByCodStartWith(param);
-                }else{
-                    palumnos = alumnoRep.findAll();
-                }
-                */
-
                 //Convertir a lista
                 List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
-                if(keyword!=null){
-                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeyword(keyword);
+                //Filtro
+                if(kw_name!=null && kw_cod.equalsIgnoreCase("")){
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordName(kw_name.toUpperCase());
                     model.addAttribute("listaAlumnos", filterAlumnos);
-                }else {
+                }else if(kw_name.equalsIgnoreCase("") && kw_cod!=null){
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordCode(kw_cod);
+                    model.addAttribute("listaAlumnos", filterAlumnos);
+                }else if(kw_name!=null && kw_cod!=null){
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
+                    model.addAttribute("listaAlumnos", filterAlumnos);
+                }
+                else {
                     model.addAttribute("listaAlumnos", alumnos);
                 }
                 return "Admin_CargaAlumnos";

@@ -12,7 +12,11 @@ public class AlumnoService {
     @Autowired
     private AlumnoRepository alumnoRep;
 
-    public List<AlumnoEntity> findByKeyword(String keyword){
-        return alumnoRep.findByKeyword(keyword);
-    }
+    /*public List<AlumnoEntity> findByKeywordName(String keyword){
+        return alumnoRep.findByKeywordName(keyword);
+    }*/
+
+    /*public List<AlumnoEntity> findByKeywordCode(String keyword){
+        return alumnoRep.findByKeywordCode(keyword);
+    }*/
 }
