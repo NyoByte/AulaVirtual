@@ -97,18 +97,21 @@
                                 <td>${seccion.periodo.name}</td>
                                 <td>${seccion.profesor[0].first_name} ${seccion.profesor[0].last_name}</td>
                                 <td class="pl-4 ope-td"><a href="/seccion?edit=true&seccion_id=${seccion.id}"><svg
-                                    width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                                </svg></a></td>
-                        <td class="pl-4 ope-td"><a href="#"
-                                onclick="return confirm('¿Está seguro de eliminar?')"><svg width="2em"
-                                    height="1.5em" stroke="black" viewBox="0 0 16 16" class="bi bi-x"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                </svg></a></td>
+                                            width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                        </svg></a></td>
+                                <td class="pl-4 ope-td">
+                                    <form action="/seccion/eliminar/${seccion.id}" method="POST"><button
+                                            class="btn btn-link p-0 border-0" type="submit"
+                                            onclick="return confirm('¿Está seguro de eliminar?')"><svg width="1.5em"
+                                                height="1.5em" stroke="black" viewBox="0 0 16 16" class="bi bi-x"
+                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg></button></form>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -116,9 +119,9 @@
                 <div class="row">
                     <!--ultima linea-->
                     <div class="col">
-                        <a class="btn btn-primary" type="button" href="?edit=true"><svg
-                                width="2em" height="2em" stroke="white" viewBox="0 0 16 16" class="bi bi-plus"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <a class="btn btn-primary" type="button" href="?edit=true"><svg width="2em" height="2em"
+                                stroke="white" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>Agregar Sección</a>
@@ -127,44 +130,44 @@
                         <div class="row justify-content-around">
                             <c:if test="${pagActual>0}">
                                 <a href="?page=0" id="boton_primera_pag">
-                                    <svg width="1em" height="1em"
-                                         viewBox="0 0 16 16" class="bi bi-chevron-double-left" fill="currentColor"
-                                         xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-double-left" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
-                                              d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                            d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                                         <path fill-rule="evenodd"
-                                              d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                            d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                                     </svg>
                                 </a>
                                 <a href="?page=${pagActual-1}" id="boton_pag_anterior">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                         class="bi bi-chevron-left" fill="currentColor"
-                                         xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-left" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
-                                              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                                     </svg>
                                 </a>
                             </c:if>
 
-                            ${pagActual+1}/${numPaginas}
+                            <p class="font-weight-bold">${pagActual+1}/${numPaginas}</p>
 
                             <c:if test="${pagActual<numPaginas-1}">
                                 <a href="?page=${pagActual+1}" type="button" id="boton_sgte_pag">
-                                    <svg
-                                            width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right"
-                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-right" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
-                                              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                                     </svg>
                                 </a>
                                 <a href="?page=${numPaginas-1}" id="boton_ultima_pag">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
-                                         class="bi bi-chevron-double-right" fill="currentColor"
-                                         xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-double-right" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
-                                              d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                            d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
                                         <path fill-rule="evenodd"
-                                              d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                            d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
                                     </svg>
                                 </a>
                             </c:if>
