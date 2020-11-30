@@ -219,6 +219,27 @@ public class AulaVirtualController {
         return  "redirect:/alumno";
     }
 
+    @RequestMapping(value = "/profesor_eliminar/{id}", method = RequestMethod.POST)
+    public String eliminarProfesor(@PathVariable String id){
+        Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(id));
+        if(profesorSeleccionado.isPresent()){
+            List<SeccionEntity> secciones = profesorSeleccionado.get().getSecciones();
+            for(SeccionEntity seccion:secciones){
+                List<ProfesorEntity> profesores = seccion.getProfesor();
+                List<ProfesorEntity> newProfesor = new ArrayList<>();
+                for(ProfesorEntity profesor:profesores){
+                    if(profesor.getId()!=Long.parseLong(id)){
+                        newProfesor.add(profesor);
+                    }
+                }
+                seccion.setProfesor(newProfesor);
+                seccionRep.save(seccion);
+            }
+            profesorRep.delete(profesorSeleccionado.get());
+        }
+        return  "redirect:/profesor";
+    }
+
     //ADMINISTRADOR:
     //Gestionar alumnos
     @RequestMapping(value = "/alumno", method = RequestMethod.GET)

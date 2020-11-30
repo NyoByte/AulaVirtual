@@ -212,8 +212,11 @@
                                 <div class="col">
                                     <p class="mb-1">Género</p>
                                     <select class="form-control" id="carrera">
+                                        <option value="${profesor.gender.id}">${profesor.gender.name}</option>
                                         <c:forEach var="genero" items="${listaGeneros}">
-                                            <option value="${genero.id}">${genero.name}</option>
+                                            <c:if test="${genero.id != profesor.gender.id}">
+                                                <option value="${genero.id}">${genero.name}</option>
+                                            </c:if>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -222,16 +225,22 @@
                                 <div class="col">
                                     <p class="mb-1">País</p>
                                     <select class="form-control" type="text" name="pais" />
+                                    <option value="${profesor.pais.id}">${profesor.pais.name}</option>
                                     <c:forEach var="pais" items="${listaPaises}">
-                                        <option value="${pais.id}">${pais.name}</option>
+                                        <c:if test="${pais.id != profesor.pais.id}">
+                                            <option value="${pais.id}">${pais.name}</option>
+                                        </c:if>
                                     </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Tipo de Docente</p>
                                     <select class="form-control">
+                                        <option value="$profesor.type.id">${profesor.type.name}</option>
                                         <c:forEach var="tipo" items="${listaTipos}">
-                                            <option value="${tipo.id}">${tipo.name}</option>
+                                            <c:if test="${tipo.id != profesor.type.id}">
+                                                <option value="${tipo.id}">${tipo.name}</option>
+                                            </c:if>
                                         </c:forEach>
                                     </select>
                                 </div>
