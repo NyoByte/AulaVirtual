@@ -31,7 +31,9 @@
                                 <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Salir</a>
+                                <form action="/saliendo" method="POST">
+                                    <button class="nav-link btn btn-link" type="submit">Salir</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -80,25 +82,25 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="text" name="cod"/>
+                                    <input class="form-control" type="number" maxlength="8" name="cod" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
-                                    <input class="form-control" type="text" name="first_name" />
+                                    <input class="form-control" type="text" maxlength="50" name="first_name" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
-                                    <input class="form-control" type="text" name="last_name" />
+                                    <input class="form-control" type="text" maxlength="50" name="last_name" />
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="text" name="email_univ" />
+                                    <input class="form-control" type="email" maxlength="50" name="email_univ" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
-                                    <input class="form-control" type="text" name="email_priv" />
+                                    <input class="form-control" type="email" maxlength="50" name="email_priv" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
@@ -113,22 +115,22 @@
                                 <div class="col">
                                     <p class="mb-1">País</p>
                                     <select class="form-control" type="text" name="pais" />
-                                        <c:forEach var="pais" items="${listaPaises}">
-                                            <option value="${pais.id}">${pais.name}</option>
-                                        </c:forEach>
+                                    <c:forEach var="pais" items="${listaPaises}">
+                                        <option value="${pais.id}">${pais.name}</option>
+                                    </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
-                                    <input class="form-control" type="text" name="tv_user" />
+                                    <input class="form-control" type="text" maxlength="9" name="tv_user" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Contraseña</p>
-                                    <input class="form-control" type="text" name="tv_pw" />
+                                    <input class="form-control" type="text" maxlength="9" name="tv_pw" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">AnyDesk Credencial</p>
-                                    <input class="form-control" type="text" name="ad_cred" />
+                                    <input class="form-control" type="text" maxlength="6" name="ad_cred" />
                                 </div>
                             </div>
                             <div class="form-row mb-0">
@@ -152,8 +154,9 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg width="2em" height="1.5em"
-                                                viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
+                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg
+                                                width="2em" height="1.5em" viewBox="0 0 16 16"
+                                                class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
@@ -162,7 +165,8 @@
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                                             </svg>Seleccionar Foto</button>
                                         <span id="visor_foto"></span>
-                                        <input type="file" id="input_foto" onchange="handleIMG(this.files)" style="display: none">
+                                        <input type="file" id="input_foto" onchange="handleIMG(this.files)"
+                                            style="display: none">
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
@@ -193,33 +197,37 @@
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
-                                    <p class="mb-1">Codigo</p>
-                                    <input class="form-control" type="text" name="cod" value="${alumno.cod}" />
+                                    <p class="mb-1">Código</p>
+                                    <input class="form-control" type="number" maxlength="8" name="cod" value="${alumno.cod}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
-                                    <input class="form-control" type="text" name="first_name" value="${alumno.first_name}" />
+                                    <input class="form-control" type="text" maxlength="50" name="first_name"
+                                        value="${alumno.first_name}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
-                                    <input class="form-control" type="text" name="last_name" value="${alumno.last_name}" />
+                                    <input class="form-control" type="text" maxlength="50" name="last_name"
+                                        value="${alumno.last_name}" />
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="text" name="email_univ" value="${alumno.email_univ}" />
+                                    <input class="form-control" type="text" maxlength="50" name="email_univ"
+                                        value="${alumno.email_univ}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
-                                    <input class="form-control" type="text" name="email_priv" value="${alumno.email_priv}" />
+                                    <input class="form-control" type="text" maxlength="50" name="email_priv"
+                                        value="${alumno.email_priv}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
                                     <select class="form-control" name="gender">
                                         <option value="${alumno.gender.id}">${alumno.gender.name}</option>
                                         <c:forEach var="genero" items="${listaGeneros}">
-                                            <c:if test = "${genero.id != alumno.gender.id}" >
+                                            <c:if test="${genero.id != alumno.gender.id}">
                                                 <option value="${genero.id}">${genero.name}</option>
                                             </c:if>
                                         </c:forEach>
@@ -232,7 +240,7 @@
                                     <select class="form-control" name="pais">
                                         <option value="${alumno.pais.id}">${alumno.pais.name}</option>
                                         <c:forEach var="pais" items="${listaPaises}">
-                                            <c:if test = "${pais.id != alumno.pais.id}" >
+                                            <c:if test="${pais.id != alumno.pais.id}">
                                                 <option value="${pais.id}">${pais.name}</option>
                                             </c:if>
                                         </c:forEach>
@@ -240,15 +248,15 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
-                                    <input class="form-control" type="text" name="tv_user" value="${alumno.tv_user}" />
+                                    <input class="form-control" type="text" name="tv_user" maxlength="9" value="${alumno.tv_user}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Contraseña</p>
-                                    <input class="form-control" type="text" name="tv_pw" value="${alumno.tv_pw}" />
+                                    <input class="form-control" type="text" name="tv_pw" maxlength="9" value="${alumno.tv_pw}" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">AnyDesk Credencial</p>
-                                    <input class="form-control" type="text" name="ad_cred" value="${alumno.ad_cred}" />
+                                    <input class="form-control" type="text" name="ad_cred" maxlength="6" value="${alumno.ad_cred}" />
                                 </div>
                             </div>
                             <div class="form-row mb-0">
@@ -257,7 +265,7 @@
                                     <select class="form-control" name="career" value="">
                                         <option value="${alumno.career.id}">${alumno.career.name}</option>
                                         <c:forEach var="carrera" items="${listaCarreras}">
-                                            <c:if test = "${carrera.id != alumno.career.id}" >
+                                            <c:if test="${carrera.id != alumno.career.id}">
                                                 <option value="${carrera.id}">${carrera.name}</option>
                                             </c:if>
                                         </c:forEach>
@@ -275,8 +283,9 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg width="2em" height="1.5em"
-                                                viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
+                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg
+                                                width="2em" height="1.5em" viewBox="0 0 16 16"
+                                                class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
@@ -285,7 +294,8 @@
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                                             </svg>Seleccionar Foto</button>
                                         <span id="visor_foto"></span>
-                                        <input type="file" id="input_foto" onchange="handleIMG(this.files)" style="display: none">
+                                        <input type="file" id="input_foto" onchange="handleIMG(this.files)"
+                                            style="display: none">
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>

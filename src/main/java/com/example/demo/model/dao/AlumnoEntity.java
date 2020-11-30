@@ -25,13 +25,13 @@ public class AlumnoEntity{
     @Column(name = "Correo_Personal", unique = true, length = 50)
     private String email_priv;
 
-    @Column(name = "TeamViewer_Usuario", unique = true, length = 15)
+    @Column(name = "TeamViewer_Usuario", unique = true, length = 9)
     private String tv_user;
 
-    @Column(name = "TeamViewer_Contraseña", length = 15)
+    @Column(name = "TeamViewer_Contraseña", length = 9)
     private String tv_pw;
 
-    @Column(name = "AnyDesk_Credencial", unique = true, length = 10)
+    @Column(name = "AnyDesk_Credencial", unique = true, length = 6)
     private String ad_cred;
 
     @Column(name = "Foto_Url", length = 100)

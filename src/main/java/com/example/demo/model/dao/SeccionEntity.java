@@ -12,7 +12,7 @@ public class SeccionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Código", unique = true)
+    @Column(name = "Código", unique = true, length = 8)
     private int cod;
 
     @ManyToOne

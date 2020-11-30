@@ -3,7 +3,6 @@ function OnClickAyuda(){
 }
 
 var main = function(){
-    console.log("aea")
     document.getElementById("but_ayuda").onclick = OnClickAyuda;
 }
 

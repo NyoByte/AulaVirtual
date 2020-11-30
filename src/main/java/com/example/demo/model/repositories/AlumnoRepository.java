@@ -3,7 +3,6 @@ package com.example.demo.model.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.model.dao.AlumnoEntity;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

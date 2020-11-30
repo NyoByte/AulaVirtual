@@ -79,6 +79,16 @@ public class AulaVirtualController {
         cambiar las partes necesarias para cada tipo de usuario. De momento lo dejo con if.*/
     }
 
+    @RequestMapping(value = "/saliendo", method = RequestMethod.POST)
+    public String salirLogin(){
+        HttpSession sesion = ObtenerSesion();
+        sesion.setAttribute("login",false);
+        sesion.setAttribute("esProfesor",false);
+        sesion.setAttribute("esAlumno",false);
+        sesion.setAttribute("esAdministrador",false);
+        return "redirect:/";
+    }
+
     @RequestMapping(value="/procesar_login/{type_user}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String procesarLogin(LoginForm form, @PathVariable String type_user){
         HttpSession sesion = ObtenerSesion();
@@ -121,6 +131,7 @@ public class AulaVirtualController {
             }
         }
     }
+
 
     //Principales: no logeado: Inicio, profesor: "Profesor" alumno: "Alumno", administrado: "Admin_CargaProfesores"
     @RequestMapping(value = "/", method = RequestMethod.GET) //cambié de / -> temporal porque la pagina principal es la de inicio
@@ -187,7 +198,7 @@ public class AulaVirtualController {
 
     }
 
-    @RequestMapping(value = "/alumno_eliminar/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/alumno_eliminar/{id}", method = RequestMethod.POST)
     public String eliminarAlumno(@PathVariable String id){
         Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
         if(alumnoSeleccionado.isPresent()){
@@ -207,6 +218,7 @@ public class AulaVirtualController {
         }
         return  "redirect:/alumno";
     }
+
     //ADMINISTRADOR:
     //Gestionar alumnos
     @RequestMapping(value = "/alumno", method = RequestMethod.GET)
@@ -275,6 +287,8 @@ public class AulaVirtualController {
     public String mostrarGestionProfesores(@RequestParam(name = "edit", defaultValue = "false") String edit,
                                            @RequestParam(name = "profesor_id", required = false) Optional<String> profesorId,
                                            @RequestParam(name = "page", defaultValue = "0") String pagina,
+                                           @RequestParam(name = "kw_name", defaultValue = "") String kw_name,
+                                           @RequestParam(name = "kw_cod", defaultValue = "") String kw_cod,
                                            Model model){
         HttpSession sesion =  ObtenerSesion();
         if(sesion.getAttribute("login")==null || !(boolean)sesion.getAttribute("login")){
@@ -286,11 +300,15 @@ public class AulaVirtualController {
                 model.addAttribute("listaPaises",paises);
                 List<GeneroEntity> generos = generoRep.findAll();
                 model.addAttribute("listaGeneros",generos);
+                List<ProfesorTipoEntity> tipos = tipoRep.findAll();
+                model.addAttribute("listaTipos",tipos);
                 if(!profesorId.isEmpty()){
                     Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(profesorId.get()));
                     if(profesorSeleccionado.isPresent()){
                         model.addAttribute("profesor",profesorSeleccionado.get());
                     }
+                }else {
+                    model.addAttribute("profesor",null);
                 }
                 return "Admin_CrudProfesor";
             }
@@ -303,7 +321,19 @@ public class AulaVirtualController {
                 model.addAttribute("pagActual", pagina);
 
                 List<ProfesorEntity> profesores = paginaProfesores.getContent();
-                model.addAttribute("listaProfesores",profesores);
+                //Filtro
+                if(kw_name!=null && kw_cod.equalsIgnoreCase("")){
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
+                    model.addAttribute("listaProfesores", filterProfesores);
+                }else if(kw_name.equalsIgnoreCase("") && kw_cod!=null){
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
+                    model.addAttribute("listaProfesores", filterProfesores);
+                }else if(kw_name!=null && kw_cod!=null){
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
+                    model.addAttribute("listaProfesores", filterProfesores);
+                }else {
+                    model.addAttribute("listaProfesores", profesores);
+                }
                 return "Admin_CargaProfesores";
             }
         }else{
