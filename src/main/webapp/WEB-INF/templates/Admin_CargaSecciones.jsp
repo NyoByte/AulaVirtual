@@ -31,7 +31,9 @@
                                 <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Salir</a>
+                                <form action="/login/saliendo" method="POST">
+                                    <button class="nav-link btn btn-link" type="submit">Salir</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -119,7 +121,7 @@
                 <div class="row">
                     <!--ultima linea-->
                     <div class="col">
-                        <a class="btn btn-primary" type="button" href="?edit=true"><svg width="2em" height="2em"
+                        <a class="btn btn-primary" type="button" href="/seccion?edit=true"><svg width="2em" height="2em"
                                 stroke="white" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"

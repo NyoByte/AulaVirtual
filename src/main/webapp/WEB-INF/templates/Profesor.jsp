@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesor</title>
+    <title>AulaVirtual-Profesor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
@@ -31,7 +31,9 @@
                                 <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Salir</a>
+                                <form action="/login/saliendo" method="POST">
+                                    <button class="nav-link btn btn-link" type="submit">Salir</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -70,49 +72,44 @@
                 </div>
                 <div class="form-row mb-3">
                     <div class="col">
-                        <p class="mb-1">Codigo</p>
-                        <input class="form-control" type="text" name="codigo" disabled/>
+                        <p class="mb-1">Código</p>
+                        <input class="form-control" type="number" name="cod" value="${profesor.cod}" readonly="true"/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Nombres</p>
-                        <input class="form-control" type="text" name="nombres" disabled/>
+                        <input class="form-control" type="text" name="first_name" value="${profesor.first_name}" readonly="true"/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Apellidos</p>
-                        <input class="form-control" type="text" name="apellidos" disabled/>
+                        <input class="form-control" type="text" name="last_name" value="${profesor.last_name}" readonly="true"/>
                     </div>
                 </div>
                 <div class="form-row mb-3">
                     <div class="col">
                         <p class="mb-1">Correo de la Universidad</p>
-                        <input class="form-control" type="text" name="correo_univ" disabled/>
+                        <input class="form-control" type="text" name="email_univ" value="${profesor.email_univ}" readonly="true"/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Correo Personal</p>
-                        <input class="form-control" type="text" name="correo_personal" />
+                        <input class="form-control" type="text" name="email_priv" />
                     </div>
                     <div class="col">
                         <p class="mb-1">Género</p>
-                        <select class="form-control" id="carrera" disabled>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
-                        </select>
+                        <input class="form-control" type="text" name="gender" value="${profesor.gender.name}" readonly="true"/>
                     </div>
                 </div>
                 <div class="form-row mb-3">
                     <div class="col">
                         <p class="mb-1">País</p>
-                        <input class="form-control" type="text" name="país" disabled/>
+                        <input class="form-control" type="text" name="pais" value="${profesor.pais.name}" readonly="true"/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Tipo de Docente</p>
-                        <select class="form-control" disabled>
-                            <option></option>
-                        </select>
+                        <input class="form-control" type="text" name="type" value="${profesor.type.name}" readonly="true"/>
                     </div>
                     <div class="px-2">
                         <p class="mb-1">&nbsp</p>
-                        <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em" stroke="white"
+                        <a class="btn btn-primary" type="submit" href="/profesor?edit=true"><svg width="1.5em" height="1.5em" stroke="white"
                                 viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -120,19 +117,6 @@
                             </svg>Actualizar Datos</a>
                     </div>
                 </div>
-                <!--<div class="form-row mb-0 pl-5">
-                    <div class="form-row m-0">
-                        <div class="px-2">
-                            <p class="mb-1">&nbsp</p>
-                            <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em" stroke="white"
-                                    viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                </svg>Actualizar Datos</a>
-                        </div>
-                    </div>
-                </div>-->
             </div>
             <div class="col-3">
                 <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">

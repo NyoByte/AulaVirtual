@@ -30,7 +30,7 @@
                             <div class="nav-link">Name</div>
                         </li>
                         <li class="nav-item dropdown">
-                            <form action="/saliendo" method="POST">
+                            <form action="/login/saliendo" method="POST">
                                 <button class="nav-link btn btn-link" type="submit">Salir</button>
                             </form>
                         </li>

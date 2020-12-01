@@ -31,7 +31,7 @@
                                 <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
-                                <form action="/saliendo" method="POST">
+                                <form action="/login/saliendo" method="POST">
                                     <button class="nav-link btn btn-link" type="submit">Salir</button>
                                 </form>
                             </li>
@@ -82,7 +82,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" maxlength="8" name="cod" />
+                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" id="carrera">
+                                    <select class="form-control" name="gender">
                                         <c:forEach var="genero" items="${listaGeneros}">
                                             <option value="${genero.id}">${genero.name}</option>
                                         </c:forEach>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Tipo de Docente</p>
-                                    <select class="form-control">
+                                    <select class="form-control" name="type">
                                         <c:forEach var="tipo" items="${listaTipos}">
                                             <option value="${tipo.id}">${tipo.name}</option>
                                         </c:forEach>
@@ -184,7 +184,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" maxlength="8" name="cod"
+                                    <input class="form-control" type="number" min="1" max="99999999" name="cod"
                                         value="${profesor.cod}" />
                                 </div>
                                 <div class="col">
@@ -211,7 +211,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" id="carrera">
+                                    <select class="form-control" name="gender">
                                         <option value="${profesor.gender.id}">${profesor.gender.name}</option>
                                         <c:forEach var="genero" items="${listaGeneros}">
                                             <c:if test="${genero.id != profesor.gender.id}">
@@ -235,7 +235,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Tipo de Docente</p>
-                                    <select class="form-control">
+                                    <select class="form-control" name="type">
                                         <option value="$profesor.type.id">${profesor.type.name}</option>
                                         <c:forEach var="tipo" items="${listaTipos}">
                                             <c:if test="${tipo.id != profesor.type.id}">

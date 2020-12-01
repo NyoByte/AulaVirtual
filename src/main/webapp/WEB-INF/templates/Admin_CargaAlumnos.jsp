@@ -80,7 +80,7 @@
 
                         <div class="col-3">
                             <p class="mb-1">Código</p>
-                            <input class="form-control" type="number" name="kw_cod" />
+                            <input class="form-control" type="number"  name="kw_cod" />
                         </div>
                         <div class="col-3">
                             <p class="mb-1">Nombre</p>

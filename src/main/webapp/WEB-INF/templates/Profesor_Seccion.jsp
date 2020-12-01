@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesor-Secciones</title>
+    <title>AulaVirtual-Profesor-Secciones</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -31,7 +31,9 @@
                                 <div class="nav-link">Name</div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Salir</a>
+                                <form action="/login/saliendo" method="POST">
+                                    <button class="nav-link btn btn-link" type="submit">Salir</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -67,7 +69,7 @@
                     <div class="col-3">
                         <h3 class="mb-1">Secciones</h3>
                         <select class="form-control" name="seccion" id="seccion_combo">
-                            <option>Seleccione una seccion</option>
+                            <option>Choose...</option>
                             <c:forEach var="seccion" items="${listaSecciones}">
                                 <option value="${seccion.id}">${seccion.cod}</option>
                             </c:forEach>
@@ -96,29 +98,74 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="alumno" items="${listaAlumnos}">
-                        <tr>
-                            <td scope="row">${alumno.cod}</td>
-                            <td>${alumno.first_name} ${alumno.last_name}</td>
-                            <td>${alumno.ad_cred}</td>
-                            <td>${alumno.tv_user}</td>
-                            <td>${alumno.tv_pw}</td>
-                            <td class="pl-4 ope-td"><a href="#"><svg width="1.5em" height="1.5em" stroke="black" viewBox="0 0 16 16"
-                                                                     class="bi bi-arrow-repeat" fill="currentColor"
-                                                                     xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                        d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-                                <path fill-rule="evenodd"
-                                      d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
-                            </svg></a></td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach var="alumno" items="${listaAlumnos}">
+                            <tr>
+                                <td scope="row">${alumno.cod}</td>
+                                <td>${alumno.first_name} ${alumno.last_name}</td>
+                                <td>${alumno.ad_cred}</td>
+                                <td>${alumno.tv_user}</td>
+                                <td>${alumno.tv_pw}</td>
+                                <td class="pl-4 ope-td"><a href="/seccion"><svg width="1.5em" height="1.5em"
+                                            stroke="black" viewBox="0 0 16 16" class="bi bi-arrow-repeat"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                                            <path fill-rule="evenodd"
+                                                d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                                        </svg></a></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
-                <div class="row">
+                <div class="row justify-content-between">
                     <!--ultima linea-->
-                    <div class="col text-right">
-                        paginacion
+                    <div class="col"></div>
+                    <div class="col-3">
+                        <div class="row justify-content-around">
+                            <c:if test="${pagActual>0}">
+                                <a href="?page=0" id="boton_primera_pag">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-double-left" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg>
+                                </a>
+                                <a href="?page=${pagActual-1}" id="boton_pag_anterior">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-left" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg>
+                                </a>
+                            </c:if>
+
+                            <p class="font-weight-bold">${pagActual+1}/${numPaginas}</p>
+
+                            <c:if test="${pagActual<numPaginas-1}">
+                                <a href="?page=${pagActual+1}" type="button" id="boton_sgte_pag">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-right" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </a>
+                                <a href="?page=${numPaginas-1}" id="boton_ultima_pag">
+                                    <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-double-right" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                                        <path fill-rule="evenodd"
+                                            d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </a>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>
