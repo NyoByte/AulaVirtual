@@ -1,11 +1,8 @@
 package com.example.demo.controllers;
 
-
-import com.example.demo.forms.GuardarAlumnosForm;
 import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,13 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.Filter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.lang.annotation.Inherited;
 import java.util.List;
-import java.util.Optional;
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -49,91 +42,16 @@ public class AulaVirtualController {
     @Autowired
     private UsuarioRepository usuarioRep;
 
+    // HTTP Session
+    private HttpSession ObtenerSesion(){
+        final HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+        return request.getSession();
+    }
+
     // MAPPING:
 
-    //LOGIN:
-    // http://localhost:8080/login/{profesor/alumno/administrador}
-    @RequestMapping(value = "/login/{user}", method = RequestMethod.GET)
-    public String mostrarLogin(Model model,@PathVariable String user, @RequestParam(name="logeado", required = false, defaultValue = "") String logeado){
-        HttpSession sesion = ObtenerSesion();
-        if(sesion.getAttribute("login")!=null && (boolean) sesion.getAttribute("login")){
-            return "redirect:/";
-        }else {
-            if(logeado.equals("false")){
-                model.addAttribute("loginCorrecto",false);
-            }
-            if (user.equalsIgnoreCase("profesor")) {
-                model.addAttribute("usuario","profesor");
-            } else if (user.equalsIgnoreCase("alumno")) {
-                model.addAttribute("usuario","alumno");
-            } else if (user.equalsIgnoreCase("administrador")){
-                model.addAttribute("usuario","administrador");
-            }else{
-                return "redirect:/";
-            }
-            return  "Login_Administrador";
-        }
-        /*NotaNyo: Para cambiar se debe hacer Model*/
-        /*NOTA: En este caso las 3 paginas son muy similares,
-        asi que lo mas conveniente seria devolver un solo template y con el choose
-        cambiar las partes necesarias para cada tipo de usuario. De momento lo dejo con if.*/
-    }
-
-    @RequestMapping(value = "/saliendo", method = RequestMethod.POST)
-    public String salirLogin(){
-        HttpSession sesion = ObtenerSesion();
-        sesion.setAttribute("login",false);
-        sesion.setAttribute("esProfesor",false);
-        sesion.setAttribute("esAlumno",false);
-        sesion.setAttribute("esAdministrador",false);
-        return "redirect:/";
-    }
-
-    @RequestMapping(value="/procesar_login/{type_user}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String procesarLogin(LoginForm form, @PathVariable String type_user){
-        HttpSession sesion = ObtenerSesion();
-        if(type_user.equalsIgnoreCase("profesor")){
-            String usuario = "test";
-            String password = "profe";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
-                sesion.setAttribute("login",true);
-                sesion.setAttribute("esProfesor",true);
-                sesion.setAttribute("esAlumno",false);
-                sesion.setAttribute("esAdministrador",false);
-                return "redirect:/";
-            }else{
-                return "redirect:/login/profesor?logeado=false";
-            }
-
-        }else if(type_user.equalsIgnoreCase("alumno")){
-            String usuario = "test";
-            String password = "alumno";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
-                sesion.setAttribute("login",true);
-                sesion.setAttribute("esProfesor",false);
-                sesion.setAttribute("esAlumno",true);
-                sesion.setAttribute("esAdministrador",false);
-                return "redirect:/";
-            }else{
-                return "redirect:/login/alumno?logeado=false";
-            }
-        }else{
-            String usuario = "test";
-            String password = "administrador";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
-                sesion.setAttribute("login",true);
-                sesion.setAttribute("esProfesor",false);
-                sesion.setAttribute("esAlumno",false);
-                sesion.setAttribute("esAdministrador",true);
-                return "redirect:/";
-            }else{
-                return "redirect:/login/administrador?logeado=false";
-            }
-        }
-    }
-
-
-    //Principales: no logeado: Inicio, profesor: "Profesor" alumno: "Alumno", administrado: "Admin_CargaProfesores"
+    // MAIN
+    //Principales: no logeado: Inicio, profesor: "Profesor" alumno: "Alumno", administrador: "Admin_CargaProfesores"
     @RequestMapping(value = "/", method = RequestMethod.GET) //cambié de / -> temporal porque la pagina principal es la de inicio
     public String mostrarPagPrincipal(Model model){
         //Primero se debe verificar si el usuario esta logueado con la sesion.
@@ -161,92 +79,28 @@ public class AulaVirtualController {
         }
     }
 
-    @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String guardarAlumno(GuardarAlumnosForm form) {
-
-        AlumnoEntity a1 = new AlumnoEntity();
-        a1.setCod(Integer.parseInt(form.getCod()));
-        a1.setFirst_name(form.getFirst_name());
-        a1.setLast_name(form.getLast_name());
-        a1.setEmail_univ(form.getEmail_univ());
-        a1.setEmail_priv(form.getEmail_priv());
-        a1.setTv_user(form.getTv_user());
-        a1.setTv_pw(form.getTv_pw());
-        a1.setAd_cred(form.getAd_cred());
-        a1.setPhoto_url(form.getPhoto_url());
-
-        Long idCarrera = Long.parseLong(form.getCareer());
-        Optional<CarreraEntity> opCarrera = carreraRep.findById(idCarrera);
-        if (opCarrera.isPresent()) {
-            a1.setCareer(opCarrera.get());
-            alumnoRep.save(a1);
-        }
-        Long idPais = Long.parseLong(form.getPais());
-        Optional<PaisEntity> opPais = paisRep.findById(idPais);
-        if (opPais.isPresent()) {
-            a1.setPais(opPais.get());
-            alumnoRep.save(a1);
-        }
-        Long idGenero = Long.parseLong(form.getGender());
-        Optional<GeneroEntity> opGenero = generoRep.findById(idGenero);
-        if (opGenero.isPresent()) {
-            a1.setGender(opGenero.get());
-            alumnoRep.save(a1);
-        }
-
-        return "redirect:/alumno";
-
-    }
-
-    @RequestMapping(value = "/alumno/eliminar/{id}", method = RequestMethod.POST)
-    public String eliminarAlumno(@PathVariable String id){
-        Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
-        if(alumnoSeleccionado.isPresent()){
-            List<SeccionEntity> secciones = alumnoSeleccionado.get().getSecciones();
-            for(SeccionEntity seccion:secciones){
-                List<AlumnoEntity> alumnos = seccion.getAlumnos();
-                List<AlumnoEntity> newAlumnos = new ArrayList<>();
-                for(AlumnoEntity alumno:alumnos){
-                    if(alumno.getId()!=Long.parseLong(id)){
-                        newAlumnos.add(alumno);
-                    }
-                }
-                seccion.setAlumnos(newAlumnos);
-                seccionRep.save(seccion);
+    //LOGIN:
+    // http://localhost:8080/login/{profesor/alumno/administrador}
+    @RequestMapping(value = "/login/{user}", method = RequestMethod.GET)
+    public String mostrarLogin(Model model,@PathVariable String user, @RequestParam(name="logeado", required = false, defaultValue = "") String logeado){
+        HttpSession sesion = ObtenerSesion();
+        if(sesion.getAttribute("login")!=null && (boolean) sesion.getAttribute("login")){
+            return "redirect:/";
+        }else {
+            if(logeado.equals("false")){
+                model.addAttribute("loginCorrecto",false);
             }
-            alumnoRep.delete(alumnoSeleccionado.get());
-        }
-        return  "redirect:/alumno";
-    }
-
-    @RequestMapping(value = "/profesor/eliminar/{id}", method = RequestMethod.POST)
-    public String eliminarProfesor(@PathVariable String id){
-        Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(id));
-        if(profesorSeleccionado.isPresent()){
-            List<SeccionEntity> secciones = profesorSeleccionado.get().getSecciones();
-            for(SeccionEntity seccion:secciones){
-                List<ProfesorEntity> profesores = seccion.getProfesor();
-                List<ProfesorEntity> newProfesor = new ArrayList<>();
-                for(ProfesorEntity profesor:profesores){
-                    if(profesor.getId()!=Long.parseLong(id)){
-                        newProfesor.add(profesor);
-                    }
-                }
-                seccion.setProfesor(newProfesor);
-                seccionRep.save(seccion);
+            if (user.equalsIgnoreCase("profesor")) {
+                model.addAttribute("usuario","profesor");
+            } else if (user.equalsIgnoreCase("alumno")) {
+                model.addAttribute("usuario","alumno");
+            } else if (user.equalsIgnoreCase("administrador")){
+                model.addAttribute("usuario","administrador");
+            }else{
+                return "redirect:/";
             }
-            profesorRep.delete(profesorSeleccionado.get());
+            return  "Login";
         }
-        return  "redirect:/profesor";
-    }
-
-    @RequestMapping(value = "/curso/eliminar/{id}", method = RequestMethod.POST)
-    public String eliminarCurso(@PathVariable String id){
-        Optional<CursoEntity> cursoSeleccionado = cursoRep.findById(Long.parseLong(id));
-        if(cursoSeleccionado.isPresent()){
-            cursoRep.delete(cursoSeleccionado.get());
-        }
-        return  "redirect:/curso";
     }
 
     //ADMINISTRADOR:
@@ -493,11 +347,6 @@ public class AulaVirtualController {
         List<UsuarioAlumnoEntity> admin =  usuarioRep.findUsuarioAlumno();
         model.addAttribute("listaUsuarios",admin);
         return "testing";
-    }
-
-    private HttpSession ObtenerSesion(){
-        final HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-        return request.getSession();
     }
 
 }

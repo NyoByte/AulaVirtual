@@ -25,18 +25,16 @@
                             <a type="button" class="nav-link" id="but_ayuda">Ayuda</a>
                         </li>
                     </ul>
-                    <div class="login-on">
-                        <ul class="navbar-nav mrauto">
-                            <li class="nav-item dropdown">
-                                <div class="nav-link">Name</div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <form action="/saliendo" method="POST">
-                                    <button class="nav-link btn btn-link" type="submit">Salir</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="navbar-nav mrauto">
+                        <li class="nav-item dropdown">
+                            <div class="nav-link">Name</div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <form action="/saliendo" method="POST">
+                                <button class="nav-link btn btn-link" type="submit">Salir</button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>

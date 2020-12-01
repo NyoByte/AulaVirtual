@@ -33,7 +33,7 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
-            <form class="col-6 justify-content-center main-container">
+            <form class="col-6 justify-content-center main-container" action="/login/entrando/${usuario}" method="post">
                 <div class="form-group text-center">
                     <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-emoji-smile-upside-down"
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -48,14 +48,26 @@
                     </svg>
                 </div>
                 <div class="form-group ">
-                    <input type="text" class="form-control" placeholder="Usuario ">
+                    <input type="text" class="form-control" placeholder="Usuario" name="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña">
+                    <input type="password" class="form-control" placeholder="Contraseña" name="password">
                 </div>
                 <div class="row form-group">
-                    <a class="col text-left text-primary" href="/login/alumno">Soy Alumno</a>
-                    <a class="col text-right text-primary" href="/login/administrador">Soy Admin</a>
+                    <c:choose>
+                        <c:when test="${usuario=='administrador'}">
+                            <a class="col text-left text-primary" href="/login/alumno">Soy Alumno</a>
+                            <a class="col text-right text-primary" href="/login/profesor">Soy Profesor</a>
+                        </c:when>
+                        <c:when test="${usuario=='alumno'}">
+                            <a class="col text-left text-primary" href="/login/administrador">Soy Admin</a>
+                            <a class="col text-right text-primary" href="/login/profesor">Soy Profesor</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="col text-left text-primary" href="/login/alumno">Soy Alumno</a>
+                            <a class="col text-right text-primary" href="/login/administrador">Soy Admin</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
