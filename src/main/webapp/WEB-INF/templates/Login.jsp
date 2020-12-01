@@ -48,10 +48,10 @@
                     </svg>
                 </div>
                 <div class="form-group ">
-                    <input type="text" class="form-control" placeholder="Usuario" name="username">
+                    <input type="text" class="form-control" required="true" placeholder="Usuario" name="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                    <input type="password" class="form-control" required="true" placeholder="Contraseña" name="password">
                 </div>
                 <div class="row form-group">
                     <c:choose>

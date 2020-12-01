@@ -28,7 +28,7 @@
                     <div class="login-on">
                         <ul class="navbar-nav mrauto">
                             <li class="nav-item dropdown">
-                                <div class="nav-link">Name</div>
+                                <div class="nav-link">${profesor.first_name} ${profesor.last_name}</div>
                             </li>
                             <li class="nav-item dropdown">
                                 <form action="/login/saliendo" method="POST">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col">
                         <p class="mb-1">Correo Personal</p>
-                        <input class="form-control" type="text" name="email_priv" />
+                        <input class="form-control" type="text" name="email_priv" value="${profesor.email_priv}"/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Género</p>

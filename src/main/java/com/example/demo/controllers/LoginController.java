@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.forms.LoginForm;
+import com.example.demo.model.dao.UsuarioProfesorEntity;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -46,10 +48,20 @@ public class LoginController {
     @RequestMapping(value="/login/entrando/{type_user}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String procesarLogin(LoginForm form, @PathVariable String type_user){
         HttpSession sesion = ObtenerSesion();
+        String username = form.getUsername();
+        String password = form.getPassword();
+        Boolean existe = false;
         if(type_user.equalsIgnoreCase("profesor")){
-            String usuario = "test";
-            String password = "profe";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
+            List<UsuarioProfesorEntity> usuariosProfes = usuarioRep.findUsuarioProfesor();
+            for (UsuarioProfesorEntity usuario:usuariosProfes){
+                if (usuario.getUser().equalsIgnoreCase(username) && usuario.getPw().equalsIgnoreCase(password)){
+                    existe=true;
+                    sesion.setAttribute("nombreGlobal",usuario.getProfesor().getFirst_name()+usuario.getProfesor().getLast_name());
+                    sesion.setAttribute("identificador",usuario.getProfesor());
+                    break;
+                }
+            }
+            if(existe){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("esProfesor",true);
                 sesion.setAttribute("esAlumno",false);
@@ -60,8 +72,8 @@ public class LoginController {
             }
         }else if(type_user.equalsIgnoreCase("alumno")){
             String usuario = "test";
-            String password = "alumno";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
+            String contra = "alumno";
+            if(form.getUsername().equals(usuario) && form.getPassword().equals(contra)){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("esProfesor",false);
                 sesion.setAttribute("esAlumno",true);
@@ -72,8 +84,8 @@ public class LoginController {
             }
         }else{
             String usuario = "test";
-            String password = "administrador";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(password)){
+            String contra = "administrador";
+            if(form.getUsername().equals(usuario) && form.getPassword().equals(contra)){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("esProfesor",false);
                 sesion.setAttribute("esAlumno",false);

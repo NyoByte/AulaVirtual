@@ -52,7 +52,7 @@ public class AulaVirtualController {
 
     // MAIN
     //Principales: no logeado: Inicio, profesor: "Profesor" alumno: "Alumno", administrador: "Admin_CargaProfesores"
-    @RequestMapping(value = "/", method = RequestMethod.GET) //cambié de / -> temporal porque la pagina principal es la de inicio
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mostrarPagPrincipal(Model model){
         //Primero se debe verificar si el usuario esta logueado con la sesion.
         HttpSession sesion =  ObtenerSesion();
@@ -63,8 +63,8 @@ public class AulaVirtualController {
         //Adicionalmente, se deberia verificar el tipo de usuario que es, para devolverle un template u otro.
         if((boolean)sesion.getAttribute("esProfesor")){
             //Si es profesor
-            ProfesorEntity tempProf = new ProfesorEntity();
-            model.addAttribute("profesor",tempProf);
+            ProfesorEntity profesorSeleccionado = (ProfesorEntity) sesion.getAttribute("identificador");
+            model.addAttribute("profesor",profesorSeleccionado);
             return "Profesor";
         }else if((boolean)sesion.getAttribute("esAlumno")){
             //Si es alumno se debe enviar el alumno que se logeó
