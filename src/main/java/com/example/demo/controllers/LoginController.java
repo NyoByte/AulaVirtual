@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.forms.LoginForm;
+import com.example.demo.model.dao.UsuarioAlumnoEntity;
 import com.example.demo.model.dao.UsuarioProfesorEntity;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +53,8 @@ public class LoginController {
         String password = form.getPassword();
         Boolean existe = false;
         if(type_user.equalsIgnoreCase("profesor")){
-            List<UsuarioProfesorEntity> usuariosProfes = usuarioRep.findUsuarioProfesor();
-            for (UsuarioProfesorEntity usuario:usuariosProfes){
+            List<UsuarioProfesorEntity> usuariosProfesores = usuarioRep.findUsuarioProfesor();
+            for (UsuarioProfesorEntity usuario:usuariosProfesores){
                 if (usuario.getUser().equalsIgnoreCase(username) && usuario.getPw().equalsIgnoreCase(password)){
                     existe=true;
                     sesion.setAttribute("identificador", usuario.getProfesor());
@@ -70,9 +71,15 @@ public class LoginController {
                 return "redirect:/login/profesor?logeado=false";
             }
         }else if(type_user.equalsIgnoreCase("alumno")){
-            String usuario = "test";
-            String contra = "alumno";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(contra)){
+            List<UsuarioAlumnoEntity> usuariosAlumnos = usuarioRep.findUsuarioAlumno();
+            for (UsuarioAlumnoEntity usuario:usuariosAlumnos){
+                if (usuario.getUser().equalsIgnoreCase(username) && usuario.getPw().equalsIgnoreCase(password)){
+                    existe=true;
+                    sesion.setAttribute("identificador", usuario.getAlumno());
+                    break;
+                }
+            }
+            if(existe){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("esProfesor",false);
                 sesion.setAttribute("esAlumno",true);

@@ -67,9 +67,9 @@ public class AulaVirtualController {
             model.addAttribute("profesor",profesorSeleccionado);
             return "Profesor";
         }else if((boolean)sesion.getAttribute("esAlumno")){
-            //Si es alumno se debe enviar el alumno que se logeó
-            AlumnoEntity newAlumno = new AlumnoEntity();
-            model.addAttribute("alumno",newAlumno);
+            //Si es alumno
+            AlumnoEntity AlumnoSeleccionado = (AlumnoEntity) sesion.getAttribute("identificador");
+            model.addAttribute("alumno",AlumnoSeleccionado);
             return "Alumno";
         }else if((boolean)sesion.getAttribute("esAdministrador")){
             //No hay pagina principal para administrador, se le redirige a gestionar profesores
@@ -313,22 +313,17 @@ public class AulaVirtualController {
             //Obtener la entidad del profesor actual
             ProfesorEntity profesorSeleccionado = (ProfesorEntity) sesion.getAttribute("identificador");
             model.addAttribute("profesor",profesorSeleccionado);
-            ProfesorEntity profesor = profesorRep.findById(profesorSeleccionado.getId()).get(); //Cambiar el id por el del profesor logueado
-
+            ProfesorEntity profesor = profesorRep.findById(profesorSeleccionado.getId()).get();
+            //Obtener su lista de secciones
             List<SeccionEntity> listaSecciones = profesor.getSecciones();
             model.addAttribute("listaSecciones", listaSecciones);
-
+            //Seccion para mostrar
             if(seccionId.isPresent()){
-                //localhost:8080/seccion?seccion_id={idSeccion}
-                //Obtener la seccion seleccionada
-                //long idSeccionABuscar = Long.valueOf(seccionId.get());
                 Optional<SeccionEntity> opSeccionSeleccionada = seccionRep.findById(Long.parseLong(seccionId.get()));
                 if(opSeccionSeleccionada.isPresent()){
-                    //Si existe la seccion seleccionada...
                     SeccionEntity seccionSeleccionada = opSeccionSeleccionada.get();
-                    //Obtener la lista de alumnos pertenecientes a la seccion
                     List<AlumnoEntity> listaAlumnos = seccionSeleccionada.getAlumnos();
-                    //Pasar la lista de alumnos al modelo
+                    //Obtener la lista de alumnos y seccuion buscada para el refresh
                     model.addAttribute("listaAlumnos",listaAlumnos);
                     model.addAttribute("seccionBuscada",seccionId.get());
                 }

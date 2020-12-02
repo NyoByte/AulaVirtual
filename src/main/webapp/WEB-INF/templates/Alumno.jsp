@@ -28,7 +28,7 @@
                     <div class="login-on">
                         <ul class="navbar-nav mrauto">
                             <li class="nav-item dropdown">
-                                <div class="nav-link">Name</div>
+                                <div class="nav-link">${alumno.first_name} ${alumno.last_name}</div>
                             </li>
                             <li class="nav-item dropdown">
                                 <form action="/login/saliendo" method="POST">
@@ -56,93 +56,88 @@
         </header>
     </div>
     <!--Marco blanco...-->
-    <c:if test="${alumno!=null}">
-        <form action="/aula_virtual/administrador/alumnos/actualizar" method="post">
-            <div class="main-border">
-                <div class="row">
-                    <div class="col-9">
-                        <div>
-                            <p class="font-weight-bold">Datos del Alumno</p>
+    <form action="/#" method="post">
+        <div class="main-border">
+            <div class="row">
+                <div class="col-9">
+                    <div>
+                        <p class="font-weight-bold">Datos del Alumno</p>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <p class="mb-1">Código</p>
+                            <input class="form-control" type="number" name="cod" value="${alumno.cod}"
+                                readonly="true" />
                         </div>
-                        <div class="form-row mb-3">
-                            <div class="col">
-                                <p class="mb-1">Código</p>
-                                <input class="form-control" type="number" name="cod" value="${alumno.cod}"
-                                    readonly="true" />
-                            </div>
-                            <div class="col">
-                                <p class="mb-1">Nombres</p>
-                                <input class="form-control" type="text" name="first_name" value="${alumno.first_name}"
-                                    readonly="true" />
-                            </div>
-                            <div class="col">
-                                <p class="mb-1">Apellidos</p>
-                                <input class="form-control" type="text" name="last_name" value="${alumno.last_name}"
-                                    readonly="true" />
-                            </div>
+                        <div class="col">
+                            <p class="mb-1">Nombres</p>
+                            <input class="form-control" type="text" name="first_name" value="${alumno.first_name}"
+                                readonly="true" />
                         </div>
-                        <div class="form-row mb-3">
-                            <div class="col">
-                                <p class="mb-1">Correo de la Universidad</p>
-                                <input class="form-control" type="text" name="email_univ" value="${alumno.email_univ}"
-                                    readonly="true" />
-                            </div>
-                            <div class="col">
-                                <p class="mb-1">Correo Personal</p>
-                                <input class="form-control" type="text" name="email_priv"
-                                    value="${alumno.email_priv}" />
-                            </div>
-                            <div class="col">
-                                <p class="mb-1">Género</p>
-                                <select class="form-control" name="gender" readonly="true">
-                                    <option value="${alumno.gender.id}">${alumno.gender.name}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row mb-3">
-                            <div class="col">
-                                <p class="mb-1">País</p>
-                                <input class="form-control" type="text" name="pais" value="${alumno.pais.name}"
-                                    readonly="true" />
-                            </div>
-                            <div class="col">
-                                <p class="mb-1">TeamViewer Usuario</p>
-                                <input class="form-control" type="text" name="tv_user" value="${alumno.tv_user}" />
-                            </div>
-                            <div class="col">
-                                <p class="mb-1">TeamViewer Contraseña</p>
-                                <input class="form-control" type="text" name="tv_pw" value="${alumno.tv_pw}" />
-                            </div>
-                            <div class="col">
-                                <p class="mb-1">AnyDesk Credencial</p>
-                                <input class="form-control" type="text" name="ad_cred" value="${alumno.ad_cred}" />
-                            </div>
-                        </div>
-                        <div class="form-row mb-0">
-                            <div class="col-auto">
-                                <p class="mb-1">Carrera</p>
-                                <input class="form-control" type="text" name="career" value="${alumno.career.name}" />
-                            </div>
-                            <div class="col">
-                                <div class="px-2">
-                                    <p class="mb-1">&nbsp</p>
-                                    <a class="btn btn-primary float-right" type="submit" href="/alumno?edit=true"><svg
-                                            width="1.5em" height="1.5em" stroke="white" viewBox="0 0 16 16"
-                                            class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                        </svg>Actualizar Datos</a>
-                                </div>
-                            </div>
+                        <div class="col">
+                            <p class="mb-1">Apellidos</p>
+                            <input class="form-control" type="text" name="last_name" value="${alumno.last_name}"
+                                readonly="true" />
                         </div>
                     </div>
-                    <div class="col-3">
-                        <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <p class="mb-1">Correo de la Universidad</p>
+                            <input class="form-control" type="text" name="email_univ" value="${alumno.email_univ}"
+                                readonly="true" />
+                        </div>
+                        <div class="col">
+                            <p class="mb-1">Correo Personal</p>
+                            <input class="form-control" type="text" name="email_priv"
+                                value="${alumno.email_priv}" />
+                        </div>
+                        <div class="col">
+                            <p class="mb-1">Género</p>
+                            <input class="form-control" type="text" name="gender" value="${alumno.gender.name}" readonly="true" />
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <p class="mb-1">País</p>
+                            <input class="form-control" type="text" name="pais" value="${alumno.pais.name}" readonly="true" />
+                        </div>
+                        <div class="col">
+                            <p class="mb-1">TeamViewer Usuario</p>
+                            <input class="form-control" type="text" name="tv_user" value="${alumno.tv_user}" />
+                        </div>
+                        <div class="col">
+                            <p class="mb-1">TeamViewer Contraseña</p>
+                            <input class="form-control" type="text" name="tv_pw" value="${alumno.tv_pw}" />
+                        </div>
+                        <div class="col">
+                            <p class="mb-1">AnyDesk Credencial</p>
+                            <input class="form-control" type="text" name="ad_cred" value="${alumno.ad_cred}" />
+                        </div>
+                    </div>
+                    <div class="form-row mb-0">
+                        <div class="col">
+                            <p class="mb-1">Carrera</p>
+                            <input class="form-control" type="text" name="career" value="${alumno.career.name}" />
+                        </div>
+                        <div class="col">
+                            <div class="px-2">
+                                <p class="mb-1">&nbsp</p>
+                                <a class="btn btn-primary float-right" type="submit"><svg
+                                        width="1.5em" height="1.5em" stroke="white" viewBox="0 0 16 16"
+                                        class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                    </svg>Actualizar Datos</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="col-3">
+                    <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
+                </div>
             </div>
-        </form>
-    </c:if>
+        </div>
+    </form>
     <div class="m-3">
         <p class="text-right font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
     </div>
