@@ -34,7 +34,7 @@ public class AlumnoEntity{
     @Column(name = "AnyDesk_Credencial", unique = true, length = 6)
     private String ad_cred;
 
-    @Column(name = "Foto_Url", unique = true, length = 100)
+    @Column(name = "Foto_Url", length = 100)
     private String photo_url;
 
     //[Alumno]M-------1[Género]
