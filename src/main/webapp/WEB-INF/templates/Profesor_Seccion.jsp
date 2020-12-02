@@ -28,7 +28,7 @@
                     <div class="login-on">
                         <ul class="navbar-nav mrauto">
                             <li class="nav-item dropdown">
-                                <div class="nav-link">Name</div>
+                                <div class="nav-link">${profesor.first_name} ${profesor.last_name}</div>
                             </li>
                             <li class="nav-item dropdown">
                                 <form action="/login/saliendo" method="POST">
@@ -69,7 +69,7 @@
                     <div class="col-3">
                         <h3 class="mb-1">Secciones</h3>
                         <select class="form-control" name="seccion" id="seccion_combo">
-                            <option>Choose...</option>
+                            <option value="0">Choose...</option>
                             <c:forEach var="seccion" items="${listaSecciones}">
                                 <option value="${seccion.id}">${seccion.cod}</option>
                             </c:forEach>
@@ -105,7 +105,7 @@
                                 <td>${alumno.ad_cred}</td>
                                 <td>${alumno.tv_user}</td>
                                 <td>${alumno.tv_pw}</td>
-                                <td class="pl-4 ope-td"><a href="/seccion"><svg width="1.5em" height="1.5em"
+                                <td class="pl-4 ope-td"><a href="/seccion?seccion_id=${seccionBuscada}"><svg width="1.5em" height="1.5em"
                                             stroke="black" viewBox="0 0 16 16" class="bi bi-arrow-repeat"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path

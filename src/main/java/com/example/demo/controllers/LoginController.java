@@ -56,8 +56,7 @@ public class LoginController {
             for (UsuarioProfesorEntity usuario:usuariosProfes){
                 if (usuario.getUser().equalsIgnoreCase(username) && usuario.getPw().equalsIgnoreCase(password)){
                     existe=true;
-                    sesion.setAttribute("nombreGlobal",usuario.getProfesor().getFirst_name()+usuario.getProfesor().getLast_name());
-                    sesion.setAttribute("identificador",usuario.getProfesor());
+                    sesion.setAttribute("identificador", usuario.getProfesor());
                     break;
                 }
             }

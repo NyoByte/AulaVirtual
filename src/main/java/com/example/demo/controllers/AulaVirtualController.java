@@ -311,20 +311,18 @@ public class AulaVirtualController {
         }else if((boolean)sesion.getAttribute("esProfesor")) {
             /*SI ES PROFESOR*/
             //Obtener la entidad del profesor actual
-            Optional<ProfesorEntity> opProfe = profesorRep.findById(Long.valueOf(1)); //Cambiar el id por el del profesor logueado
+            ProfesorEntity profesorSeleccionado = (ProfesorEntity) sesion.getAttribute("identificador");
+            model.addAttribute("profesor",profesorSeleccionado);
+            ProfesorEntity profesor = profesorRep.findById(profesorSeleccionado.getId()).get(); //Cambiar el id por el del profesor logueado
 
-            if(opProfe.isPresent()){
-                ProfesorEntity profeActual = opProfe.get();
-                //Obtener las secciones del profesor
-                List<SeccionEntity> listaSecciones = profeActual.getSecciones();
-                model.addAttribute("listaSecciones", listaSecciones);
-            }
+            List<SeccionEntity> listaSecciones = profesor.getSecciones();
+            model.addAttribute("listaSecciones", listaSecciones);
 
             if(seccionId.isPresent()){
                 //localhost:8080/seccion?seccion_id={idSeccion}
                 //Obtener la seccion seleccionada
-                long idSeccionABuscar = Long.valueOf(seccionId.get());
-                Optional<SeccionEntity> opSeccionSeleccionada = seccionRep.findById(idSeccionABuscar);
+                //long idSeccionABuscar = Long.valueOf(seccionId.get());
+                Optional<SeccionEntity> opSeccionSeleccionada = seccionRep.findById(Long.parseLong(seccionId.get()));
                 if(opSeccionSeleccionada.isPresent()){
                     //Si existe la seccion seleccionada...
                     SeccionEntity seccionSeleccionada = opSeccionSeleccionada.get();
@@ -332,9 +330,9 @@ public class AulaVirtualController {
                     List<AlumnoEntity> listaAlumnos = seccionSeleccionada.getAlumnos();
                     //Pasar la lista de alumnos al modelo
                     model.addAttribute("listaAlumnos",listaAlumnos);
+                    model.addAttribute("seccionBuscada",seccionId.get());
                 }
             }
-
             return "Profesor_Seccion";
         }else{
             return "redirect:/";
