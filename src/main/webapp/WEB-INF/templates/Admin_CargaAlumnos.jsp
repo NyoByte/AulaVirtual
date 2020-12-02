@@ -142,7 +142,7 @@
                             <td>${alumno.first_name} ${alumno.last_name}</td>
                             <td>${alumno.career.name}</td>
                             <td>${alumno.gender.name}</td>
-                            <td class="pl-4 ope-td"><a href="/#"><svg
+                            <td class="pl-4 ope-td"><a href="/alumno?edit=true&alumno_id=${alumno.id}"><svg
                                         width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"

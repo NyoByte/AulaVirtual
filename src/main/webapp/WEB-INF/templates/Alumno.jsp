@@ -117,7 +117,7 @@
                     <div class="form-row mb-0">
                         <div class="col">
                             <p class="mb-1">Carrera</p>
-                            <input class="form-control" type="text" name="career" value="${alumno.career.name}" />
+                            <input class="form-control" type="text" name="career" value="${alumno.career.name}" readonly="true"/>
                         </div>
                         <div class="col">
                             <div class="px-2">

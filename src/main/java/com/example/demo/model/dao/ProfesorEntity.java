@@ -72,6 +72,27 @@ public class ProfesorEntity {
         this.type = type;
     }
 
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv) {
+        this.id = id;
+        this.cod = cod;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_univ = email_univ;
+        this.email_priv = email_priv;
+    }
+
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, GeneroEntity gender, PaisEntity pais, ProfesorTipoEntity type) {
+        this.id = id;
+        this.cod = cod;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_univ = email_univ;
+        this.email_priv = email_priv;
+        this.gender = gender;
+        this.pais = pais;
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }

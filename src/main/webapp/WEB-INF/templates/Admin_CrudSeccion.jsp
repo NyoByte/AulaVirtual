@@ -81,7 +81,7 @@
                                     </p>
                                 </div>
                                 <div class="form-row mb-3">
-                                    <div class="col">
+                                    <div class="col-auto">
                                         <p class="mb-1">Código</p>
                                         <input class="form-control" type="number" min="1" max="999999999" name="cod" />
                                     </div>
@@ -94,16 +94,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row mb-3">
-                                    <div class="col">
-                                        <a class="btn btn-primary float-right" type="submit"><svg width="1.5em"
-                                                height="1.5em" stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
-                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Actualizar Datos</a>
-                                    </div>
-                                </div>
                             </div>
                             <div>
                                 <div>
@@ -114,7 +104,7 @@
                                 <div class="form-row mb-3">
                                     <div class="col">
                                         <p class="mb-1">Código</p>
-                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" />
+                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" readonly="true"/>
                                     </div>
                                     <div class="col">
                                         <p class="mb-1">Nombre</p>
@@ -125,16 +115,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row mb-3">
-                                    <div class="col">
-                                        <a class="btn btn-primary float-right" type="submit"><svg width="1.5em"
-                                                height="1.5em" stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
-                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Registrar Profesor</a>
-                                    </div>
-                                </div>
                             </div>
                             <div>
                                 <div>
@@ -142,10 +122,10 @@
                                     <h3>Datos Jefe de Prácticas (Opcional)</h3>
                                     </p>
                                 </div>
-                                <div class="form-row mb-3">
+                                <div class="form-row mb-5">
                                     <div class="col">
                                         <p class="mb-1">Código</p>
-                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" />
+                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" readonly="true"/>
                                     </div>
                                     <div class="col">
                                         <p class="mb-1">Nombre</p>
@@ -163,7 +143,7 @@
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Registrar Jefe de Prácticas</a>
+                                            </svg>Agregar Sección</a>
                                     </div>
                                     <div class="col-auto">
                                         <a class="btn btn-danger float-right" type="submit"><svg width="1.5em"
@@ -171,7 +151,7 @@
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                            </svg>Actualizar Datos</a>
+                                            </svg>Eliminar Sección</a>
                                     </div>
                                 </div>
                             </div>
@@ -270,7 +250,7 @@
                                     </p>
                                 </div>
                                 <div class="form-row mb-3">
-                                    <div class="col">
+                                    <div class="col-auto">
                                         <p class="mb-1">Código</p>
                                         <input class="form-control" type="number" min="1" max="999999999" name="cod"
                                             value="${seccion.cod}" />
@@ -287,16 +267,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row mb-3">
-                                    <div class="col">
-                                        <a class="btn btn-primary float-right" type="submit"><svg width="1.5em"
-                                                height="1.5em" stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
-                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Actualizar Datos</a>
-                                    </div>
-                                </div>
                             </div>
                             <div>
                                 <div>
@@ -308,7 +278,7 @@
                                     <div class="col">
                                         <p class="mb-1">Código</p>
                                         <input class="form-control" type="number" min="1" max="999999999" name="cod"
-                                            value="${seccion.cod}" />
+                                            value="${seccion.cod}" readonly="true"/>
                                     </div>
                                     <div class="col">
                                         <p class="mb-1">Nombre</p>
@@ -319,16 +289,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row mb-3">
-                                    <div class="col">
-                                        <a class="btn btn-primary float-right" type="submit"><svg width="1.5em"
-                                                height="1.5em" stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
-                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Registrar Profesor</a>
-                                    </div>
-                                </div>
                             </div>
                             <div>
                                 <div>
@@ -336,11 +296,11 @@
                                     <h3>Datos Jefe de Prácticas (Opcional)</h3>
                                     </p>
                                 </div>
-                                <div class="form-row mb-3">
+                                <div class="form-row mb-5">
                                     <div class="col">
                                         <p class="mb-1">Código</p>
                                         <input class="form-control" type="number" min="1" max="999999999" name="cod"
-                                            value="${seccion.cod}" />
+                                            value="${seccion.cod}" readonly="true"/>
                                     </div>
                                     <div class="col">
                                         <p class="mb-1">Nombre</p>
@@ -358,7 +318,7 @@
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Registrar Jefe de Prácticas</a>
+                                            </svg>Agregar Sección</a>
                                     </div>
                                     <div class="col-auto">
                                         <a class="btn btn-danger float-right" type="submit"><svg width="1.5em"
@@ -366,7 +326,7 @@
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                            </svg>Actualizar Datos</a>
+                                            </svg>Eliminar Sección</a>
                                     </div>
                                 </div>
                             </div>
