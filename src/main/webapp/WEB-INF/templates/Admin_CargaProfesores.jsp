@@ -27,7 +27,7 @@
                     </ul>
                     <ul class="navbar-nav mrauto">
                         <li class="nav-item dropdown">
-                            <div class="nav-link">Name</div>
+                            <div class="nav-link">${administrador}</div>
                         </li>
                         <li class="nav-item dropdown">
                             <form action="/login/saliendo" method="POST">

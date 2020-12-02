@@ -68,11 +68,12 @@ public class AulaVirtualController {
             return "Profesor";
         }else if((boolean)sesion.getAttribute("esAlumno")){
             //Si es alumno
-            AlumnoEntity AlumnoSeleccionado = (AlumnoEntity) sesion.getAttribute("identificador");
-            model.addAttribute("alumno",AlumnoSeleccionado);
+            AlumnoEntity alumnoSeleccionado = (AlumnoEntity) sesion.getAttribute("identificador");
+            model.addAttribute("alumno",alumnoSeleccionado);
             return "Alumno";
         }else if((boolean)sesion.getAttribute("esAdministrador")){
             //No hay pagina principal para administrador, se le redirige a gestionar profesores
+            // se envia los model en cada direccion
             return "redirect:/profesor";
         }else{
             return "redirect:/";
@@ -117,6 +118,10 @@ public class AulaVirtualController {
             return "redirect:/";
         }
         if((boolean)sesion.getAttribute("esAdministrador")){
+            // Se envia qué administrador es
+            String administradorSeleccionado = (String) sesion.getAttribute("identificador");
+            model.addAttribute("administrador",administradorSeleccionado);
+
             if(edit.equalsIgnoreCase("true")){
                 List<PaisEntity> paises = paisRep.findAll();
                 model.addAttribute("listaPaises",paises);
@@ -179,6 +184,10 @@ public class AulaVirtualController {
             return "redirect:/";
         }
         if((boolean)sesion.getAttribute("esAdministrador")){
+            // Se envia qué administrador es
+            String administradorSeleccionado = (String) sesion.getAttribute("identificador");
+            model.addAttribute("administrador",administradorSeleccionado);
+
             if(edit.equalsIgnoreCase("true")){
                 List<PaisEntity> paises = paisRep.findAll();
                 model.addAttribute("listaPaises",paises);
@@ -236,6 +245,10 @@ public class AulaVirtualController {
             return "redirect:/";
         }
         if((boolean)sesion.getAttribute("esAdministrador")){
+            // Se envia qué administrador es
+            String administradorSeleccionado = (String) sesion.getAttribute("identificador");
+            model.addAttribute("administrador",administradorSeleccionado);
+
             if(edit.equalsIgnoreCase("true")){
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
@@ -278,7 +291,10 @@ public class AulaVirtualController {
             return "redirect:/";
         }
         if((boolean)sesion.getAttribute("esAdministrador")){
-            /*SI ES ADMINISTRADOR*/
+            // Se envia qué administrador es
+            String administradorSeleccionado = (String) sesion.getAttribute("identificador");
+            model.addAttribute("administrador",administradorSeleccionado);
+
             if(edit.equalsIgnoreCase("true")){
                 List<CursoEntity> cursos = cursoRep.findAll();
                 model.addAttribute("listaCursos",cursos);

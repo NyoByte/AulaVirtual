@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.forms.LoginForm;
+import com.example.demo.model.dao.UsuarioAdministradorEntity;
 import com.example.demo.model.dao.UsuarioAlumnoEntity;
 import com.example.demo.model.dao.UsuarioProfesorEntity;
 import com.example.demo.model.repositories.*;
@@ -89,9 +90,15 @@ public class LoginController {
                 return "redirect:/login/alumno?logeado=false";
             }
         }else{
-            String usuario = "test";
-            String contra = "administrador";
-            if(form.getUsername().equals(usuario) && form.getPassword().equals(contra)){
+            List<UsuarioAdministradorEntity> usuariosAdministradores = usuarioRep.findUsuarioAdministrador();
+            for (UsuarioAdministradorEntity usuario:usuariosAdministradores){
+                if (usuario.getUser().equalsIgnoreCase(username) && usuario.getPw().equalsIgnoreCase(password)){
+                    existe=true;
+                    sesion.setAttribute("identificador", usuario.getUser());
+                    break;
+                }
+            }
+            if(existe){
                 sesion.setAttribute("login",true);
                 sesion.setAttribute("esProfesor",false);
                 sesion.setAttribute("esAlumno",false);
