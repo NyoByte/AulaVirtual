@@ -104,13 +104,14 @@
                                 <div class="form-row mb-3">
                                     <div class="col">
                                         <p class="mb-1">Código</p>
-                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" readonly="true"/>
+                                        <input id="codigoProfesorT1" class="form-control" type="number" min="1" max="999999999" name="cod" readonly="true" value=""/>
                                     </div>
                                     <div class="col">
                                         <p class="mb-1">Nombre</p>
-                                        <select class="form-control" name="profesorT1_name">
+                                        <select class="form-control" oninput="OnSelectProfesorT1()" id="profesorT1Seleccionado" name="profesorT1_name"> 
+                                            <option>Choose...</option>                                       
                                             <c:forEach var="profesor" items="${listaProfesoresT1}">
-                                                <option value="${profesor.id}">${profesor.name}</option>
+                                                <option value="${profesor.cod}">${profesor.first_name} ${profesor.last_name}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -125,13 +126,14 @@
                                 <div class="form-row mb-5">
                                     <div class="col">
                                         <p class="mb-1">Código</p>
-                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" readonly="true"/>
+                                        <input id="codigoProfesorT2"  class="form-control" type="number" min="1" max="999999999" name="cod" readonly="true"/>
                                     </div>
                                     <div class="col">
                                         <p class="mb-1">Nombre</p>
-                                        <select class="form-control" name="profesorT2_name">
+                                        <select class="form-control" oninput="OnSelectProfesorT2()" id="profesorT2Seleccionado" name="profesorT2_name">
+                                            <option>Choose...</option> 
                                             <c:forEach var="profesor" items="${listaProfesoresT2}">
-                                                <option value="${profesor.id}">${profesor.name}</option>
+                                                <option value="${profesor.cod}">${profesor.first_name} ${profesor.last_name}</option>
                                             </c:forEach>
                                         </select>
                                     </div>

@@ -16,4 +16,10 @@ public interface ProfesorRepository extends JpaRepository<ProfesorEntity, Long> 
 
     @Query(value = "SELECT * FROM Profesores p WHERE to_char(p.Código,'fm99999999') like %:kw_cod% AND (upper(p.Nombres) like :kw_name% or upper(p.Apellidos) like :kw_name%)", nativeQuery = true)
     List<ProfesorEntity> findByKeywordNameAndCode(String kw_name, String kw_cod);
+
+    @Query(value = "SELECT * FROM Profesores p WHERE p.type_id=1", nativeQuery = true)
+    List<ProfesorEntity> findTipoProfesor();
+
+    @Query(value = "SELECT * FROM Profesores p WHERE p.type_id=2", nativeQuery = true)
+    List<ProfesorEntity> findTipoJefeDePractica();
 }

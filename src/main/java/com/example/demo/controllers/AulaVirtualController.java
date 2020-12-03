@@ -300,8 +300,14 @@ public class AulaVirtualController {
                 model.addAttribute("listaCursos",cursos);
                 List<AlumnoEntity> alumnos = alumnoRep.findAll();
                 model.addAttribute("listaAlumnos",alumnos);
-                List<ProfesorEntity> profesor = profesorRep.findAll();
-                model.addAttribute("listaProfesores",profesor);
+
+                List<ProfesorEntity> profesorT1 = profesorRep.findTipoProfesor();
+                model.addAttribute("listaProfesoresT1",profesorT1);
+
+                List<ProfesorEntity> profesorT2 = profesorRep.findTipoJefeDePractica();
+                model.addAttribute("listaProfesoresT2",profesorT2);
+
+
                 if(!seccionId.isEmpty()){
                     Optional<SeccionEntity> seccionSeleccionado = seccionRep.findById(Long.parseLong(seccionId.get()));
                     if(seccionSeleccionado.isPresent()){
