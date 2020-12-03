@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -118,7 +122,30 @@ public class ProfesorController {
         }
         return "redirect:/profesor";
     }
+    @RequestMapping(value = "/profesor/update", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String actualizarDatosProfesor(GuardarProfesorForm profesorForm){
+        String nuevoCorreoPriv = profesorForm.getEmail_priv();
 
+        //Obtener representacion del alumno que esta logueado actualmente
+        HttpSession sesion = ObtenerSesion();
+        ProfesorEntity profesorLogueado = (ProfesorEntity) sesion.getAttribute("identificador");
+        System.out.println("identificador obtenido correctamente");
+
+        //Obtener el alumno de la BD
+        Optional<ProfesorEntity> profesorOP = profesorRep.findById(profesorLogueado.getId());
+
+        if(profesorOP.isPresent()) {
+            ProfesorEntity profesorActual = profesorOP.get();
+            System.out.println("Profesor obtenido de la BD");
+            //Actualizar datos
+            profesorActual.setEmail_priv(nuevoCorreoPriv);
+            System.out.println("Datos actualizados correctamente");
+            profesorRep.save(profesorActual);
+            System.out.println("Profesor actualizado en la bd");
+        }
+        return "redirect:/";
+    }
 
     @RequestMapping(value = "/profesor/guardar_masivo", method = RequestMethod.POST)
     public String guardarCSV(@RequestParam MultipartFile file) throws IOException {
@@ -150,5 +177,10 @@ public class ProfesorController {
             profesorRep.save(newProf);
         }
         return "redirect:/profesor";
+    }
+    // HTTP Session
+    private HttpSession ObtenerSesion(){
+        final HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return request.getSession();
     }
 }

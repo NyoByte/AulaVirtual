@@ -236,7 +236,7 @@
                                 <div class="col">
                                     <p class="mb-1">Tipo de Docente</p>
                                     <select class="form-control" name="type">
-                                        <option value="$profesor.type.id">${profesor.type.name}</option>
+                                        <option value="${profesor.type.id}">${profesor.type.name}</option>
                                         <c:forEach var="tipo" items="${listaTipos}">
                                             <c:if test="${tipo.id != profesor.type.id}">
                                                 <option value="${tipo.id}">${tipo.name}</option>

@@ -64,7 +64,10 @@ public class AulaVirtualController {
         if((boolean)sesion.getAttribute("esProfesor")){
             //Si es profesor
             ProfesorEntity profesorSeleccionado = (ProfesorEntity) sesion.getAttribute("identificador");
-            model.addAttribute("profesor",profesorSeleccionado);
+            Optional<ProfesorEntity> profesorBD = profesorRep.findById(profesorSeleccionado.getId());
+            if(profesorBD.isPresent()) {
+                model.addAttribute("profesor", profesorBD.get());
+            }
             return "Profesor";
         }else if((boolean)sesion.getAttribute("esAlumno")){
             //Si es alumno

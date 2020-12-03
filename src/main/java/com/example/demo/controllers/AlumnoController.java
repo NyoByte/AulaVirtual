@@ -45,7 +45,8 @@ public class AlumnoController {
     @Autowired
     private UsuarioRepository usuarioRep;
 
-    @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String guardarAlumno(GuardarAlumnosForm form) {
         //Si el alumno es  un nuevo alumno
         int cod = Integer.parseInt(form.getCod());
@@ -154,7 +155,8 @@ public class AlumnoController {
 
     }
 
-    @RequestMapping(value = "/alumno/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(value = "/alumno/update", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String actualizarDatosAlumno(GuardarAlumnosForm alumnosForm){
         String nuevoCorreoPriv = alumnosForm.getEmail_priv();
         String nuevoTvUser = alumnosForm.getTv_user();
