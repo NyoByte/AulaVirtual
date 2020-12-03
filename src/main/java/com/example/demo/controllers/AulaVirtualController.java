@@ -307,11 +307,22 @@ public class AulaVirtualController {
                 List<ProfesorEntity> profesorT2 = profesorRep.findTipoJefeDePractica();
                 model.addAttribute("listaProfesoresT2",profesorT2);
 
-
                 if(!seccionId.isEmpty()){
                     Optional<SeccionEntity> seccionSeleccionado = seccionRep.findById(Long.parseLong(seccionId.get()));
-                    if(seccionSeleccionado.isPresent()){
-                        model.addAttribute("seccion",seccionSeleccionado.get());
+                    if(seccionSeleccionado.isPresent()) {
+                        model.addAttribute("seccion", seccionSeleccionado.get());
+                        List<ProfesorEntity> profes = seccionSeleccionado.get().getProfesor();
+                        for (ProfesorEntity profe: profes){
+                            //Solo habrá dos profes por su tipo
+                            if(profe.getType().getId()==1){
+                                System.out.println(profe.getFirst_name());
+                                model.addAttribute("profesorSeleccionadoT1",profe);
+                                System.out.println(profe.getId());
+                            }else{
+                                System.out.println(profe.getFirst_name());
+                                model.addAttribute("profesorSeleccionadoT2",profe);
+                            }
+                        }
                     }
                 }else{
                     model.addAttribute("seccion", null);
