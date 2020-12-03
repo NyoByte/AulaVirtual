@@ -164,7 +164,6 @@
                                                 <path fill-rule="evenodd"
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                                             </svg>Seleccionar Foto</button>
-                                        <span id="visor_foto"></span>
                                         <input type="file" id="input_foto" onchange="handleIMG(this.files), previewImage(event)"  accept="image/*" style="display: none">
                                     </div>
                                     <div class="px-2">
@@ -180,7 +179,8 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
+                            <img class="img-fluid" id="image-field" src="/images/default_profile_image.jpg">
+                            <span id="visor_foto" class="justify-content-center row"></span>
                         </div>
                     </div>
                 </div>
