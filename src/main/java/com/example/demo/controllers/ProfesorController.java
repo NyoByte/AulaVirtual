@@ -59,15 +59,13 @@ public class ProfesorController {
         return  "redirect:/profesor";
     }
 
-    @RequestMapping(value = "/profesor/guardarMasivo", method = RequestMethod.POST)
+    @RequestMapping(value = "/profesor/guardar_masivo", method = RequestMethod.POST)
     public String guardarCSV(@RequestParam MultipartFile file) throws IOException {
-        String output = "";
 
         //Leer el archivo
         InputStream inputStream = file.getInputStream();
 
         int fileSize = inputStream.available();
-        output += "Bytes disponibles en el archivo: " + fileSize + "\n";
 
         byte[] bArray = new byte[fileSize];
 
@@ -82,12 +80,11 @@ public class ProfesorController {
 
         //Dividir lineas
         String[] profesores = data.split("\n");
-        String data2 = "";
         for(String profe: profesores){
             //Crear nuevo profesor
             String[] profDatos = profe.split(",");
             //public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv)
-            ProfesorEntity newProf = new ProfesorEntity(null, Integer.parseInt(profDatos[0]),profDatos[1],profDatos[2],profDatos[3],profDatos[4]);
+            ProfesorEntity newProf = new ProfesorEntity(null,Integer.parseInt(profDatos[0]),profDatos[1],profDatos[2],profDatos[3],profDatos[4]);
             //Guardar nuevo registro en bd
             profesorRep.save(newProf);
         }

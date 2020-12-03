@@ -56,7 +56,6 @@ var botonSubirOnClick = function(){
 var main = function(){
     seleccionarArchivoOnClick();
     //obtenerListadoAlumnos(pag++);
-    document.querySelector("#boton_subir").addEventListener("click", botonSubirOnClick)
 }
 
 window.addEventListener("load", main);

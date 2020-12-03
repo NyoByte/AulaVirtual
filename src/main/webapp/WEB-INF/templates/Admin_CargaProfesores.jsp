@@ -113,7 +113,7 @@
                 </form>
                             <div class="px-2">
                                 <p class="mb-1">&nbsp</p>
-                                <form action="/profesor/guardarMasivo" method="post" enctype="multipart/form-data">
+                                <form action="/profesor/guardar_masivo" method="post" enctype="multipart/form-data">
                                     <input type="file" id="input_file" name="file" onchange="handleFiles(this.files)" accept=".csv"
                                        style="display: none">
                                     <button class="btn btn-warning" id="boton_subir" type="submit"><svg width="2em"
