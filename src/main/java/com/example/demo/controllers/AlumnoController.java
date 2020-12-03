@@ -48,36 +48,58 @@ public class AlumnoController {
     @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String guardarAlumno(GuardarAlumnosForm form) {
 
-        AlumnoEntity a1 = new AlumnoEntity();
-        a1.setCod(Integer.parseInt(form.getCod()));
-        a1.setFirst_name(form.getFirst_name());
-        a1.setLast_name(form.getLast_name());
-        a1.setEmail_univ(form.getEmail_univ());
-        a1.setEmail_priv(form.getEmail_priv());
-        a1.setTv_user(form.getTv_user());
-        a1.setTv_pw(form.getTv_pw());
-        a1.setAd_cred(form.getAd_cred());
-        a1.setPhoto_url(form.getPhoto_url());
+        int cod = Integer.parseInt(form.getCod());
+        String first_name = form.getFirst_name();
+        String last_name = form.getLast_name();
+        String email_univ = form.getEmail_univ();
+        String email_priv = form.getEmail_priv();
+        String tv_user =  form.getTv_user();
+        String tv_pw = form.getTv_pw();
+        String ad_cred = form.getAd_cred();
+        String photo_url = form.getPhoto_url();
 
         Long idCarrera = Long.parseLong(form.getCareer());
-        Optional<CarreraEntity> opCarrera = carreraRep.findById(idCarrera);
-        if (opCarrera.isPresent()) {
-            a1.setCareer(opCarrera.get());
-            alumnoRep.save(a1);
-        }
         Long idPais = Long.parseLong(form.getPais());
-        Optional<PaisEntity> opPais = paisRep.findById(idPais);
-        if (opPais.isPresent()) {
-            a1.setPais(opPais.get());
-            alumnoRep.save(a1);
-        }
         Long idGenero = Long.parseLong(form.getGender());
-        Optional<GeneroEntity> opGenero = generoRep.findById(idGenero);
-        if (opGenero.isPresent()) {
-            a1.setGender(opGenero.get());
-            alumnoRep.save(a1);
-        }
 
+        AlumnoEntity alumno = alumnoRep.findByCod(cod);
+        if(alumno!=null){
+            // Editar un alumno existe
+            alumno.setCod(cod);
+            alumno.setFirst_name(first_name);
+            alumno.setLast_name(last_name);
+            alumno.setEmail_univ(email_univ);
+            alumno.setEmail_priv(email_univ);
+            alumno.setTv_user(tv_user);
+            alumno.setTv_pw(tv_pw);
+            alumno.setAd_cred(ad_cred);
+            alumno.setPhoto_url("newFoto.img");
+
+            alumno.setCareer(carreraRep.findById(idCarrera).get()); alumnoRep.save(alumno);
+            alumno.setPais(paisRep.findById(idPais).get());         alumnoRep.save(alumno);
+            alumno.setGender(generoRep.findById(idGenero).get());   alumnoRep.save(alumno);
+
+        }else{
+            AlumnoEntity newAlumno = new AlumnoEntity(null, cod, first_name, last_name, email_univ, email_priv, tv_user, tv_pw, ad_cred, "fotito.png");
+
+            Optional<CarreraEntity> opCarrera = carreraRep.findById(idCarrera);
+            if (opCarrera.isPresent()) {
+                newAlumno.setCareer(opCarrera.get());
+                alumnoRep.save(newAlumno);
+            }
+
+            Optional<PaisEntity> opPais = paisRep.findById(idPais);
+            if (opPais.isPresent()) {
+                newAlumno.setPais(opPais.get());
+                alumnoRep.save(newAlumno);
+            }
+
+            Optional<GeneroEntity> opGenero = generoRep.findById(idGenero);
+            if (opGenero.isPresent()) {
+                newAlumno.setGender(opGenero.get());
+                alumnoRep.save(newAlumno);
+            }
+        }
         return "redirect:/alumno";
 
     }

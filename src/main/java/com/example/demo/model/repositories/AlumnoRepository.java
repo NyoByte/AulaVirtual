@@ -15,4 +15,7 @@ public interface AlumnoRepository extends JpaRepository<AlumnoEntity, Long> {
 
     @Query(value = "SELECT * FROM Alumnos a WHERE to_char(a.Código,'fm99999999') like %:kw_cod% AND (upper(a.Nombres) like :kw_name% or upper(a.Apellidos) like :kw_name%)", nativeQuery = true)
     List<AlumnoEntity> findByKeywordNameAndCode(String kw_name, String kw_cod);
+
+    @Query(value = "SELECT * FROM Alumnos a WHERE a.Código=:cod",nativeQuery = true)
+    AlumnoEntity findByCod(int cod);
 }
