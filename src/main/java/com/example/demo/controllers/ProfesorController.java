@@ -1,7 +1,8 @@
 package com.example.demo.controllers;
 
-import com.example.demo.model.dao.ProfesorEntity;
-import com.example.demo.model.dao.SeccionEntity;
+import com.example.demo.forms.GuardarAlumnosForm;
+import com.example.demo.forms.GuardarProfesorForm;
+import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -58,6 +59,66 @@ public class ProfesorController {
         }
         return  "redirect:/profesor";
     }
+    @RequestMapping(value = "/profesor/guardar", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String guardarProfesor(GuardarProfesorForm form) {
+        //Si es un nuevo profesor
+
+        int cod = Integer.parseInt(form.getCod());
+        String first_name = form.getFirst_name();
+        String last_name = form.getLast_name();
+        String email_univ = form.getEmail_univ();
+        String email_priv = form.getEmail_priv();
+        String type = form.getType();
+        String photo_url = form.getPhoto_url();
+
+
+        Long idTipo = Long.parseLong(form.getType());
+        Long idPais = Long.parseLong(form.getPais());
+        Long idGenero = Long.parseLong(form.getGender());
+
+        ProfesorEntity profesor = profesorRep.findByCod(cod);
+
+        if (profesor != null) {
+            // Editar un profesor existe
+            profesor.setCod(cod);
+            profesor.setFirst_name(first_name);
+            profesor.setLast_name(last_name);
+            profesor.setEmail_univ(email_univ);
+            profesor.setEmail_priv(email_univ);
+            profesor.setPhoto_url("newFoto.img");
+
+            profesor.setType(tipoRep.findById(idTipo).get());
+            profesorRep.save(profesor);
+            profesor.setPais(paisRep.findById(idPais).get());
+            profesorRep.save(profesor);
+            profesor.setGender(generoRep.findById(idGenero).get());
+            profesorRep.save(profesor);
+
+        }else{
+            ProfesorEntity newProfesor = new ProfesorEntity( null, cod, first_name, last_name, email_univ, email_priv, "fotito.png");
+
+            Optional<ProfesorTipoEntity> opTipo = tipoRep.findById(idTipo);
+            if (opTipo.isPresent()) {
+                newProfesor.setType(opTipo.get());
+                profesorRep.save(newProfesor);
+            }
+
+            Optional<PaisEntity> opPais = paisRep.findById(idPais);
+            if (opPais.isPresent()) {
+                newProfesor.setPais(opPais.get());
+                profesorRep.save(newProfesor);
+            }
+
+            Optional<GeneroEntity> opGenero = generoRep.findById(idGenero);
+            if (opGenero.isPresent()) {
+                newProfesor.setGender(opGenero.get());
+                profesorRep.save(newProfesor);
+            }
+        }
+        return "redirect:/profesor";
+    }
+
 
     @RequestMapping(value = "/profesor/guardar_masivo", method = RequestMethod.POST)
     public String guardarCSV(@RequestParam MultipartFile file) throws IOException {

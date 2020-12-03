@@ -22,4 +22,7 @@ public interface ProfesorRepository extends JpaRepository<ProfesorEntity, Long> 
 
     @Query(value = "SELECT * FROM Profesores p WHERE p.type_id=2", nativeQuery = true)
     List<ProfesorEntity> findTipoJefeDePractica();
+
+    @Query(value = "SELECT * FROM Profesores p WHERE p.Código=:cod",nativeQuery = true)
+    ProfesorEntity findByCod(int cod);
 }

@@ -47,7 +47,7 @@ public class AlumnoController {
 
     @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String guardarAlumno(GuardarAlumnosForm form) {
-
+        //Si el alumno es  un nuevo alumno
         int cod = Integer.parseInt(form.getCod());
         String first_name = form.getFirst_name();
         String last_name = form.getLast_name();
