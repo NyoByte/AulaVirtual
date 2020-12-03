@@ -69,7 +69,11 @@ public class AulaVirtualController {
         }else if((boolean)sesion.getAttribute("esAlumno")){
             //Si es alumno
             AlumnoEntity alumnoSeleccionado = (AlumnoEntity) sesion.getAttribute("identificador");
-            model.addAttribute("alumno",alumnoSeleccionado);
+            //Buscar al alumno logueado
+            Optional<AlumnoEntity> alumnoBD = alumnoRep.findById(alumnoSeleccionado.getId());
+            if(alumnoBD.isPresent()) {
+                model.addAttribute("alumno", alumnoBD.get());
+            }
             return "Alumno";
         }else if((boolean)sesion.getAttribute("esAdministrador")){
             //No hay pagina principal para administrador, se le redirige a gestionar profesores
@@ -369,6 +373,7 @@ public class AulaVirtualController {
 
     /* FUNCIONES */
     @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
     public String testing(Model model) {
         List<UsuarioAlumnoEntity> admin =  usuarioRep.findUsuarioAlumno();
         model.addAttribute("listaUsuarios",admin);

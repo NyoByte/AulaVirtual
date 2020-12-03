@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -126,5 +130,41 @@ public class AlumnoController {
         }
         return "redirect:/alumno";
 
+    }
+
+    @RequestMapping(value = "/alumno/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String actualizarDatosAlumno(GuardarAlumnosForm alumnosForm){
+        String nuevoCorreoPriv = alumnosForm.getEmail_priv();
+        String nuevoTvUser = alumnosForm.getTv_user();
+        String nuevaTvPw = alumnosForm.getTv_pw();
+        String nuevaAnyDeskCred = alumnosForm.getAd_cred();
+
+        //Obtener representacion del alumno que esta logueado actualmente
+        HttpSession sesion = ObtenerSesion();
+        AlumnoEntity alumnoLogueado = (AlumnoEntity) sesion.getAttribute("identificador");
+        System.out.println("identificador obtenido correctamente");
+
+        //Obtener el alumno de la BD
+        Optional<AlumnoEntity> alumnoOP = alumnoRep.findById(alumnoLogueado.getId());
+
+        if(alumnoOP.isPresent()) {
+            AlumnoEntity alumnoActual = alumnoOP.get();
+            System.out.println("Alumno obtenido de la BD");
+            //Actualizar datos
+            alumnoActual.setEmail_priv(nuevoCorreoPriv);
+            alumnoActual.setTv_user(nuevoTvUser);
+            alumnoActual.setTv_pw(nuevaTvPw);
+            alumnoActual.setAd_cred(nuevaAnyDeskCred);
+            System.out.println("Datos actualizados correctamente");
+            alumnoRep.save(alumnoActual);
+            System.out.println("Alumno actualizado en la bd");
+        }
+        return "redirect:/";
+    }
+
+    // HTTP Session
+    private HttpSession ObtenerSesion(){
+        final HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return request.getSession();
     }
 }
