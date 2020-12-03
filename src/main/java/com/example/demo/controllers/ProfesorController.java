@@ -4,11 +4,13 @@ import com.example.demo.model.dao.ProfesorEntity;
 import com.example.demo.model.dao.SeccionEntity;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,5 +57,37 @@ public class ProfesorController {
             profesorRep.delete(profesorSeleccionado.get());
         }
         return  "redirect:/profesor";
+    }
+
+    @RequestMapping(value = "/profesor/guardar_masivo", method = RequestMethod.POST)
+    public String guardarCSV(@RequestParam MultipartFile file) throws IOException {
+
+        //Leer el archivo
+        InputStream inputStream = file.getInputStream();
+
+        int fileSize = inputStream.available();
+
+        byte[] bArray = new byte[fileSize];
+
+        inputStream.read(bArray);
+
+        String data = new String(bArray);
+
+        inputStream.close();
+
+        //Remover espacios en blanco
+        data = data.replaceAll(" ","");
+
+        //Dividir lineas
+        String[] profesores = data.split("\n");
+        for(String profe: profesores){
+            //Crear nuevo profesor
+            String[] profDatos = profe.split(",");
+            //public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv)
+            ProfesorEntity newProf = new ProfesorEntity(null,Integer.parseInt(profDatos[0]),profDatos[1],profDatos[2],profDatos[3],profDatos[4]);
+            //Guardar nuevo registro en bd
+            profesorRep.save(newProf);
+        }
+        return "redirect:/profesor";
     }
 }

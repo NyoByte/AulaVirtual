@@ -9,7 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -93,5 +97,34 @@ public class AlumnoController {
             alumnoRep.delete(alumnoSeleccionado.get());
         }
         return  "redirect:/alumno";
+    }
+
+    @RequestMapping(value = "/alumno/guardar_masivo", method = RequestMethod.POST)
+    public String guardarCSV(@RequestParam MultipartFile file) throws IOException{
+        //Leer el archivo
+        InputStream inputStream = file.getInputStream();
+        byte[] bArray = new byte[inputStream.available()];
+        inputStream.read(bArray);
+
+        //Transformar bytes a String
+        String data = new String(bArray);
+        inputStream.close();
+
+        //Remover espacios en blanco
+        data = data.replaceAll(" ","");
+
+        //Dividir lineas
+        String[] alumnos = data.split("\n");
+
+        //Tratar linea x linea
+        for(String alumno: alumnos){
+            String[] alDatos = alumno.split(",");
+            //Crear nuevo alumno
+            //public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred)
+            AlumnoEntity newAl = new AlumnoEntity(null, Integer.parseInt(alDatos[0]),alDatos[1],alDatos[2], alDatos[3], alDatos[4],alDatos[5],alDatos[6],alDatos[7]);
+            alumnoRep.save(newAl);
+        }
+        return "redirect:/alumno";
+
     }
 }
