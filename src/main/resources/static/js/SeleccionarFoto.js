@@ -1,3 +1,4 @@
+
 var activarFotoFile = function(){
     var inputFoto = document.querySelector("#input_foto")
     inputFoto.click();
@@ -15,6 +16,22 @@ var handleIMG = function (files){
 
 var leerFoto= function(){
     //Con FileReader. TODO...
+    var fr = FileReader();
+    fr.readAsText()
+}
+
+var previewImage = function (event){
+    var reader = new FileReader();
+    var imageField= document.getElementById("image-field")
+
+    reader.onload = function(){
+        if(reader.readyState == 2){
+
+            imageField.src= reader.result;
+        }
+    }
+    reader.readAsDataURL(event.target.files[0]);
+
 }
 
 var main = function(){
