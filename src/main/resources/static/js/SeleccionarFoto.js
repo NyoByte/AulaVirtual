@@ -6,6 +6,7 @@ var activarFotoFile = function(){
 
 var seleccionarFotoOnClick = function(){
     var boton = document.querySelector("#boton_selec_foto");
+    console.log("llego");
     boton.addEventListener("click", activarFotoFile);
 }
 
