@@ -274,12 +274,12 @@
                                 <div class="form-row m-0">
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
+                                        <button class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Actualizar Datos</a>
+                                            </svg>Actualizar Datos</button>
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
