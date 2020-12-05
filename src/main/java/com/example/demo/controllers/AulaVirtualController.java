@@ -4,9 +4,11 @@ import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -216,25 +218,29 @@ public class AulaVirtualController {
             //http://localhost:8080/profesor
             else{
                 Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 10);
-                Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
-
-                model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
-                model.addAttribute("pagActual", pagina);
-
-                List<ProfesorEntity> profesores = paginaProfesores.getContent();
                 //Filtro
-                if(kw_name!=null && kw_cod.equalsIgnoreCase("")){
-                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
-                    model.addAttribute("listaProfesores", filterProfesores);
-                }else if(kw_name.equalsIgnoreCase("") && kw_cod!=null){
-                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
-                    model.addAttribute("listaProfesores", filterProfesores);
-                }else if(kw_name!=null && kw_cod!=null){
+                if(kw_name.equals("") && kw_cod.equals("")){
+                    //Enviar numero de paginas al modelo
+                    Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
+                    model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
+                    model.addAttribute("pagActual", pagina);
+                    List<ProfesorEntity> profesores = paginaProfesores.getContent();
+                    model.addAttribute("listaProfesores", profesores);
+                }else if(!kw_name.equals("") && !kw_cod.equals("")){
                     List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
                     model.addAttribute("listaProfesores", filterProfesores);
-                }else {
-                    model.addAttribute("listaProfesores", profesores);
+                }else if(kw_name.equals("")){
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
+                    PagedListHolder<ProfesorEntity> pp = new PagedListHolder<>(filterProfesores);
+                    pp.setPageSize(10);
+                    model.addAttribute("numPaginas", pp.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    model.addAttribute("listaProfesores", pp.getPageList());
+                }else{
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
+                    model.addAttribute("listaProfesores", filterProfesores);
                 }
+
                 return "Admin_CargaProfesores";
             }
         }else{

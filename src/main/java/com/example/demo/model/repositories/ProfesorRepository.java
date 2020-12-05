@@ -2,6 +2,8 @@ package com.example.demo.model.repositories;
 
 import com.example.demo.model.dao.AlumnoEntity;
 import com.example.demo.model.dao.ProfesorEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -25,4 +27,9 @@ public interface ProfesorRepository extends JpaRepository<ProfesorEntity, Long> 
 
     @Query(value = "SELECT * FROM Profesores p WHERE p.Código=:cod",nativeQuery = true)
     ProfesorEntity findByCod(int cod);
+
+    @Query(value = "SELECT * FROM Profesores p WHERE to_char(p.Código,'fm99999999') like :kw_cod%", nativeQuery = true)
+    Page<ProfesorEntity> findByKeywordCodeR(String kw_cod, Pageable pag);
+
+    //Page<T> findAll(Pageable var1);
 }
