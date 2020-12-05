@@ -138,7 +138,7 @@
                                         <p class="mb-1">Nombre</p>
                                         <select class="form-control" oninput="OnSelectProfesorT2()"
                                             id="profesorT2Seleccionado" name="profesorT2_name">
-                                            <option value="0">Choose...</option>
+                                            <option value="">Choose...</option>
                                             <c:forEach var="profesor" items="${listaProfesoresT2}">
                                                 <option value="${profesor.cod}">${profesor.first_name}
                                                     ${profesor.last_name}</option>
@@ -370,18 +370,15 @@
                                         <p class="mb-1">Nombre</p>
                                         <select class="form-control" oninput="OnSelectProfesorT2()"
                                             id="profesorT2Seleccionado" name="profesorT2_name">
-                                            <c:choose>
-                                                <c:when test="${profesorSeleccionadoT2 != null}">
+                                                <c:if test="${profesorSeleccionadoT2 != null}">
                                                     <option value="${profesorSeleccionadoT2.cod}">
                                                         ${profesorSeleccionadoT2.first_name}
                                                         ${profesorSeleccionadoT2.last_name}</option>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <option value="0">Choose...</option>
-                                                </c:otherwise>
-                                            </c:choose>
+                                                </c:if>
+                                            <option value="">Choose...</option>
                                             <c:forEach var="profesor" items="${listaProfesoresT2}">
                                                 <c:if test="${profesor.id != profesorSeleccionadoT2.id}">
+                    
                                                     <option value="${profesor.cod}">${profesor.first_name}
                                                         ${profesor.last_name}
                                                     </option>

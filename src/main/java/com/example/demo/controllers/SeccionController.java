@@ -48,7 +48,7 @@ public class SeccionController {
         Long idCurso = Long.parseLong(form.getCourse());
         // los profesores devuelven el codigo del profesor como value del formulario
         int codProfe1 = Integer.parseInt(form.getProfesorT1_name());
-        int codProfe2 = Integer.parseInt(form.getProfesorT2_name());
+        int codProfe2;
         //Asignarle un periodo respecto al año y mes en el que se encuentra
         int year = LocalDateTime.now().getYear();
         int mes = LocalDateTime.now().getMonthValue();
@@ -66,7 +66,19 @@ public class SeccionController {
         }
         //Comprobar si existe
         Optional<SeccionEntity> opSeccion = seccionRep.findById(Long.parseLong(form.getId()));
+
         if(opSeccion.isPresent()) {
+            if (form.getProfesorT2_name().isEmpty()){
+                //Eliminar si hay algo dentro
+                codProfe2=0;
+                if (opSeccion.get().getProfesor().size()==2){
+                    opSeccion.get().getProfesor().remove(1);
+                }else{
+                    //No pasa nada :D
+                }
+            }else {
+                codProfe2 = Integer.parseInt(form.getProfesorT2_name());
+            }
             SeccionEntity seccion = opSeccion.get();
             seccion.setCod(codigo);
             seccion.setCourse(cursoRep.findById(idCurso).get());
@@ -79,11 +91,22 @@ public class SeccionController {
                 seccion.getProfesor().set(0,opProfeT1);
             }
             if (opProfeT2 != null) {
-                seccion.getProfesor().set(1,opProfeT2);
+                System.out.println(seccion.getProfesor().size());
+                if (seccion.getProfesor().size()==2){
+                    seccion.getProfesor().set(1, opProfeT2);
+                }else{
+                    seccion.getProfesor().add(opProfeT2);
+                }
             }
             seccionRep.save(seccion);
             return "redirect:/seccion";
         }else {
+            // Crear nuevo
+            if (form.getProfesorT2_name().isEmpty()){
+                codProfe2=0;
+            }else {
+                codProfe2 = Integer.parseInt(form.getProfesorT2_name());
+            }
             SeccionEntity newSeccion = new SeccionEntity(null, codigo);
             newSeccion.setCourse(cursoRep.findById(idCurso).get());
             seccionRep.save(newSeccion);
