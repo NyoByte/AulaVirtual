@@ -119,11 +119,6 @@ public class ProfesorController {
                 newProfesor.setGender(opGenero.get());
                 profesorRep.save(newProfesor);
             }
-            //Crear su usario
-            String user = newProfesor.getEmail_univ();
-            String pw = String.valueOf(newProfesor.getCod());
-            UsuarioProfesorEntity usuario = new UsuarioProfesorEntity(null,user,pw,newProfesor);
-            usuarioRep.save(usuario);
         }
         return "redirect:/profesor";
     }
