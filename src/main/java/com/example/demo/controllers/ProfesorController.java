@@ -47,6 +47,10 @@ public class ProfesorController {
     public String eliminarProfesor(@PathVariable String id){
         Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(id));
         if(profesorSeleccionado.isPresent()){
+            //Eliminar su usuario
+            UsuarioProfesorEntity kUser = profesorSeleccionado.get().getUsuarioProfesor();
+            usuarioRep.delete(kUser);
+
             List<SeccionEntity> secciones = profesorSeleccionado.get().getSecciones();
             for(SeccionEntity seccion:secciones){
                 List<ProfesorEntity> profesores = seccion.getProfesor();
@@ -119,7 +123,7 @@ public class ProfesorController {
                 newProfesor.setGender(opGenero.get());
                 profesorRep.save(newProfesor);
             }
-            //Crear su usario
+            //Crear su usuario
             String user = newProfesor.getEmail_univ();
             String pw = String.valueOf(newProfesor.getCod());
             UsuarioProfesorEntity usuario = new UsuarioProfesorEntity(null,user,pw,newProfesor);

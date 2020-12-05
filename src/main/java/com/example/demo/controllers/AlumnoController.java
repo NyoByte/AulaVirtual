@@ -101,8 +101,7 @@ public class AlumnoController {
                 newAlumno.setGender(opGenero.get());
                 alumnoRep.save(newAlumno);
             }
-
-            //Crear su usario
+            //Crear su usuario
             String user = newAlumno.getEmail_univ();
             String pw = String.valueOf(newAlumno.getCod());
             UsuarioAlumnoEntity usuario = new UsuarioAlumnoEntity(null,user,pw,newAlumno);
@@ -116,6 +115,10 @@ public class AlumnoController {
     public String eliminarAlumno(@PathVariable String id){
         Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(id));
         if(alumnoSeleccionado.isPresent()){
+            //Eliminar su usuario
+            UsuarioAlumnoEntity kUser = alumnoSeleccionado.get().getUsuarioAlumno();
+            usuarioRep.delete(kUser);
+            
             List<SeccionEntity> secciones = alumnoSeleccionado.get().getSecciones();
             for(SeccionEntity seccion:secciones){
                 List<AlumnoEntity> alumnos = seccion.getAlumnos();
@@ -129,6 +132,7 @@ public class AlumnoController {
                 seccionRep.save(seccion);
             }
             alumnoRep.delete(alumnoSeleccionado.get());
+
         }
         return  "redirect:/alumno";
     }

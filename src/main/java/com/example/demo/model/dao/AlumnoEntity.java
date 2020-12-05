@@ -52,8 +52,8 @@ public class AlumnoEntity{
     @ManyToMany(mappedBy = "alumnos")
     private List<SeccionEntity> secciones;
 
-    @OneToMany(mappedBy = "alumno")
-    private List<UsuarioAlumnoEntity> usuarioAlumnos;
+    @OneToOne(mappedBy = "alumno")
+    private UsuarioAlumnoEntity usuarioAlumno;
 
 
     public AlumnoEntity() {
@@ -227,12 +227,12 @@ public class AlumnoEntity{
         this.secciones = secciones;
     }
 
-    public List<UsuarioAlumnoEntity> getUsuarioAlumnos() {
-        return usuarioAlumnos;
+    public UsuarioAlumnoEntity getUsuarioAlumno() {
+        return usuarioAlumno;
     }
 
-    public void setUsuarioAlumnos(List<UsuarioAlumnoEntity> usuarioAlumnos) {
-        this.usuarioAlumnos = usuarioAlumnos;
+    public void setUsuarioAlumno(UsuarioAlumnoEntity usuarioAlumno) {
+        this.usuarioAlumno = usuarioAlumno;
     }
 }
 

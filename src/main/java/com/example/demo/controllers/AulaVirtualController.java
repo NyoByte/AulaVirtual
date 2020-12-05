@@ -4,9 +4,11 @@ import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -148,28 +150,54 @@ public class AulaVirtualController {
                 return "Admin_CrudAlumno";
             }
             else{
-                //Setear numero y tamaño de pagina
-                Pageable pageTen = PageRequest.of(Integer.parseInt(pagina),10);
-                //Obtener los alumnos
-                Page<AlumnoEntity> paginaAlumnos = alumnoRep.findAll(pageTen);
-
-                //Convertir a lista
-                List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 10);
                 //Filtro
                 if(kw_name.equals("") && kw_cod.equals("")){
                     //Enviar numero de paginas al modelo
+                    Page<AlumnoEntity> paginaAlumnos = alumnoRep.findAll(pageSizeTen);
                     model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
                     model.addAttribute("pagActual", pagina);
+                    List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
                     model.addAttribute("listaAlumnos", alumnos);
                 }else if(!kw_name.equals("") && !kw_cod.equals("")){
                     List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
-                    model.addAttribute("listaAlumnos", filterAlumnos);
+                    PagedListHolder<AlumnoEntity> alumnos = new PagedListHolder<>(filterAlumnos);
+                    alumnos.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", alumnos.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    alumnos.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaAlumnos", alumnos.getPageList());
                 }else if(kw_name.equals("")){
                     List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordCode(kw_cod);
-                    model.addAttribute("listaAlumnos", filterAlumnos);
+                    PagedListHolder<AlumnoEntity> alumnos = new PagedListHolder<>(filterAlumnos);
+                    alumnos.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", alumnos.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    alumnos.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaAlumnos", alumnos.getPageList());
                 }else{
                     List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordName(kw_name.toUpperCase());
-                    model.addAttribute("listaAlumnos", filterAlumnos);
+                    PagedListHolder<AlumnoEntity> alumnos = new PagedListHolder<>(filterAlumnos);
+                    alumnos.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", alumnos.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    alumnos.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaAlumnos", alumnos.getPageList());
                 }
                 return "Admin_CargaAlumnos";
             }
@@ -215,25 +243,53 @@ public class AulaVirtualController {
             //http://localhost:8080/profesor
             else{
                 Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 10);
-                Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
-
-
-                List<ProfesorEntity> profesores = paginaProfesores.getContent();
-
+                //Filtro
                 if(kw_name.equals("") && kw_cod.equals("")){
                     //Enviar numero de paginas al modelo
+                    Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
                     model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
                     model.addAttribute("pagActual", pagina);
+                    List<ProfesorEntity> profesores = paginaProfesores.getContent();
                     model.addAttribute("listaProfesores", profesores);
                 }else if(!kw_name.equals("") && !kw_cod.equals("")){
                     List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
-                    model.addAttribute("listaProfesores", filterProfesores);
+                    PagedListHolder<ProfesorEntity> profesores = new PagedListHolder<>(filterProfesores);
+                    profesores.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", profesores.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    profesores.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaProfesores", profesores.getPageList());
                 }else if(kw_name.equals("")){
                     List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
-                    model.addAttribute("listaProfesores", filterProfesores);
+                    PagedListHolder<ProfesorEntity> profesores = new PagedListHolder<>(filterProfesores);
+                    profesores.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", profesores.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    profesores.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaProfesores", profesores.getPageList());
                 }else{
                     List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
-                    model.addAttribute("listaProfesores", filterProfesores);
+                    PagedListHolder<ProfesorEntity> profesores = new PagedListHolder<>(filterProfesores);
+                    profesores.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", profesores.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    profesores.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaProfesores", profesores.getPageList());
                 }
 
                 return "Admin_CargaProfesores";

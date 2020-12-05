@@ -37,38 +37,21 @@
                 <div class="form-group text-center">
                     <c:choose>
                         <c:when test="${usuario=='administrador'}">
-                            <img class="card-img-top rounded mx-auto d-block imagen_perfil"
-                                src="https://www.seekpng.com/png/detail/412-4122743_administrador-con-tuercas-icono-vectorial-gratis-diseado-policy.png"
-                                alt="">
+                            <img class="card-img-top rounded mx-auto d-block imagen_perfil" src="https://www.seekpng.com/png/detail/412-4122743_administrador-con-tuercas-icono-vectorial-gratis-diseado-policy.png" alt="">
                         </c:when>
                         <c:when test="${usuario=='alumno'}">
-                            <img class="card-img-top rounded mx-auto d-block imagen_perfil"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv4oNwhMepzvfEhnHqFMh95zz8a5_0pVZHIA&usqp=CAU"
-                                alt="">
+                            <img class="card-img-top rounded mx-auto d-block imagen_perfil" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv4oNwhMepzvfEhnHqFMh95zz8a5_0pVZHIA&usqp=CAU" alt="">
                         </c:when>
                         <c:otherwise>
-                            <img class="card-img-top rounded mx-auto d-block imagen_perfil"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ97K69vel5GDvBskD_vqTr93PXk4xDzL1-mg&usqp=CAU"
-                                alt="">
+                            <img class="card-img-top rounded mx-auto d-block imagen_perfil" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ97K69vel5GDvBskD_vqTr93PXk4xDzL1-mg&usqp=CAU" alt="">
                         </c:otherwise>
-                    </c:choose>
+                    </c:choose> 
                 </div>
                 <div class="form-group ">
-                    <c:choose>
-                        <c:when test="${usuario=='administrador'}">
-                            <input type="text" class="form-control" required="true" placeholder="Usuario"
-                                name="username" required>
-                        </c:when>
-                        <c:otherwise>
-                            <input type="text" class="form-control" required="true" placeholder="Usuario"
-                                name="username" required pattern="[1-9]{8}@aloe.ulima.edu.pe"
-                                title="example: 12345678@aloe.ulima.edu.pe">
-                        </c:otherwise>
-                    </c:choose>
+                    <input type="text" class="form-control" required="true" placeholder="Usuario" name="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" required="true" placeholder="Contraseña" name="password"
-                        required>
+                    <input type="password" class="form-control" required="true" placeholder="Contraseña" name="password">
                 </div>
                 <div class="row form-group">
                     <c:choose>
