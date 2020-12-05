@@ -43,8 +43,8 @@ public class ProfesorEntity {
     @ManyToMany(mappedBy = "profesor")
     private List<SeccionEntity> secciones;
 
-    @OneToMany(mappedBy = "profesor")
-    private List<UsuarioProfesorEntity> usuarioProfesores;
+    @OneToOne(mappedBy = "profesor")
+    private UsuarioProfesorEntity usuarioProfesor;
 
     public ProfesorEntity() {
     }
@@ -179,5 +179,13 @@ public class ProfesorEntity {
 
     public void setSecciones(List<SeccionEntity> secciones) {
         this.secciones = secciones;
+    }
+
+    public UsuarioProfesorEntity getUsuarioProfesor() {
+        return usuarioProfesor;
+    }
+
+    public void setUsuarioProfesor(UsuarioProfesorEntity usuarioProfesor) {
+        this.usuarioProfesor = usuarioProfesor;
     }
 }

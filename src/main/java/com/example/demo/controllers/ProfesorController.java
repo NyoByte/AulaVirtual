@@ -119,14 +119,11 @@ public class ProfesorController {
                 newProfesor.setGender(opGenero.get());
                 profesorRep.save(newProfesor);
             }
-<<<<<<< HEAD
-=======
             //Crear su usuario
             String user = newProfesor.getEmail_univ();
             String pw = String.valueOf(newProfesor.getCod());
             UsuarioProfesorEntity usuario = new UsuarioProfesorEntity(null,user,pw,newProfesor);
             usuarioRep.save(usuario);
->>>>>>> parent of 83b89e1... Revert "Preparando para drop"
         }
         return "redirect:/profesor";
     }
