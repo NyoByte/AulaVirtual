@@ -129,7 +129,7 @@ public class AulaVirtualController {
                 model.addAttribute("listaGeneros",generos);
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
-                if(!alumnoId.isEmpty()){
+                if(!alumnoId.isPresent()){
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
                         model.addAttribute("alumno",alumnoSeleccionado.get());
@@ -195,7 +195,7 @@ public class AulaVirtualController {
                 model.addAttribute("listaGeneros",generos);
                 List<ProfesorTipoEntity> tipos = tipoRep.findAll();
                 model.addAttribute("listaTipos",tipos);
-                if(!profesorId.isEmpty()){
+                if(!profesorId.isPresent()){
                     Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(profesorId.get()));
                     if(profesorSeleccionado.isPresent()){
                         model.addAttribute("profesor",profesorSeleccionado.get());
@@ -252,7 +252,7 @@ public class AulaVirtualController {
             if(edit.equalsIgnoreCase("true")){
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
-                if(!cursoId.isEmpty()){
+                if(!cursoId.isPresent()){
                     Optional<CursoEntity> cursoSeleccionado = cursoRep.findById(Long.parseLong(cursoId.get()));
                     if(cursoSeleccionado.isPresent()){
                         model.addAttribute("curso",cursoSeleccionado.get());
@@ -302,7 +302,7 @@ public class AulaVirtualController {
                 model.addAttribute("listaAlumnos",alumnos);
                 List<ProfesorEntity> profesor = profesorRep.findAll();
                 model.addAttribute("listaProfesores",profesor);
-                if(!seccionId.isEmpty()){
+                if(!seccionId.isPresent()){
                     Optional<SeccionEntity> seccionSeleccionado = seccionRep.findById(Long.parseLong(seccionId.get()));
                     if(seccionSeleccionado.isPresent()){
                         model.addAttribute("seccion",seccionSeleccionado.get());
@@ -342,8 +342,19 @@ public class AulaVirtualController {
                     //Obtener la lista de alumnos y seccuion buscada para el refresh
                     model.addAttribute("listaAlumnos",listaAlumnos);
                     model.addAttribute("seccionBuscada",seccionId.get());
+
+
                 }
             }
+            Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina),10);
+            Page<SeccionEntity> paginaSecciones = seccionRep.findAll(pageSizeTen);
+
+            model.addAttribute("numPaginas", paginaSecciones.getTotalPages());
+            model.addAttribute("pagActual", pagina);
+
+
+            List<SeccionEntity> secciones = paginaSecciones.getContent();
+            model.addAttribute("listaSecciones",secciones);
             return "Profesor_Seccion";
         }else{
             return "redirect:/";

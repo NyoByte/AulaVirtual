@@ -26,6 +26,8 @@ public class AlumnoRestController {
     @RequestMapping(value = "resources/alumno", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String getAll(@RequestParam(name = "pag", required = false) Optional<String> pag){
+
+        //paginacion
         List<AlumnoEntity> listaAlumnos = new ArrayList<>();
 
         if (pag.isPresent()) {
