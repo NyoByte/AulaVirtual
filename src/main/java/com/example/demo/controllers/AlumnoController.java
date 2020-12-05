@@ -102,7 +102,7 @@ public class AlumnoController {
                 alumnoRep.save(newAlumno);
             }
 
-            //Crear su usario
+            //Crear su usuario
             String user = newAlumno.getEmail_univ();
             String pw = String.valueOf(newAlumno.getCod());
             UsuarioAlumnoEntity usuario = new UsuarioAlumnoEntity(null,user,pw,newAlumno);
@@ -129,6 +129,9 @@ public class AlumnoController {
                 seccionRep.save(seccion);
             }
             alumnoRep.delete(alumnoSeleccionado.get());
+            /*//Eliminar su usuario
+            UsuarioAlumnoEntity kUser = alumnoSeleccionado.get().getUsuarioAlumno();
+            usuarioRep.delete(kUser);*/
         }
         return  "redirect:/alumno";
     }
