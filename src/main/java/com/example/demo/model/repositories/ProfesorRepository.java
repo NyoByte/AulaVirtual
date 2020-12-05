@@ -8,13 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProfesorRepository extends JpaRepository<ProfesorEntity, Long> {
-    @Query(value = "SELECT * FROM Profesores p WHERE upper(p.Nombres) like %:kw_name% or upper(p.Apellidos) like %:kw_name%", nativeQuery = true)
+    @Query(value = "SELECT * FROM Profesores p WHERE upper(p.Nombres) like :kw_name% or upper(p.Apellidos) like :kw_name%", nativeQuery = true)
     List<ProfesorEntity> findByKeywordName(String kw_name);
 
-    @Query(value = "SELECT * FROM Profesores p WHERE to_char(p.Código,'fm99999999') like %:kw_cod%", nativeQuery = true)
+    @Query(value = "SELECT * FROM Profesores p WHERE to_char(p.Código,'fm99999999') like :kw_cod%", nativeQuery = true)
     List<ProfesorEntity> findByKeywordCode(String kw_cod);
 
-    @Query(value = "SELECT * FROM Profesores p WHERE to_char(p.Código,'fm99999999') like %:kw_cod% AND (upper(p.Nombres) like :kw_name% or upper(p.Apellidos) like :kw_name%)", nativeQuery = true)
+    @Query(value = "SELECT * FROM Profesores p WHERE to_char(p.Código,'fm99999999') like :kw_cod% AND (upper(p.Nombres) like :kw_name% or upper(p.Apellidos) like :kw_name%)", nativeQuery = true)
     List<ProfesorEntity> findByKeywordNameAndCode(String kw_name, String kw_cod);
 
     @Query(value = "SELECT * FROM Profesores p WHERE p.type_id=1", nativeQuery = true)
