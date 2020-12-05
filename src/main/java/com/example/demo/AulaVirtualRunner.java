@@ -365,7 +365,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
         UsuarioProfesorEntity userProf3 = new UsuarioProfesorEntity(null,"amatuk@aloe.ulima.edu.pe","20120478",profesor3);      usuarioRep.save(userProf3);
         UsuarioProfesorEntity userProf4 = new UsuarioProfesorEntity(null,"jaqueda@aloe.ulima.edu.pe","20140157",profesor4);     usuarioRep.save(userProf4);
         UsuarioProfesorEntity userProf5 = new UsuarioProfesorEntity(null,"bgrados@aloe.ulima.edu.pe","20152184",profesor5);     usuarioRep.save(userProf5);
-        UsuarioProfesorEntity userProf6 = new UsuarioProfesorEntity(null,"pvalvidida@aloe.ulima.edu.pe","20135487",profesor6);  usuarioRep.save(userProf6);
+        UsuarioProfesorEntity userProf6 = new UsuarioProfesorEntity(null,"pvalvidia@aloe.ulima.edu.pe","20135487",profesor6);  usuarioRep.save(userProf6);
         UsuarioProfesorEntity userProf7 = new UsuarioProfesorEntity(null,"jflores@aloe.ulima.edu.pe","20152317",profesor7);     usuarioRep.save(userProf7);
 
         UsuarioAdministradorEntity userAdm1 = new UsuarioAdministradorEntity(null,"Nyo","Byte");            usuarioRep.save(userAdm1);
