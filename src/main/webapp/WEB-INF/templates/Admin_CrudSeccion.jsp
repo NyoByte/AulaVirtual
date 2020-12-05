@@ -84,11 +84,11 @@
                                 <div class="form-row mb-3">
                                     <div class="col-auto">
                                         <p class="mb-1">Código</p>
-                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" />
+                                        <input class="form-control" type="number" min="1" max="999999999" name="cod" required/>
                                     </div>
                                     <div class="col">
                                         <p class="mb-1">Curso</p>
-                                        <select class="form-control" name="course">
+                                        <select class="form-control" name="course" required>
                                             <c:forEach var="curso" items="${listaCursos}">
                                                 <option value="${curso.id}">${curso.name}</option>
                                             </c:forEach>
@@ -111,8 +111,8 @@
                                     <div class="col">
                                         <p class="mb-1">Nombre</p>
                                         <select class="form-control" oninput="OnSelectProfesorT1()"
-                                            id="profesorT1Seleccionado" name="profesorT1_name" required="true">
-                                            <option value="0">Choose...</option>
+                                            id="profesorT1Seleccionado" name="profesorT1_name" required>
+                                            <option value="">Choose...</option>
                                             <c:forEach var="profesor" items="${listaProfesoresT1}">
                                                 <option value="${profesor.cod}">${profesor.first_name}
                                                     ${profesor.last_name}</option>

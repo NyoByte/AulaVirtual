@@ -74,16 +74,11 @@ public class SeccionController {
         //Asignar Profesores
         List<ProfesorEntity> listaProfes =  new ArrayList<>();
         if (opProfeT1 != null){
-            System.out.println(opProfeT1.getFirst_name());
             listaProfes.add(opProfeT1);
         }
         if (opProfeT2 != null){
-            System.out.println(opProfeT2.getFirst_name());
             listaProfes.add(opProfeT2);
         }
-        System.out.println("===");
-        System.out.println(listaProfes.get(0).getFirst_name());
-        System.out.println(listaProfes.get(1).getFirst_name());
         newSeccion.setProfesor(listaProfes);
         seccionRep.save(newSeccion);
         //Obtener id del curso recién creado
