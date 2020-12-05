@@ -64,3 +64,11 @@ a{
     display: none;
     width: 100%
 }
+
+.imagen_perfil{
+    max-width: 50%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

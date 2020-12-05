@@ -349,7 +349,6 @@ public class AulaVirtualController {
                 List<SeccionEntity> secciones = paginaSecciones.getContent();
                 // Se hizo este refactor debido que mueve el orden de la lista de los profes de secciones
                 for (SeccionEntity seccion:secciones){
-                    System.out.println(seccion.getId());
                     if(seccion.getProfesor().get(0).getType().getId()==2){
                         ProfesorEntity p1 = seccion.getProfesor().get(0);
                         ProfesorEntity p2 = seccion.getProfesor().get(1);

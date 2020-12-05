@@ -63,8 +63,9 @@ public class AlumnoController {
         Long idPais = Long.parseLong(form.getPais());
         Long idGenero = Long.parseLong(form.getGender());
 
-        AlumnoEntity alumno = alumnoRep.findByCod(cod);
-        if(alumno!=null){
+        Optional<AlumnoEntity> opAlumno = alumnoRep.findById(Long.parseLong(form.getId()));
+        if(opAlumno.isPresent()){
+            AlumnoEntity alumno = opAlumno.get();
             // Editar un alumno existe
             alumno.setCod(cod);
             alumno.setFirst_name(first_name);

@@ -79,32 +79,33 @@
                                 <h2>Datos del Nuevo Alumno</h2>
                                 </p>
                             </div>
+                            <input class="invisible" name="id" value="0" readonly="true" />
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" />
+                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
-                                    <input class="form-control" type="text" maxlength="50" name="first_name" />
+                                    <input class="form-control" type="text" maxlength="50" name="first_name" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
-                                    <input class="form-control" type="text" maxlength="50" name="last_name" />
+                                    <input class="form-control" type="text" maxlength="50" name="last_name" required/>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="email" maxlength="50" name="email_univ" />
+                                    <input class="form-control" type="email" maxlength="50" name="email_univ" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
-                                    <input class="form-control" type="email" maxlength="50" name="email_priv" />
+                                    <input class="form-control" type="email" maxlength="50" name="email_priv" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" required>
                                         <c:forEach var="genero" items="${listaGeneros}">
                                             <option value="${genero.id}">${genero.name}</option>
                                         </c:forEach>
@@ -114,7 +115,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <select class="form-control" type="text" name="pais" />
+                                    <select class="form-control" type="text" name="pais" required/>
                                     <c:forEach var="pais" items="${listaPaises}">
                                         <option value="${pais.id}">${pais.name}</option>
                                     </c:forEach>
@@ -122,21 +123,21 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
-                                    <input class="form-control" type="text" maxlength="9" name="tv_user" />
+                                    <input class="form-control" type="text" maxlength="9" name="tv_user" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Contraseña</p>
-                                    <input class="form-control" type="text" maxlength="9" name="tv_pw" />
+                                    <input class="form-control" type="text" maxlength="9" name="tv_pw" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">AnyDesk Credencial</p>
-                                    <input class="form-control" type="text" maxlength="6" name="ad_cred" />
+                                    <input class="form-control" type="text" maxlength="6" name="ad_cred" required/>
                                 </div>
                             </div>
                             <div class="form-row mb-0">
                                 <div class="col">
                                     <p class="mb-1">Carrera</p>
-                                    <select class="form-control" name="career">
+                                    <select class="form-control" name="career" required>
                                         <c:forEach var="carrera" items="${listaCarreras}">
                                             <option value="${carrera.id}">${carrera.name}</option>
                                         </c:forEach>
@@ -194,36 +195,37 @@
                             <div>
                                 <p class="font-weight-bold">Datos del Nuevo Alumno</p>
                             </div>
+                            <input class="invisible" name="id" value="${alumno.id}" readonly="true" />
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" value="${alumno.cod}" />
+                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" value="${alumno.cod}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
                                     <input class="form-control" type="text" maxlength="50" name="first_name"
-                                        value="${alumno.first_name}" />
+                                        value="${alumno.first_name}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
                                     <input class="form-control" type="text" maxlength="50" name="last_name"
-                                        value="${alumno.last_name}" />
+                                        value="${alumno.last_name}" required/>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
                                     <input class="form-control" type="text" maxlength="50" name="email_univ"
-                                        value="${alumno.email_univ}" />
+                                        value="${alumno.email_univ}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
                                     <input class="form-control" type="text" maxlength="50" name="email_priv"
-                                        value="${alumno.email_priv}" />
+                                        value="${alumno.email_priv}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" required>
                                         <option value="${alumno.gender.id}">${alumno.gender.name}</option>
                                         <c:forEach var="genero" items="${listaGeneros}">
                                             <c:if test="${genero.id != alumno.gender.id}">
@@ -236,7 +238,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <select class="form-control" name="pais">
+                                    <select class="form-control" name="pais" required>
                                         <option value="${alumno.pais.id}">${alumno.pais.name}</option>
                                         <c:forEach var="pais" items="${listaPaises}">
                                             <c:if test="${pais.id != alumno.pais.id}">
@@ -247,21 +249,21 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Usuario</p>
-                                    <input class="form-control" type="text" name="tv_user" maxlength="9" value="${alumno.tv_user}" />
+                                    <input class="form-control" type="text" name="tv_user" maxlength="9" value="${alumno.tv_user}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">TeamViewer Contraseña</p>
-                                    <input class="form-control" type="text" name="tv_pw" maxlength="9" value="${alumno.tv_pw}" />
+                                    <input class="form-control" type="text" name="tv_pw" maxlength="9" value="${alumno.tv_pw}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">AnyDesk Credencial</p>
-                                    <input class="form-control" type="text" name="ad_cred" maxlength="6" value="${alumno.ad_cred}" />
+                                    <input class="form-control" type="text" name="ad_cred" maxlength="6" value="${alumno.ad_cred}" required/>
                                 </div>
                             </div>
                             <div class="form-row mb-0">
                                 <div class="col">
                                     <p class="mb-1">Carrera</p>
-                                    <select class="form-control" name="career" value="">
+                                    <select class="form-control" name="career" value="" required>
                                         <option value="${alumno.career.id}">${alumno.career.name}</option>
                                         <c:forEach var="carrera" items="${listaCarreras}">
                                             <c:if test="${carrera.id != alumno.career.id}">

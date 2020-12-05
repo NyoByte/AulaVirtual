@@ -92,7 +92,7 @@
                     </div>
                     <div class="col">
                         <p class="mb-1">Correo Personal</p>
-                        <input class="form-control" type="text" name="email_priv" value="${profesor.email_priv}"/>
+                        <input class="form-control" type="text" name="email_priv" value="${profesor.email_priv}" required/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Género</p>

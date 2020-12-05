@@ -74,6 +74,7 @@
                     <h2>Gestión de Profesores</h2>
                     </p>
                 </div>
+                
                 <form action="/profesor" , method="GET">
                     <div class="form-row mb-3">
                         <div class="col-3">

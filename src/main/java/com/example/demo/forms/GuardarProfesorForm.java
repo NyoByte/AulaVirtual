@@ -10,8 +10,17 @@ public class GuardarProfesorForm {
     private String gender;
     private String pais;
     private String type;
+    private String id;
 
     public GuardarProfesorForm() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPhoto_url() {

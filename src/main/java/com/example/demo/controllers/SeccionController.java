@@ -64,27 +64,51 @@ public class SeccionController {
             PeriodoEntity periodoActual = periodos.get(1);
             idPeriodoActual = periodoActual.getId();
         }
-        SeccionEntity newSeccion = new SeccionEntity(null,codigo);
-        newSeccion.setCourse(cursoRep.findById(idCurso).get());             seccionRep.save(newSeccion);
-        newSeccion.setPeriodo(periodoRep.findById(idPeriodoActual).get());  seccionRep.save(newSeccion);
-        //Obtener profesores de la seccion
-        //Se debe buscar por codigo
-        ProfesorEntity opProfeT1 = profesorRep.findByCod(codProfe1);
-        ProfesorEntity opProfeT2 = profesorRep.findByCod(codProfe2);
-        //Asignar Profesores
-        List<ProfesorEntity> listaProfes =  new ArrayList<>();
-        if (opProfeT1 != null){
-            listaProfes.add(opProfeT1);
+        //Comprobar si existe
+        Optional<SeccionEntity> opSeccion = seccionRep.findById(Long.parseLong(form.getId()));
+        if(opSeccion.isPresent()) {
+            SeccionEntity seccion = opSeccion.get();
+            seccion.setCod(codigo);
+            seccion.setCourse(cursoRep.findById(idCurso).get());
+            seccionRep.save(seccion);
+            seccion.setPeriodo(periodoRep.findById(idPeriodoActual).get());
+            seccionRep.save(seccion);
+            ProfesorEntity opProfeT1 = profesorRep.findByCod(codProfe1);
+            ProfesorEntity opProfeT2 = profesorRep.findByCod(codProfe2);
+            if (opProfeT1 != null) {
+                seccion.getProfesor().set(0,opProfeT1);
+            }
+            if (opProfeT2 != null) {
+                seccion.getProfesor().set(1,opProfeT2);
+            }
+            seccionRep.save(seccion);
+            return "redirect:/seccion";
+        }else {
+            SeccionEntity newSeccion = new SeccionEntity(null, codigo);
+            newSeccion.setCourse(cursoRep.findById(idCurso).get());
+            seccionRep.save(newSeccion);
+            newSeccion.setPeriodo(periodoRep.findById(idPeriodoActual).get());
+            seccionRep.save(newSeccion);
+            //Obtener profesores de la seccion
+            //Se debe buscar por codigo
+            ProfesorEntity opProfeT1 = profesorRep.findByCod(codProfe1);
+            ProfesorEntity opProfeT2 = profesorRep.findByCod(codProfe2);
+            //Asignar Profesores
+            List<ProfesorEntity> listaProfes = new ArrayList<>();
+            if (opProfeT1 != null) {
+                listaProfes.add(opProfeT1);
+            }
+            if (opProfeT2 != null) {
+                listaProfes.add(opProfeT2);
+            }
+            newSeccion.setProfesor(listaProfes);
+            seccionRep.save(newSeccion);
+            //FALTA ASIGNAR ALUMNOS, PERO NYO NO SABE CÓMO HACERLO XD
+            //Obtener id del curso recién creado
+            Long id = newSeccion.getId();
+            String path = "redirect:/seccion?edit=true&seccion_id="+id;
+            return path;
         }
-        if (opProfeT2 != null){
-            listaProfes.add(opProfeT2);
-        }
-        newSeccion.setProfesor(listaProfes);
-        seccionRep.save(newSeccion);
-        //Obtener id del curso recién creado
-        Long id = newSeccion.getId();
-        String path = "redirect:/seccion?edit=true&seccion_id="+id;
-        return path;
     }
 
     @RequestMapping(value = "/seccion/eliminar/{id}", method = RequestMethod.POST)

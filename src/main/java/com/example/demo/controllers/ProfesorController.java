@@ -81,9 +81,9 @@ public class ProfesorController {
         Long idPais = Long.parseLong(form.getPais());
         Long idGenero = Long.parseLong(form.getGender());
 
-        ProfesorEntity profesor = profesorRep.findByCod(cod);
-
-        if (profesor != null) {
+        Optional<ProfesorEntity> opProfesor = profesorRep.findById(Long.parseLong(form.getId()));
+        if(opProfesor.isPresent()) {
+            ProfesorEntity profesor = opProfesor.get();
             // Editar un profesor existe
             profesor.setCod(cod);
             profesor.setFirst_name(first_name);

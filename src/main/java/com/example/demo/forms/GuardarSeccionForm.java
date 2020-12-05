@@ -5,12 +5,21 @@ public class GuardarSeccionForm {
     private String course;
     private String profesorT1_name;
     private String profesorT2_name;
+    private String id;
 
     public GuardarSeccionForm() {
     }
 
     public String getCod() {
         return cod;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setCod(String cod) {

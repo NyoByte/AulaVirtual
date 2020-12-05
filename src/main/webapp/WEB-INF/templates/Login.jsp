@@ -32,20 +32,20 @@
         </header>
     </div>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <form class="col-6 justify-content-center main-container" action="/login/entrando/${usuario}" method="post">
                 <div class="form-group text-center">
-                    <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-emoji-smile-upside-down"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0-1a8 8 0 1 1 0 16A8 8 0 0 1 8 0z"></path>
-                        <path fill-rule="evenodd"
-                            d="M4.285 6.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 4.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 3.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z">
-                        </path>
-                        <path
-                            d="M7 9.5C7 8.672 6.552 8 6 8s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5zm4 0c0-.828-.448-1.5-1-1.5s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5z">
-                        </path>
-                    </svg>
+                    <c:choose>
+                        <c:when test="${usuario=='administrador'}">
+                            <img class="card-img-top rounded mx-auto d-block imagen_perfil" src="https://www.seekpng.com/png/detail/412-4122743_administrador-con-tuercas-icono-vectorial-gratis-diseado-policy.png" alt="">
+                        </c:when>
+                        <c:when test="${usuario=='alumno'}">
+                            <img class="card-img-top rounded mx-auto d-block imagen_perfil" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv4oNwhMepzvfEhnHqFMh95zz8a5_0pVZHIA&usqp=CAU" alt="">
+                        </c:when>
+                        <c:otherwise>
+                            <img class="card-img-top rounded mx-auto d-block imagen_perfil" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ97K69vel5GDvBskD_vqTr93PXk4xDzL1-mg&usqp=CAU" alt="">
+                        </c:otherwise>
+                    </c:choose> 
                 </div>
                 <div class="form-group ">
                     <input type="text" class="form-control" required="true" placeholder="Usuario" name="username">

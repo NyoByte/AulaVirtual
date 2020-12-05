@@ -14,6 +14,7 @@ public class GuardarAlumnosForm {
     private String gender;
     private String career;
     private String pais;
+    private String id;
 
     public GuardarAlumnosForm() {
     }
@@ -120,5 +121,13 @@ public class GuardarAlumnosForm {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

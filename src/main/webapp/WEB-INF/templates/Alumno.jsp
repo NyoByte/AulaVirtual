@@ -89,7 +89,7 @@
                         <div class="col">
                             <p class="mb-1">Correo Personal</p>
                             <input class="form-control" type="text" name="email_priv"
-                                value="${alumno.email_priv}" />
+                                value="${alumno.email_priv}" required/>
                         </div>
                         <div class="col">
                             <p class="mb-1">Género</p>
@@ -103,15 +103,15 @@
                         </div>
                         <div class="col">
                             <p class="mb-1">TeamViewer Usuario</p>
-                            <input class="form-control" type="text" name="tv_user" value="${alumno.tv_user}" />
+                            <input class="form-control" type="text" name="tv_user" value="${alumno.tv_user}" required/>
                         </div>
                         <div class="col">
                             <p class="mb-1">TeamViewer Contraseña</p>
-                            <input class="form-control" type="text" name="tv_pw" value="${alumno.tv_pw}" />
+                            <input class="form-control" type="text" name="tv_pw" value="${alumno.tv_pw}" required/>
                         </div>
                         <div class="col">
                             <p class="mb-1">AnyDesk Credencial</p>
-                            <input class="form-control" type="text" name="ad_cred" value="${alumno.ad_cred}" />
+                            <input class="form-control" type="text" name="ad_cred" value="${alumno.ad_cred}" required/>
                         </div>
                     </div>
                     <div class="form-row mb-0">

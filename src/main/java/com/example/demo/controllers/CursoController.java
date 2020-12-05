@@ -53,8 +53,9 @@ public class CursoController {
         String name = form.getName();
         Long idCarrera = Long.parseLong(form.getCareer());
 
-        CursoEntity curso = cursoRep.findByCod(cod);
-        if (curso != null) {
+        Optional<CursoEntity> opCurso = cursoRep.findById(Long.parseLong(form.getId()));
+        if(opCurso.isPresent()){
+            CursoEntity curso = opCurso.get();
             // Editar un curso existe
             curso.setCod(cod);
             curso.setName(name);

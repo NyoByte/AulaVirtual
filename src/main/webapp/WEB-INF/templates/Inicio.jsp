@@ -32,7 +32,7 @@
         </header>
     </div>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <form class="col-6 justify-content-center main-container">
                 <h1 class="form-group text-center">
                     Bienvenido al Aula Virtual

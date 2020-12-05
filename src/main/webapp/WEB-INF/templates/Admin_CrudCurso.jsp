@@ -79,18 +79,19 @@
                                 <h2>Datos del Nuevo Curso</h2>
                                 </p>
                             </div>
+                            <input class="invisible" name="id" value="0" readonly="true" />
                             <div class="form-row mb-3">
                                 <div class="col-3">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" />
+                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" required/>
                                 </div>
                                 <div class="col-3">
                                     <p class="mb-1">Nombre</p>
-                                    <input class="form-control" type="text" maxlength="50" name="name" />
+                                    <input class="form-control" type="text" maxlength="50" name="name" required/>
                                 </div>
                                 <div class="col-3">
                                     <p class="mb-1">Carrera</p>
-                                    <select class="form-control" name="career">
+                                    <select class="form-control" name="career" required>
                                         <c:forEach var="carrera" items="${listaCarreras}">
                                             <option value="${carrera.id}">${carrera.name}</option>
                                         </c:forEach>
@@ -124,20 +125,21 @@
                                 <h2>Datos del Nuevo Curso</h2>
                                 </p>
                             </div>
+                            <input class="invisible" name="id" value="${curso.id}" readonly="true" />
                             <div class="form-row mb-3">
                                 <div class="col-2">
                                     <p class="mb-1">Código</p>
                                     <input class="form-control" type="number" min="1" max="99999999" name="cod"
-                                        value="${curso.cod}" />
+                                        value="${curso.cod}" required/>
                                 </div>
                                 <div class="col-4">
                                     <p class="mb-1">Nombre</p>
                                     <input class="form-control" type="text" maxlength="50" name="name"
-                                        value="${curso.name}" />
+                                        value="${curso.name}" required/>
                                 </div>
                                 <div class="col-3">
                                     <p class="mb-1">Carrera</p>
-                                    <select class="form-control" name="career">
+                                    <select class="form-control" name="career" required>
                                         <option value="${curso.career.id}">${curso.career.name}</option>
                                         <c:forEach var="carrera" items="${listaCarreras}">
                                             <c:if test="${carrera.id != curso.career.id}">
