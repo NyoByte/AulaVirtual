@@ -152,25 +152,24 @@ public class AulaVirtualController {
                 Pageable pageTen = PageRequest.of(Integer.parseInt(pagina),10);
                 //Obtener los alumnos
                 Page<AlumnoEntity> paginaAlumnos = alumnoRep.findAll(pageTen);
-                //Enviar numero de paginas al modelo
-                model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
-                model.addAttribute("pagActual", pagina);
 
                 //Convertir a lista
                 List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
                 //Filtro
-                if(kw_name!=null && kw_cod.equalsIgnoreCase("")){
-                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordName(kw_name.toUpperCase());
-                    model.addAttribute("listaAlumnos", filterAlumnos);
-                }else if(kw_name.equalsIgnoreCase("") && kw_cod!=null){
-                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordCode(kw_cod);
-                    model.addAttribute("listaAlumnos", filterAlumnos);
-                }else if(kw_name!=null && kw_cod!=null){
+                if(kw_name.equals("") && kw_cod.equals("")){
+                    //Enviar numero de paginas al modelo
+                    model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
+                    model.addAttribute("pagActual", pagina);
+                    model.addAttribute("listaAlumnos", alumnos);
+                }else if(!kw_name.equals("") && !kw_cod.equals("")){
                     List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
                     model.addAttribute("listaAlumnos", filterAlumnos);
-                }
-                else {
-                    model.addAttribute("listaAlumnos", alumnos);
+                }else if(kw_name.equals("")){
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordCode(kw_cod);
+                    model.addAttribute("listaAlumnos", filterAlumnos);
+                }else{
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordName(kw_name.toUpperCase());
+                    model.addAttribute("listaAlumnos", filterAlumnos);
                 }
                 return "Admin_CargaAlumnos";
             }
@@ -218,23 +217,25 @@ public class AulaVirtualController {
                 Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 10);
                 Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
 
-                model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
-                model.addAttribute("pagActual", pagina);
 
                 List<ProfesorEntity> profesores = paginaProfesores.getContent();
-                //Filtro
-                if(kw_name!=null && kw_cod.equalsIgnoreCase("")){
-                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
-                    model.addAttribute("listaProfesores", filterProfesores);
-                }else if(kw_name.equalsIgnoreCase("") && kw_cod!=null){
-                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
-                    model.addAttribute("listaProfesores", filterProfesores);
-                }else if(kw_name!=null && kw_cod!=null){
+
+                if(kw_name.equals("") && kw_cod.equals("")){
+                    //Enviar numero de paginas al modelo
+                    model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
+                    model.addAttribute("pagActual", pagina);
+                    model.addAttribute("listaProfesores", profesores);
+                }else if(!kw_name.equals("") && !kw_cod.equals("")){
                     List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
                     model.addAttribute("listaProfesores", filterProfesores);
-                }else {
-                    model.addAttribute("listaProfesores", profesores);
+                }else if(kw_name.equals("")){
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
+                    model.addAttribute("listaProfesores", filterProfesores);
+                }else{
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
+                    model.addAttribute("listaProfesores", filterProfesores);
                 }
+
                 return "Admin_CargaProfesores";
             }
         }else{
