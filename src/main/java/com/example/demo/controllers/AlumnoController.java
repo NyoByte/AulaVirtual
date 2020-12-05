@@ -101,6 +101,12 @@ public class AlumnoController {
                 newAlumno.setGender(opGenero.get());
                 alumnoRep.save(newAlumno);
             }
+
+            //Crear su usario
+            String user = newAlumno.getEmail_univ();
+            String pw = String.valueOf(newAlumno.getCod());
+            UsuarioAlumnoEntity usuario = new UsuarioAlumnoEntity(null,user,pw,newAlumno);
+            usuarioRep.save(usuario);
         }
         return "redirect:/alumno";
 
