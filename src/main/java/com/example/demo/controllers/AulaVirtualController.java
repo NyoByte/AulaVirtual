@@ -16,6 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -319,14 +320,17 @@ public class AulaVirtualController {
                     if(seccionSeleccionado.isPresent()) {
                         model.addAttribute("seccion", seccionSeleccionado.get());
                         List<ProfesorEntity> profes = seccionSeleccionado.get().getProfesor();
+                        /*if (profes.get(0)!=null) {
+                            if (profes.get(0).getType().getId() == 1) {
+                                model.addAttribute("profesorSeleccionadoT1", profes.get(0));
+                            }
+                        }*/
                         for (ProfesorEntity profe: profes){
                             //Solo habrá dos profes por su tipo
                             if(profe.getType().getId()==1){
-                                System.out.println(profe.getFirst_name());
                                 model.addAttribute("profesorSeleccionadoT1",profe);
-                                System.out.println(profe.getId());
-                            }else{
-                                System.out.println(profe.getFirst_name());
+                            }
+                            if(profe.getType().getId()==2){
                                 model.addAttribute("profesorSeleccionadoT2",profe);
                             }
                         }
@@ -335,16 +339,26 @@ public class AulaVirtualController {
                     model.addAttribute("seccion", null);
                 }
                 return "Admin_CrudSeccion";
-            }
-            else{
+            }else{
                 Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina),10);
                 Page<SeccionEntity> paginaSecciones = seccionRep.findAll(pageSizeTen);
 
                 model.addAttribute("numPaginas", paginaSecciones.getTotalPages());
                 model.addAttribute("pagActual", pagina);
 
-
                 List<SeccionEntity> secciones = paginaSecciones.getContent();
+                // Se hizo este refactor debido que mueve el orden de la lista de los profes de secciones
+                for (SeccionEntity seccion:secciones){
+                    System.out.println(seccion.getId());
+                    if(seccion.getProfesor().get(0).getType().getId()==2){
+                        ProfesorEntity p1 = seccion.getProfesor().get(0);
+                        ProfesorEntity p2 = seccion.getProfesor().get(1);
+                        if (p1.getType().getId() == 2){
+                            seccion.getProfesor().set(0,p2);
+                            seccion.getProfesor().set(1,p1);
+                        }
+                    }
+                }
                 model.addAttribute("listaSecciones",secciones);
                 return "Admin_CargaSecciones";
             }
