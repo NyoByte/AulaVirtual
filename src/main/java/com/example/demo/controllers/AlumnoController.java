@@ -101,6 +101,15 @@ public class AlumnoController {
                 newAlumno.setGender(opGenero.get());
                 alumnoRep.save(newAlumno);
             }
+<<<<<<< HEAD
+=======
+
+            //Crear su usuario
+            String user = newAlumno.getEmail_univ();
+            String pw = String.valueOf(newAlumno.getCod());
+            UsuarioAlumnoEntity usuario = new UsuarioAlumnoEntity(null,user,pw,newAlumno);
+            usuarioRep.save(usuario);
+>>>>>>> parent of 83b89e1... Revert "Preparando para drop"
         }
         return "redirect:/alumno";
 
@@ -123,6 +132,9 @@ public class AlumnoController {
                 seccionRep.save(seccion);
             }
             alumnoRep.delete(alumnoSeleccionado.get());
+            /*//Eliminar su usuario
+            UsuarioAlumnoEntity kUser = alumnoSeleccionado.get().getUsuarioAlumno();
+            usuarioRep.delete(kUser);*/
         }
         return  "redirect:/alumno";
     }
