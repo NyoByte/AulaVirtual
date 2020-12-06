@@ -178,10 +178,30 @@ public class ProfesorController {
         //Dividir lineas
         String[] profesores = data.split("\n");
         for(String profe: profesores){
+            profe = profe.trim();
             //Crear nuevo profesor
             String[] profDatos = profe.split(",");
             //public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv)
             ProfesorEntity newProf = new ProfesorEntity(null,Integer.parseInt(profDatos[0]),profDatos[1],profDatos[2],profDatos[3],profDatos[4]);
+
+            //Distinguir si es con fks o no
+            if(profDatos.length == 8){
+                //public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, GeneroEntity gender, PaisEntity pais, ProfesorTipoEntity type)
+                Optional<GeneroEntity> opGenero = generoRep.findById(Long.valueOf(profDatos[5]));
+                Optional<PaisEntity> opPais = paisRep.findById(Long.valueOf(profDatos[6]));
+                Optional<ProfesorTipoEntity> opProfesorTipo = tipoRep.findById(Long.valueOf(profDatos[7]));
+
+                if(opGenero.isPresent()){
+                    newProf.setGender(opGenero.get());
+                }
+                if(opPais.isPresent()){
+                    newProf.setPais(opPais.get());
+                }
+                if(opProfesorTipo.isPresent()){
+                    newProf.setType(opProfesorTipo.get());
+                }
+            }
+
             //Guardar nuevo registro en bd
             profesorRep.save(newProf);
         }
