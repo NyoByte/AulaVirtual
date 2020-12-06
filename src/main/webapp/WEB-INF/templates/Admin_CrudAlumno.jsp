@@ -292,6 +292,7 @@
                                             </svg>Actualizar Datos</button>
                                     </div>
                                     <div class="px-2">
+                                        <form  action="/upload" method="POST" enctype="multipart/form-data">
                                         <p class="mb-1">&nbsp</p>
                                         <button class="btn btn-success" id="boton_selec_foto" type="button"><svg
                                                 width="2em" height="1.5em" viewBox="0 0 16 16"
@@ -303,7 +304,7 @@
                                                 <path fill-rule="evenodd"
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
                                             </svg>Seleccionar Foto</button>
-                                        <input type="file" id="input_foto"
+                                        <input type="file" name="file" id="input_foto"
                                             onchange="handleIMG(this.files), previewImage(event)" accept="image/*"
                                             style="display: none">
 
@@ -311,8 +312,7 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <form onsubmit="return enviar(this)" action="/test"  method="POST">
-                                            <button class="btn btn-warning" type="button"><svg width="2em"
+                                            <button class="btn btn-warning" type="button" value="Cargar"><svg width="2em"
                                                     height="1.5em" viewBox="0 0 16 16" class="bi bi-cloud-arrow-up-fill"
                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd"

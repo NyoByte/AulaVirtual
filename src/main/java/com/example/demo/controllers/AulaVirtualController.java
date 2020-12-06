@@ -474,10 +474,9 @@ public class AulaVirtualController {
     }
 
     /* FUNCIONES */
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    @ResponseBody
-    public String testing(Model model) {
-        return "testing";
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String testing() {
+        return "upload";
     }
 
 }
