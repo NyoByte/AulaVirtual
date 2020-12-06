@@ -329,11 +329,13 @@ public class AulaVirtualController {
             //Obtener la entidad del profesor actual
             ProfesorEntity profesorSeleccionado = (ProfesorEntity) sesion.getAttribute("identificador");
             model.addAttribute("profesor",profesorSeleccionado);
+
             ProfesorEntity profesor = profesorRep.findById(profesorSeleccionado.getId()).get();
             //Obtener su lista de secciones
             List<SeccionEntity> listaSecciones = profesor.getSecciones();
             model.addAttribute("listaSecciones", listaSecciones);
             //Seccion para mostrar
+
             if(seccionId.isPresent()){
                 Optional<SeccionEntity> opSeccionSeleccionada = seccionRep.findById(Long.parseLong(seccionId.get()));
                 if(opSeccionSeleccionada.isPresent()){

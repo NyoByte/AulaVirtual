@@ -105,7 +105,7 @@
                                 <td>${alumno.ad_cred}</td>
                                 <td>${alumno.tv_user}</td>
                                 <td>${alumno.tv_pw}</td>
-                                <td class="pl-4 ope-td"><a href="/seccion?seccion_id=${seccionBuscada}"><svg width="1.5em" height="1.5em"
+                                <td class="pl-4 ope-td"><a href="/seccion?edit=true&seccion_id=${alumno.id}"><svg width="1.5em" height="1.5em"
                                             stroke="black" viewBox="0 0 16 16" class="bi bi-arrow-repeat"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path
