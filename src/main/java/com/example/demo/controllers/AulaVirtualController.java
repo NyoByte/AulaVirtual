@@ -474,9 +474,18 @@ public class AulaVirtualController {
     }
 
     /* FUNCIONES */
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
     public String testing(Model model) {
+        String prueba = "20302602, Nombre11, Apellido11, 20302602@aloe.ulima.edu.pe, correop11@hotmail.com,user15, pw15, ZZXX4,,1,,";
+        prueba = prueba.replace(" ","");
+        String[] pruebaArray = prueba.split(",");
+        int i=0;
+        for (String dato: pruebaArray){
+            i++;
+            System.out.println("-"+dato+"-"+i);
+            if (dato.equals("")) System.out.println("vacio");
+        }
         return "testing";
     }
 
