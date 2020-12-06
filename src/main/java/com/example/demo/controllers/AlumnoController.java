@@ -156,10 +156,30 @@ public class AlumnoController {
 
         //Tratar linea x linea
         for(String alumno: alumnos){
+            alumno = alumno.trim();
             String[] alDatos = alumno.split(",");
             //Crear nuevo alumno
             //public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred)
             AlumnoEntity newAl = new AlumnoEntity(null, Integer.parseInt(alDatos[0]),alDatos[1],alDatos[2], alDatos[3], alDatos[4],alDatos[5],alDatos[6],alDatos[7]);
+
+            //Distinguir si es con fk o sin
+            if(alDatos.length == 11){
+                //public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, GeneroEntity gender, CarreraEntity career, PaisEntity pais)
+                Optional<GeneroEntity> opGenero = generoRep.findById(Long.valueOf(alDatos[8]));
+                Optional<CarreraEntity> opCarrera = carreraRep.findById(Long.valueOf(alDatos[9]));
+                Optional<PaisEntity> opPais = paisRep.findById(Long.valueOf(alDatos[10]));
+                if(opGenero.isPresent()){
+                    newAl.setGender(opGenero.get());
+                }
+                if(opCarrera.isPresent()){
+                    newAl.setCareer(opCarrera.get());
+
+                }
+                if(opPais.isPresent()){
+                    newAl.setPais(opPais.get());
+                }
+            }
+
             alumnoRep.save(newAl);
         }
         return "redirect:/alumno";
