@@ -407,7 +407,7 @@
                                         <td>${alumno.career.name}</td>
                                         <td>${alumno.gender.name}</td>
                                         <td id="boton_borrar" class="pl-4 ope-td">
-                                            <form action="/#" method="POST"><button class="btn btn-link p-0 border-0"
+                                            <form action="/seccion/quitar_alumno/${seccion.id}/${alumno.id}" method="POST"><button class="btn btn-link p-0 border-0"
                                                     type="submit"
                                                     onclick="return confirm('¿Está seguro de eliminar?')"><svg
                                                         width="1.5em" height="1.5em" stroke="black" viewBox="0 0 16 16"

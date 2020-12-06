@@ -169,7 +169,7 @@ public class SeccionController {
         //Dividir lineas
         String[] alumnos = data.split("\n");
         //Crear lista para almacenar alumnos
-        List<AlumnoEntity> listaAlumnos = new ArrayList<>();
+        List<AlumnoEntity> listaAlumnosFinal = new ArrayList<>();
         //Tratar linea x linea
         for(String alumno: alumnos){
             String[] alDatos = alumno.split(",");
@@ -180,41 +180,58 @@ public class SeccionController {
                 AlumnoEntity newAl = new AlumnoEntity(null, Integer.parseInt(alDatos[0]), alDatos[1], alDatos[2], alDatos[3], alDatos[4], alDatos[5], alDatos[6], alDatos[7]);
                 alumnoRep.save(newAl);
                 //Almacenar en la lista al alumno nuevo
-                listaAlumnos.add(newAl);
+                listaAlumnosFinal.add(newAl);
                 //Crear su usuario
                 String user = newAl.getEmail_univ();
                 String pw = String.valueOf(newAl.getCod());
                 UsuarioAlumnoEntity usuario = new UsuarioAlumnoEntity(null,user,pw,newAl);
                 usuarioRep.save(usuario);
+                System.out.println("==0==");
             }else{
                 //Almacenar en la lista al alumno existente
                 //Verificar que no esté en la seccionActual
                 Boolean encontrado = false;
                 Optional<SeccionEntity> opSeccion = seccionRep.findById(Long.parseLong(id));
                 if (opSeccion.isPresent()){
-                    List<AlumnoEntity> listAlumnosVe = opSeccion.get().getAlumnos();
-                    for (AlumnoEntity alum: listAlumnosVe){
+                    List<AlumnoEntity> listaAlumnosSeccionActual = opSeccion.get().getAlumnos();
+                    for (AlumnoEntity alum: listaAlumnosSeccionActual){
                         if (alum.getId()==alumnoBuscado.getId()){
                             encontrado = true;
                             break;
                         }
                     }
                     if (!encontrado){
-                        listaAlumnos.add(alumnoBuscado);
+                        listaAlumnosFinal.add(alumnoBuscado);
                     }
-                }
+                    //Alumnos que ya estaban en la seccion
+                    // ============================================
 
+                }
             }
         }
+        Optional<SeccionEntity> opSeccionT = seccionRep.findById(Long.parseLong(id));
+        List<AlumnoEntity> listaAntigua = opSeccionT.get().getAlumnos();
+        listaAlumnosFinal.addAll(listaAntigua);
         //Relacionar con la seccion
         Long idSeccion = Long.parseLong(id);
         Optional<SeccionEntity> tempSeccion = seccionRep.findById(idSeccion);
         if (tempSeccion.isPresent()){
             //Encontrado
-            tempSeccion.get().setAlumnos(listaAlumnos);  seccionRep.save(tempSeccion.get());
+            tempSeccion.get().setAlumnos(listaAlumnosFinal);  seccionRep.save(tempSeccion.get());
         }
         String path  = "redirect:/seccion?edit=true&seccion_id="+id;
         return path;
 
     }
+    @RequestMapping(value = "/seccion/quitar_alumno/{seccionId}/{alumnoId}", method = RequestMethod.POST)
+    public String eliminarAlumnoSeccion(@PathVariable String seccionId, @PathVariable String alumnoId) {
+        Optional<SeccionEntity> opSeccion = seccionRep.findById(Long.parseLong(seccionId));
+        Optional<AlumnoEntity> opAlumno = alumnoRep.findById(Long.parseLong(alumnoId));
+        opSeccion.get().getAlumnos().remove(opAlumno.get());
+        seccionRep.save(opSeccion.get());
+        String path  = "redirect:/seccion?edit=true&seccion_id="+seccionId;
+        return path;
+    }
+
+
 }
