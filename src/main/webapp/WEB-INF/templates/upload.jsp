@@ -13,24 +13,11 @@
 </head>
 
 <body class="fondo">
-    <div class="">
-    <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Contraseña</th>
-            </tr>
-    </thead>
-        <tbody>
-        <c:forEach var="usuario" items="${listaUsuarios}">
-            <tr>
-                <td scope="row">${usuario.id}</td>
-                <td>${usuario.user}</td>
-                <td>${usuario.pw}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </div>
+    <h1>asdasd</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" value="Cargar" />
+    </form>
 </body>
 
 </html>
