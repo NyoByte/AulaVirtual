@@ -26,6 +26,7 @@ public class FileUploadController {
         StringBuilder builder = new StringBuilder();
         builder.append(RUTA_UPLOAD2);
         builder.append(file.getOriginalFilename());
+        System.out.println(builder.toString());
 
         byte[] fileBytes = file.getBytes();
         Path path = Paths.get(builder.toString());
