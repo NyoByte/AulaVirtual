@@ -2,10 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.forms.GuardarAlumnosForm;
 import com.example.demo.forms.GuardarSeccionForm;
-import com.example.demo.model.dao.AlumnoEntity;
-import com.example.demo.model.dao.PeriodoEntity;
-import com.example.demo.model.dao.ProfesorEntity;
-import com.example.demo.model.dao.SeccionEntity;
+import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,5 +155,66 @@ public class SeccionController {
         }
         return  "redirect:/seccion";
     }
+    @RequestMapping(value = "/seccion/guardar_alumnos/{id}", method = RequestMethod.POST)
+    public String guardarCSV(@RequestParam MultipartFile file, @PathVariable String id) throws IOException {
+        //Leer el archivo
+        InputStream inputStream = file.getInputStream();
+        byte[] bArray = new byte[inputStream.available()];
+        inputStream.read(bArray);
+        //Transformar bytes a String
+        String data = new String(bArray);
+        inputStream.close();
+        //Remover espacios en blanco
+        data = data.replaceAll(" ","");
+        //Dividir lineas
+        String[] alumnos = data.split("\n");
+        //Crear lista para almacenar alumnos
+        List<AlumnoEntity> listaAlumnos = new ArrayList<>();
+        //Tratar linea x linea
+        for(String alumno: alumnos){
+            String[] alDatos = alumno.split(",");
+            //Crear nuevo alumno
+            //public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred)
+            AlumnoEntity alumnoBuscado = alumnoRep.findByCod(Integer.parseInt(alDatos[0]));
+            if (alumnoBuscado==null) {
+                AlumnoEntity newAl = new AlumnoEntity(null, Integer.parseInt(alDatos[0]), alDatos[1], alDatos[2], alDatos[3], alDatos[4], alDatos[5], alDatos[6], alDatos[7]);
+                alumnoRep.save(newAl);
+                //Almacenar en la lista al alumno nuevo
+                listaAlumnos.add(newAl);
+                //Crear su usuario
+                String user = newAl.getEmail_univ();
+                String pw = String.valueOf(newAl.getCod());
+                UsuarioAlumnoEntity usuario = new UsuarioAlumnoEntity(null,user,pw,newAl);
+                usuarioRep.save(usuario);
+            }else{
+                //Almacenar en la lista al alumno existente
+                //Verificar que no esté en la seccionActual
+                Boolean encontrado = false;
+                Optional<SeccionEntity> opSeccion = seccionRep.findById(Long.parseLong(id));
+                if (opSeccion.isPresent()){
+                    List<AlumnoEntity> listAlumnosVe = opSeccion.get().getAlumnos();
+                    for (AlumnoEntity alum: listAlumnosVe){
+                        if (alum.getId()==alumnoBuscado.getId()){
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado){
+                        listaAlumnos.add(alumnoBuscado);
+                    }
+                }
 
+            }
+        }
+        //Relacionar con la seccion
+        Long idSeccion = Long.parseLong(id);
+        Optional<SeccionEntity> tempSeccion = seccionRep.findById(idSeccion);
+        if (tempSeccion.isPresent()){
+            //Encontrado
+            tempSeccion.get().setAlumnos(listaAlumnos);  seccionRep.save(tempSeccion.get());
+        }
+        String path  = "redirect:/seccion?edit=true&seccion_id="+id;
+        return path;
+
+    }
 }

@@ -373,8 +373,6 @@ public class AulaVirtualController {
             if(edit.equalsIgnoreCase("true")){
                 List<CursoEntity> cursos = cursoRep.findAll();
                 model.addAttribute("listaCursos",cursos);
-                List<AlumnoEntity> alumnos = alumnoRep.findAll();
-                model.addAttribute("listaAlumnos",alumnos);
 
                 List<ProfesorEntity> profesorT1 = profesorRep.findTipoProfesor();
                 model.addAttribute("listaProfesoresT1",profesorT1);
@@ -383,15 +381,12 @@ public class AulaVirtualController {
                 model.addAttribute("listaProfesoresT2",profesorT2);
 
                 if(!seccionId.isEmpty()){
+
                     Optional<SeccionEntity> seccionSeleccionado = seccionRep.findById(Long.parseLong(seccionId.get()));
                     if(seccionSeleccionado.isPresent()) {
                         model.addAttribute("seccion", seccionSeleccionado.get());
+                        // Mandarle Profesores
                         List<ProfesorEntity> profes = seccionSeleccionado.get().getProfesor();
-                        /*if (profes.get(0)!=null) {
-                            if (profes.get(0).getType().getId() == 1) {
-                                model.addAttribute("profesorSeleccionadoT1", profes.get(0));
-                            }
-                        }*/
                         for (ProfesorEntity profe: profes){
                             //Solo habrá dos profes por su tipo
                             if(profe.getType().getId()==1){
@@ -401,7 +396,23 @@ public class AulaVirtualController {
                                 model.addAttribute("profesorSeleccionadoT2",profe);
                             }
                         }
+                        // Mandarle Alumnos
+                        List<AlumnoEntity> listaAlumnos = seccionSeleccionado.get().getAlumnos();
+
+                        PagedListHolder<AlumnoEntity> alumosP = new PagedListHolder<>(listaAlumnos);
+                        alumosP.setPageSize(10);
+                        //Mandar datos para las flechas
+                        model.addAttribute("numPaginas", alumosP.getPageCount());
+                        model.addAttribute("pagActual", pagina);
+                        //Mandar página actual del filtro
+                        alumosP.setPage(Integer.parseInt(pagina));
+                        //Obtener la lista de alumnos y seccion buscada para el refresh
+                        model.addAttribute("listaAlumnos", alumosP.getPageList());
+                        model.addAttribute("seccionBuscada",seccionId.get());
+                        String path  = "?edit=true&seccion_id="+seccionId.get();
+                        model.addAttribute("filtro",path);
                     }
+
                 }else{
                     model.addAttribute("seccion", null);
                 }
