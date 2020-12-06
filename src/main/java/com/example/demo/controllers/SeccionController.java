@@ -99,7 +99,10 @@ public class SeccionController {
                 }
             }
             seccionRep.save(seccion);
+
+
             return "redirect:/seccion";
+
         }else {
             // Crear nuevo
             if (form.getProfesorT2_name().isEmpty()){
@@ -112,8 +115,7 @@ public class SeccionController {
             seccionRep.save(newSeccion);
             newSeccion.setPeriodo(periodoRep.findById(idPeriodoActual).get());
             seccionRep.save(newSeccion);
-            //Obtener profesores de la seccion
-            //Se debe buscar por codigo
+            //Obtener profesores de la seccion, Se debe buscar por codigo
             ProfesorEntity opProfeT1 = profesorRep.findByCod(codProfe1);
             ProfesorEntity opProfeT2 = profesorRep.findByCod(codProfe2);
             //Asignar Profesores
@@ -126,7 +128,10 @@ public class SeccionController {
             }
             newSeccion.setProfesor(listaProfes);
             seccionRep.save(newSeccion);
-            //FALTA ASIGNAR ALUMNOS, PERO NYO NO SABE CÓMO HACERLO XD
+            //Asignar Alunos
+
+
+
             //Obtener id del curso recién creado
             Long id = newSeccion.getId();
             String path = "redirect:/seccion?edit=true&seccion_id="+id;

@@ -75,7 +75,7 @@ public class AlumnoController {
             alumno.setTv_user(tv_user);
             alumno.setTv_pw(tv_pw);
             alumno.setAd_cred(ad_cred);
-            alumno.setPhoto_url("newFoto.img");
+            alumno.setPhoto_url(photo_url);
 
             alumno.setCareer(carreraRep.findById(idCarrera).get()); alumnoRep.save(alumno);
             alumno.setPais(paisRep.findById(idPais).get());         alumnoRep.save(alumno);

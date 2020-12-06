@@ -3,6 +3,11 @@ package com.example.demo.controllers;
 import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
@@ -18,6 +23,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -433,8 +443,16 @@ public class AulaVirtualController {
                 if(opSeccionSeleccionada.isPresent()){
                     SeccionEntity seccionSeleccionada = opSeccionSeleccionada.get();
                     List<AlumnoEntity> listaAlumnos = seccionSeleccionada.getAlumnos();
-                    //Obtener la lista de alumnos y seccuion buscada para el refresh
-                    model.addAttribute("listaAlumnos",listaAlumnos);
+
+                    PagedListHolder<AlumnoEntity> alumnos = new PagedListHolder<>(listaAlumnos);
+                    alumnos.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", alumnos.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandar página actual del filtro
+                    alumnos.setPage(Integer.parseInt(pagina));
+                    //Obtener la lista de alumnos y seccion buscada para el refresh
+                    model.addAttribute("listaAlumnos", alumnos.getPageList());
                     model.addAttribute("seccionBuscada",seccionId.get());
                 }
             }
@@ -445,11 +463,9 @@ public class AulaVirtualController {
     }
 
     /* FUNCIONES */
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
     @ResponseBody
     public String testing(Model model) {
-        List<UsuarioAlumnoEntity> admin =  usuarioRep.findUsuarioAlumno();
-        model.addAttribute("listaUsuarios",admin);
         return "testing";
     }
 
