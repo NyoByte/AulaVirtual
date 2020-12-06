@@ -79,32 +79,33 @@
                                 <h2>Datos del Nuevo Profesor</h2>
                                 </p>
                             </div>
+                            <input class="invisible" name="id" value="0" readonly="true" />
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" />
+                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
-                                    <input class="form-control" type="text" maxlength="50" name="first_name" />
+                                    <input class="form-control" type="text" maxlength="50" name="first_name" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
-                                    <input class="form-control" type="text" maxlength="50" name="last_name" />
+                                    <input class="form-control" type="text" maxlength="50" name="last_name" required/>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="email" maxlength="50" name="email_univ" />
+                                    <input class="form-control" type="email" maxlength="50" name="email_univ" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
-                                    <input class="form-control" type="email" maxlength="50" name="email_priv" />
+                                    <input class="form-control" type="email" maxlength="50" name="email_priv" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" required>
                                         <c:forEach var="genero" items="${listaGeneros}">
                                             <option value="${genero.id}">${genero.name}</option>
                                         </c:forEach>
@@ -114,7 +115,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <select class="form-control" type="text" name="pais" />
+                                    <select class="form-control" type="text" name="pais" required/>
                                     <c:forEach var="pais" items="${listaPaises}">
                                         <option value="${pais.id}">${pais.name}</option>
                                     </c:forEach>
@@ -122,7 +123,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Tipo de Docente</p>
-                                    <select class="form-control" name="type">
+                                    <select class="form-control" name="type" required>
                                         <c:forEach var="tipo" items="${listaTipos}">
                                             <option value="${tipo.id}">${tipo.name}</option>
                                         </c:forEach>
@@ -133,16 +134,16 @@
                                 <div class="form-row m-0">
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
+                                        <button class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
                                                 stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Actualizar Datos</a>
+                                            </svg>Actualizar Datos</button>
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-success" type="submit"><svg width="2em" height="1.5em"
+                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -150,7 +151,8 @@
                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                 <path fill-rule="evenodd"
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
-                                            </svg>Seleccionar Foto</a>
+                                            </svg>Seleccionar Foto</button>
+                                            <input type="file" id="input_foto" onchange="handleIMG(this.files), previewImage(event)"  accept="image/*" style="display: none">
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
@@ -165,7 +167,8 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
+                            <img class="img-fluid" id="image-field" src="/images/default_profile_image.jpg">
+                            <span id="visor_foto" class="justify-content-center row"></span>
                         </div>
                     </div>
                 </div>
@@ -181,37 +184,38 @@
                                 <h2>Datos del Nuevo Profesor</h2>
                                 </p>
                             </div>
+                            <input class="invisible" name="id" value="${profesor.id}" readonly="true" />
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
                                     <input class="form-control" type="number" min="1" max="99999999" name="cod"
-                                        value="${profesor.cod}" />
+                                        value="${profesor.cod}"    required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
                                     <input class="form-control" type="text" maxlength="50" name="first_name"
-                                        value="${profesor.first_name}" />
+                                        value="${profesor.first_name}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Apellidos</p>
                                     <input class="form-control" type="text" maxlength="50" name="last_name"
-                                        value="${profesor.last_name}" />
+                                        value="${profesor.last_name}"  required/>
                                 </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
                                     <input class="form-control" type="email" maxlength="50" name="email_univ"
-                                        value="${profesor.email_univ}" />
+                                        value="${profesor.email_univ}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
                                     <input class="form-control" type="email" maxlength="50" name="email_priv"
-                                        value="${profesor.email_priv}" />
+                                        value="${profesor.email_priv}" required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" required>
                                         <option value="${profesor.gender.id}">${profesor.gender.name}</option>
                                         <c:forEach var="genero" items="${listaGeneros}">
                                             <c:if test="${genero.id != profesor.gender.id}">
@@ -224,7 +228,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">País</p>
-                                    <select class="form-control" type="text" name="pais" />
+                                    <select class="form-control" type="text" name="pais" required/>
                                     <option value="${profesor.pais.id}">${profesor.pais.name}</option>
                                     <c:forEach var="pais" items="${listaPaises}">
                                         <c:if test="${pais.id != profesor.pais.id}">
@@ -235,8 +239,8 @@
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Tipo de Docente</p>
-                                    <select class="form-control" name="type">
-                                        <option value="$profesor.type.id">${profesor.type.name}</option>
+                                    <select class="form-control" name="type" required>
+                                        <option value="${profesor.type.id}">${profesor.type.name}</option>
                                         <c:forEach var="tipo" items="${listaTipos}">
                                             <c:if test="${tipo.id != profesor.type.id}">
                                                 <option value="${tipo.id}">${tipo.name}</option>
@@ -249,16 +253,16 @@
                                 <div class="form-row m-0">
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-primary" type="submit"><svg width="1.5em" height="1.5em"
+                                        <button class="btn btn-primary"  type="submit"><svg width="1.5em" height="1.5em"
                                                 stroke="white" viewBox="0 0 16 16" class="bi bi-check2"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                            </svg>Actualizar Datos</a>
+                                            </svg>Actualizar Datos</button>
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-success" type="button"><svg width="2em" height="1.5em"
+                                        <button class="btn btn-success" id="boton_selec_foto" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-file-earmark-code" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -266,7 +270,8 @@
                                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
                                                 <path fill-rule="evenodd"
                                                     d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
-                                            </svg>Seleccionar Foto</a>
+                                            </svg>Seleccionar Foto</button>
+                                             <input type="file" id="input_foto" onchange="handleIMG(this.files), previewImage(event)"  accept="image/*" style="display: none">
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
@@ -281,7 +286,8 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
+                            <img class="img-fluid" id="image-field" src="/images/default_profile_image.jpg">
+                            <span id="visor_foto" class="justify-content-center row"></span>
                         </div>
                     </div>
                 </div>
@@ -340,6 +346,7 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
     <script src="/js/index.js"></script>
+    <script src="/js/SeleccionarFoto.js"></script>
 </body>
 
 </html>

@@ -1,22 +1,34 @@
 package com.example.demo.forms;
 
-public class GuardarAlumnosForm {
+public class GuardarProfesorForm {
     private String cod;
     private String first_name;
     private String last_name;
     private String email_univ;
     private String email_priv;
-    private String tv_user;
-    private String tv_pw;
-    private String ad_cred;
     private String photo_url;
-    private String seccion;
     private String gender;
-    private String career;
     private String pais;
+    private String type;
     private String id;
 
-    public GuardarAlumnosForm() {
+    public GuardarProfesorForm() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPhoto_url() {
+        return photo_url;
+    }
+
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
     }
 
     public String getCod() {
@@ -59,60 +71,12 @@ public class GuardarAlumnosForm {
         this.email_priv = email_priv;
     }
 
-    public String getTv_user() {
-        return tv_user;
-    }
-
-    public void setTv_user(String tv_user) {
-        this.tv_user = tv_user;
-    }
-
-    public String getTv_pw() {
-        return tv_pw;
-    }
-
-    public void setTv_pw(String tv_pw) {
-        this.tv_pw = tv_pw;
-    }
-
-    public String getAd_cred() {
-        return ad_cred;
-    }
-
-    public void setAd_cred(String ad_cred) {
-        this.ad_cred = ad_cred;
-    }
-
-    public String getPhoto_url() {
-        return photo_url;
-    }
-
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
-    }
-
-    public String getSeccion() {
-        return seccion;
-    }
-
-    public void setSeccion(String seccion) {
-        this.seccion = seccion;
-    }
-
     public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getCareer() {
-        return career;
-    }
-
-    public void setCareer(String career) {
-        this.career = career;
     }
 
     public String getPais() {
@@ -123,11 +87,11 @@ public class GuardarAlumnosForm {
         this.pais = pais;
     }
 
-    public String getId() {
-        return id;
+    public String getType() {
+        return type;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setType(String type) {
+        this.type = type;
     }
 }

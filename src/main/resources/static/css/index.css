@@ -48,3 +48,27 @@ a{
     stroke: black;
     fill: currentColor;
 }
+.image-preview{
+    width: 300px,
+    min-height:100px;
+    border: 2px solid;
+    margin-top: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight:bold;
+    color: #cccccc;
+}
+.image-preview__image{
+    display: none;
+    width: 100%
+}
+
+.imagen_perfil{
+    max-width: 50%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

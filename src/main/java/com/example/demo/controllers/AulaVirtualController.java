@@ -4,9 +4,11 @@ import com.example.demo.forms.LoginForm;
 import com.example.demo.model.dao.*;
 import com.example.demo.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,12 +67,19 @@ public class AulaVirtualController {
         if((boolean)sesion.getAttribute("esProfesor")){
             //Si es profesor
             ProfesorEntity profesorSeleccionado = (ProfesorEntity) sesion.getAttribute("identificador");
-            model.addAttribute("profesor",profesorSeleccionado);
+            Optional<ProfesorEntity> profesorBD = profesorRep.findById(profesorSeleccionado.getId());
+            if(profesorBD.isPresent()) {
+                model.addAttribute("profesor", profesorBD.get());
+            }
             return "Profesor";
         }else if((boolean)sesion.getAttribute("esAlumno")){
             //Si es alumno
             AlumnoEntity alumnoSeleccionado = (AlumnoEntity) sesion.getAttribute("identificador");
-            model.addAttribute("alumno",alumnoSeleccionado);
+            //Buscar al alumno logueado
+            Optional<AlumnoEntity> alumnoBD = alumnoRep.findById(alumnoSeleccionado.getId());
+            if(alumnoBD.isPresent()) {
+                model.addAttribute("alumno", alumnoBD.get());
+            }
             return "Alumno";
         }else if((boolean)sesion.getAttribute("esAdministrador")){
             //No hay pagina principal para administrador, se le redirige a gestionar profesores
@@ -140,29 +150,54 @@ public class AulaVirtualController {
                 return "Admin_CrudAlumno";
             }
             else{
-                //Setear numero y tamaño de pagina
-                Pageable pageTen = PageRequest.of(Integer.parseInt(pagina),10);
-                //Obtener los alumnos
-                Page<AlumnoEntity> paginaAlumnos = alumnoRep.findAll(pageTen);
-                //Enviar numero de paginas al modelo
-                model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
-                model.addAttribute("pagActual", pagina);
-
-                //Convertir a lista
-                List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 10);
                 //Filtro
-                if(kw_name!=null && kw_cod.equalsIgnoreCase("")){
-                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordName(kw_name.toUpperCase());
-                    model.addAttribute("listaAlumnos", filterAlumnos);
-                }else if(kw_name.equalsIgnoreCase("") && kw_cod!=null){
-                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordCode(kw_cod);
-                    model.addAttribute("listaAlumnos", filterAlumnos);
-                }else if(kw_name!=null && kw_cod!=null){
-                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
-                    model.addAttribute("listaAlumnos", filterAlumnos);
-                }
-                else {
+                if(kw_name.equals("") && kw_cod.equals("")){
+                    //Enviar numero de paginas al modelo
+                    Page<AlumnoEntity> paginaAlumnos = alumnoRep.findAll(pageSizeTen);
+                    model.addAttribute("numPaginas", paginaAlumnos.getTotalPages());
+                    model.addAttribute("pagActual", pagina);
+                    List<AlumnoEntity> alumnos = paginaAlumnos.getContent();
                     model.addAttribute("listaAlumnos", alumnos);
+                }else if(!kw_name.equals("") && !kw_cod.equals("")){
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
+                    PagedListHolder<AlumnoEntity> alumnos = new PagedListHolder<>(filterAlumnos);
+                    alumnos.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", alumnos.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    alumnos.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaAlumnos", alumnos.getPageList());
+                }else if(kw_name.equals("")){
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordCode(kw_cod);
+                    PagedListHolder<AlumnoEntity> alumnos = new PagedListHolder<>(filterAlumnos);
+                    alumnos.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", alumnos.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    alumnos.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaAlumnos", alumnos.getPageList());
+                }else{
+                    List<AlumnoEntity> filterAlumnos = alumnoRep.findByKeywordName(kw_name.toUpperCase());
+                    PagedListHolder<AlumnoEntity> alumnos = new PagedListHolder<>(filterAlumnos);
+                    alumnos.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", alumnos.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    alumnos.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaAlumnos", alumnos.getPageList());
                 }
                 return "Admin_CargaAlumnos";
             }
@@ -208,25 +243,55 @@ public class AulaVirtualController {
             //http://localhost:8080/profesor
             else{
                 Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina), 10);
-                Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
-
-                model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
-                model.addAttribute("pagActual", pagina);
-
-                List<ProfesorEntity> profesores = paginaProfesores.getContent();
                 //Filtro
-                if(kw_name!=null && kw_cod.equalsIgnoreCase("")){
-                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
-                    model.addAttribute("listaProfesores", filterProfesores);
-                }else if(kw_name.equalsIgnoreCase("") && kw_cod!=null){
-                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
-                    model.addAttribute("listaProfesores", filterProfesores);
-                }else if(kw_name!=null && kw_cod!=null){
-                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
-                    model.addAttribute("listaProfesores", filterProfesores);
-                }else {
+                if(kw_name.equals("") && kw_cod.equals("")){
+                    //Enviar numero de paginas al modelo
+                    Page<ProfesorEntity> paginaProfesores = profesorRep.findAll(pageSizeTen);
+                    model.addAttribute("numPaginas", paginaProfesores.getTotalPages());
+                    model.addAttribute("pagActual", pagina);
+                    List<ProfesorEntity> profesores = paginaProfesores.getContent();
                     model.addAttribute("listaProfesores", profesores);
+                }else if(!kw_name.equals("") && !kw_cod.equals("")){
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordNameAndCode(kw_name.toUpperCase(), kw_cod);
+                    PagedListHolder<ProfesorEntity> profesores = new PagedListHolder<>(filterProfesores);
+                    profesores.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", profesores.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    profesores.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaProfesores", profesores.getPageList());
+                }else if(kw_name.equals("")){
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordCode(kw_cod);
+                    PagedListHolder<ProfesorEntity> profesores = new PagedListHolder<>(filterProfesores);
+                    profesores.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", profesores.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    profesores.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaProfesores", profesores.getPageList());
+                }else{
+                    List<ProfesorEntity> filterProfesores = profesorRep.findByKeywordName(kw_name.toUpperCase());
+                    PagedListHolder<ProfesorEntity> profesores = new PagedListHolder<>(filterProfesores);
+                    profesores.setPageSize(10);
+                    //Mandar datos para las flechas
+                    model.addAttribute("numPaginas", profesores.getPageCount());
+                    model.addAttribute("pagActual", pagina);
+                    //Mandarle ruta cuando es filtro
+                    String path = "?kw_cod="+kw_cod+"&kw_name="+kw_name;
+                    model.addAttribute("filtro",path);
+                    //Mandar página actual del filtro
+                    profesores.setPage(Integer.parseInt(pagina));
+                    model.addAttribute("listaProfesores", profesores.getPageList());
                 }
+
                 return "Admin_CargaProfesores";
             }
         }else{
@@ -300,27 +365,58 @@ public class AulaVirtualController {
                 model.addAttribute("listaCursos",cursos);
                 List<AlumnoEntity> alumnos = alumnoRep.findAll();
                 model.addAttribute("listaAlumnos",alumnos);
-                List<ProfesorEntity> profesor = profesorRep.findAll();
-                model.addAttribute("listaProfesores",profesor);
-                if(!seccionId.isPresent()){
+
+
+                List<ProfesorEntity> profesorT1 = profesorRep.findTipoProfesor();
+                model.addAttribute("listaProfesoresT1",profesorT1);
+
+                List<ProfesorEntity> profesorT2 = profesorRep.findTipoJefeDePractica();
+                model.addAttribute("listaProfesoresT2",profesorT2);
+
+                if(!seccionId.isEmpty()){
+
                     Optional<SeccionEntity> seccionSeleccionado = seccionRep.findById(Long.parseLong(seccionId.get()));
-                    if(seccionSeleccionado.isPresent()){
-                        model.addAttribute("seccion",seccionSeleccionado.get());
+                    if(seccionSeleccionado.isPresent()) {
+                        model.addAttribute("seccion", seccionSeleccionado.get());
+                        List<ProfesorEntity> profes = seccionSeleccionado.get().getProfesor();
+                        /*if (profes.get(0)!=null) {
+                            if (profes.get(0).getType().getId() == 1) {
+                                model.addAttribute("profesorSeleccionadoT1", profes.get(0));
+                            }
+                        }*/
+                        for (ProfesorEntity profe: profes){
+                            //Solo habrá dos profes por su tipo
+                            if(profe.getType().getId()==1){
+                                model.addAttribute("profesorSeleccionadoT1",profe);
+                            }
+                            if(profe.getType().getId()==2){
+                                model.addAttribute("profesorSeleccionadoT2",profe);
+                            }
+                        }
                     }
                 }else{
                     model.addAttribute("seccion", null);
                 }
                 return "Admin_CrudSeccion";
-            }
-            else{
+            }else{
                 Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina),10);
                 Page<SeccionEntity> paginaSecciones = seccionRep.findAll(pageSizeTen);
 
                 model.addAttribute("numPaginas", paginaSecciones.getTotalPages());
                 model.addAttribute("pagActual", pagina);
 
-
                 List<SeccionEntity> secciones = paginaSecciones.getContent();
+                // Se hizo este refactor debido que mueve el orden de la lista de los profes de secciones
+                for (SeccionEntity seccion:secciones){
+                    if(seccion.getProfesor().get(0).getType().getId()==2){
+                        ProfesorEntity p1 = seccion.getProfesor().get(0);
+                        ProfesorEntity p2 = seccion.getProfesor().get(1);
+                        if (p1.getType().getId() == 2){
+                            seccion.getProfesor().set(0,p2);
+                            seccion.getProfesor().set(1,p1);
+                        }
+                    }
+                }
                 model.addAttribute("listaSecciones",secciones);
                 return "Admin_CargaSecciones";
             }
@@ -365,6 +461,7 @@ public class AulaVirtualController {
 
     /* FUNCIONES */
     @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
     public String testing(Model model) {
         List<UsuarioAlumnoEntity> admin =  usuarioRep.findUsuarioAlumno();
         model.addAttribute("listaUsuarios",admin);

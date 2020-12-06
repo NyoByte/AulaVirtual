@@ -56,7 +56,7 @@
         </header>
     </div>
     <!--Marco blanco...-->
-    <form action="/#" method="post">
+    <form action="/alumno/update" method="post">
         <div class="main-border">
             <div class="row">
                 <div class="col-9">
@@ -89,7 +89,7 @@
                         <div class="col">
                             <p class="mb-1">Correo Personal</p>
                             <input class="form-control" type="text" name="email_priv"
-                                value="${alumno.email_priv}" />
+                                value="${alumno.email_priv}" required/>
                         </div>
                         <div class="col">
                             <p class="mb-1">Género</p>
@@ -103,31 +103,31 @@
                         </div>
                         <div class="col">
                             <p class="mb-1">TeamViewer Usuario</p>
-                            <input class="form-control" type="text" name="tv_user" value="${alumno.tv_user}" />
+                            <input class="form-control" type="text" name="tv_user" value="${alumno.tv_user}" required/>
                         </div>
                         <div class="col">
                             <p class="mb-1">TeamViewer Contraseña</p>
-                            <input class="form-control" type="text" name="tv_pw" value="${alumno.tv_pw}" />
+                            <input class="form-control" type="text" name="tv_pw" value="${alumno.tv_pw}" required/>
                         </div>
                         <div class="col">
                             <p class="mb-1">AnyDesk Credencial</p>
-                            <input class="form-control" type="text" name="ad_cred" value="${alumno.ad_cred}" />
+                            <input class="form-control" type="text" name="ad_cred" value="${alumno.ad_cred}" required/>
                         </div>
                     </div>
                     <div class="form-row mb-0">
                         <div class="col">
                             <p class="mb-1">Carrera</p>
-                            <input class="form-control" type="text" name="career" value="${alumno.career.name}" />
+                            <input class="form-control" type="text" name="career" value="${alumno.career.name}" readonly="true"/>
                         </div>
                         <div class="col">
                             <div class="px-2">
                                 <p class="mb-1">&nbsp</p>
-                                <a class="btn btn-primary float-right" type="submit"><svg
+                                <button class="btn btn-primary float-right" type="submit"><svg
                                         width="1.5em" height="1.5em" stroke="white" viewBox="0 0 16 16"
                                         class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-                                    </svg>Actualizar Datos</a>
+                                    </svg>Actualizar Datos</button>
                             </div>
                         </div>
                     </div>

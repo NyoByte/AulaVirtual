@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "Usuarios_Alumnos")
 public class UsuarioAlumnoEntity extends UsuarioEntity implements Serializable {
 
-    @ManyToOne
+    @OneToOne
     private AlumnoEntity alumno;
 
     public UsuarioAlumnoEntity() {

@@ -86,6 +86,7 @@
                             <th scope="col">Carrera</th>
                             <th scope="col">Ciclo</th>
                             <th scope="col">Profesor</th>
+                            <th scope="col">Jefe de Práctica</th>
                             <th scope="col" colspan=2>Operaciones</th>
                         </tr>
                     </thead>
@@ -98,6 +99,7 @@
                                 <td>${seccion.course.career.name}</td>
                                 <td>${seccion.periodo.name}</td>
                                 <td>${seccion.profesor[0].first_name} ${seccion.profesor[0].last_name}</td>
+                                <td>${seccion.profesor[1].first_name} ${seccion.profesor[1].last_name}</td>
                                 <td class="pl-4 ope-td"><a href="/seccion?edit=true&seccion_id=${seccion.id}"><svg
                                             width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -52,8 +52,8 @@ public class AlumnoEntity{
     @ManyToMany(mappedBy = "alumnos")
     private List<SeccionEntity> secciones;
 
-    @OneToMany(mappedBy = "alumno")
-    private List<UsuarioAlumnoEntity> usuarioAlumnos;
+    @OneToOne(mappedBy = "alumno")
+    private UsuarioAlumnoEntity usuarioAlumno;
 
 
     public AlumnoEntity() {
@@ -83,6 +83,33 @@ public class AlumnoEntity{
         this.tv_pw = tv_pw;
         this.ad_cred = ad_cred;
         this.photo_url = photo_url;
+        this.gender = gender;
+        this.career = career;
+        this.pais = pais;
+    }
+    // Para el CSV, se le quito que pida url
+    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred) {
+        this.id = id;
+        this.cod = cod;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_univ = email_univ;
+        this.email_priv = email_priv;
+        this.tv_user = tv_user;
+        this.tv_pw = tv_pw;
+        this.ad_cred = ad_cred;
+    }
+
+    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, GeneroEntity gender, CarreraEntity career, PaisEntity pais) {
+        this.id = id;
+        this.cod = cod;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_univ = email_univ;
+        this.email_priv = email_priv;
+        this.tv_user = tv_user;
+        this.tv_pw = tv_pw;
+        this.ad_cred = ad_cred;
         this.gender = gender;
         this.career = career;
         this.pais = pais;
@@ -200,12 +227,12 @@ public class AlumnoEntity{
         this.secciones = secciones;
     }
 
-    public List<UsuarioAlumnoEntity> getUsuarioAlumnos() {
-        return usuarioAlumnos;
+    public UsuarioAlumnoEntity getUsuarioAlumno() {
+        return usuarioAlumno;
     }
 
-    public void setUsuarioAlumnos(List<UsuarioAlumnoEntity> usuarioAlumnos) {
-        this.usuarioAlumnos = usuarioAlumnos;
+    public void setUsuarioAlumno(UsuarioAlumnoEntity usuarioAlumno) {
+        this.usuarioAlumno = usuarioAlumno;
     }
 }
 

@@ -43,8 +43,8 @@ public class ProfesorEntity {
     @ManyToMany(mappedBy = "profesor")
     private List<SeccionEntity> secciones;
 
-    @OneToMany(mappedBy = "profesor")
-    private List<UsuarioProfesorEntity> usuarioProfesores;
+    @OneToOne(mappedBy = "profesor")
+    private UsuarioProfesorEntity usuarioProfesor;
 
     public ProfesorEntity() {
     }
@@ -67,6 +67,27 @@ public class ProfesorEntity {
         this.email_univ = email_univ;
         this.email_priv = email_priv;
         this.photo_url = photo_url;
+        this.gender = gender;
+        this.pais = pais;
+        this.type = type;
+    }
+
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv) {
+        this.id = id;
+        this.cod = cod;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_univ = email_univ;
+        this.email_priv = email_priv;
+    }
+
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, GeneroEntity gender, PaisEntity pais, ProfesorTipoEntity type) {
+        this.id = id;
+        this.cod = cod;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_univ = email_univ;
+        this.email_priv = email_priv;
         this.gender = gender;
         this.pais = pais;
         this.type = type;
@@ -158,5 +179,13 @@ public class ProfesorEntity {
 
     public void setSecciones(List<SeccionEntity> secciones) {
         this.secciones = secciones;
+    }
+
+    public UsuarioProfesorEntity getUsuarioProfesor() {
+        return usuarioProfesor;
+    }
+
+    public void setUsuarioProfesor(UsuarioProfesorEntity usuarioProfesor) {
+        this.usuarioProfesor = usuarioProfesor;
     }
 }
