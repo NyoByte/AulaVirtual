@@ -55,7 +55,7 @@
                         </c:when>
                         <c:when test="${usuario=='profesor'}">
                             <input type="email" class="form-control" placeholder="Usuario" maxlength="50"
-                                name="username" pattern="[a-zA-z]+@aloe.ulima.edu.pe"
+                                name="username" pattern="[a-zA-z0-9]+@aloe.ulima.edu.pe"
                                 title="example: example.@aloe.ulima.edu.pe" required>
                         </c:when>
                         <c:otherwise>
