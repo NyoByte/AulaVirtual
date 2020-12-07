@@ -211,6 +211,12 @@ public class ProfesorController {
 
             //Guardar nuevo registro en bd
             profesorRep.save(newProf);
+
+            //Crear su usuario
+            String user = newProf.getEmail_univ();
+            String pw = String.valueOf(newProf.getCod());
+            UsuarioProfesorEntity usuario = new UsuarioProfesorEntity(null,user,pw,newProf);
+            usuarioRep.save(usuario);
         }
         return "redirect:/profesor";
     }

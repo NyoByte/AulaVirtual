@@ -190,6 +190,12 @@ public class AlumnoController {
             }
 
             alumnoRep.save(newAl);
+
+            //Crear su usuario
+            String user = newAl.getEmail_univ();
+            String pw = String.valueOf(newAl.getCod());
+            UsuarioAlumnoEntity usuario = new UsuarioAlumnoEntity(null,user,pw,newAl);
+            usuarioRep.save(usuario);
         }
         return "redirect:/alumno";
 
