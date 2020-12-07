@@ -84,7 +84,7 @@ public class SeccionController {
             seccion.setCod(codigo);
             seccion.setCourse(cursoRep.findById(idCurso).get());
             seccionRep.save(seccion);
-            seccion.setPeriodo(periodoRep.findById(idPeriodoActual).get());
+            //seccion.setPeriodo(periodoRep.findById(idPeriodoActual).get());
             seccionRep.save(seccion);
             ProfesorEntity opProfeT1 = profesorRep.findByCod(codProfe1);
             ProfesorEntity opProfeT2 = profesorRep.findByCod(codProfe2);
