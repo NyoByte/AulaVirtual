@@ -90,6 +90,14 @@ public class AlumnoController {
             alumno.setPais(paisRep.findById(idPais).get());         alumnoRep.save(alumno);
             alumno.setGender(generoRep.findById(idGenero).get());   alumnoRep.save(alumno);
 
+            //Actualizar usuario
+            String user = alumno.getEmail_univ();
+            String pw = Integer.toString(alumno.getCod());
+            UsuarioAlumnoEntity usuarioSeleccionado = alumno.getUsuarioAlumno();
+            usuarioSeleccionado.setUser(user);
+            usuarioSeleccionado.setPw(pw);
+            usuarioRep.save(usuarioSeleccionado);
+
         }else{
             AlumnoEntity newAlumno = new AlumnoEntity(null, cod, first_name, last_name, email_univ, email_priv, tv_user, tv_pw, ad_cred, photo);
 
