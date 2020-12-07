@@ -9,7 +9,6 @@ public class GuardarAlumnosForm {
     private String tv_user;
     private String tv_pw;
     private String ad_cred;
-    private String photo_url;
     private String seccion;
     private String gender;
     private String career;
@@ -81,14 +80,6 @@ public class GuardarAlumnosForm {
 
     public void setAd_cred(String ad_cred) {
         this.ad_cred = ad_cred;
-    }
-
-    public String getPhoto_url() {
-        return photo_url;
-    }
-
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
     }
 
     public String getSeccion() {
