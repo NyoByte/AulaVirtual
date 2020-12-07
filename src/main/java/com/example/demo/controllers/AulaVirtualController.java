@@ -159,6 +159,8 @@ public class AulaVirtualController {
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
                         model.addAttribute("alumno",alumnoSeleccionado.get());
+                        byte[] img = alumnoSeleccionado.get().getImagen();
+                        model.addAttribute("imagenBase64",DatatypeConverter.printBase64Binary(img));
                     }
                 }else{
                     model.addAttribute("alumno",null);

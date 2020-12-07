@@ -45,9 +45,8 @@ public class AlumnoController {
     @Autowired
     private UsuarioRepository usuarioRep;
 
-    @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String guardarAlumno(GuardarAlumnosForm form) {
+    @RequestMapping(value = "/alumno/guardar", method = RequestMethod.POST)
+    public String guardarAlumno(GuardarAlumnosForm form, @RequestParam MultipartFile image) throws IOException {
         //Si el alumno es  un nuevo alumno
         int cod = Integer.parseInt(form.getCod());
         String first_name = form.getFirst_name();
@@ -57,7 +56,11 @@ public class AlumnoController {
         String tv_user =  form.getTv_user();
         String tv_pw = form.getTv_pw();
         String ad_cred = form.getAd_cred();
-        //byte[] photo_url = form.getPhoto_url();
+        //Procesamiento de imagen
+        InputStream inputStream = image.getInputStream();
+        byte[] bytesImg = new byte[inputStream.available()];
+        inputStream.read(bytesImg);
+        byte[] photo= bytesImg;
 
         Long idCarrera = Long.parseLong(form.getCareer());
         Long idPais = Long.parseLong(form.getPais());
@@ -75,14 +78,14 @@ public class AlumnoController {
             alumno.setTv_user(tv_user);
             alumno.setTv_pw(tv_pw);
             alumno.setAd_cred(ad_cred);
-            //alumno.setImagen(photo_url);
+            alumno.setImagen(photo);
 
             alumno.setCareer(carreraRep.findById(idCarrera).get()); alumnoRep.save(alumno);
             alumno.setPais(paisRep.findById(idPais).get());         alumnoRep.save(alumno);
             alumno.setGender(generoRep.findById(idGenero).get());   alumnoRep.save(alumno);
 
         }else{
-            AlumnoEntity newAlumno = new AlumnoEntity(null, cod, first_name, last_name, email_univ, email_priv, tv_user, tv_pw, ad_cred, null);
+            AlumnoEntity newAlumno = new AlumnoEntity(null, cod, first_name, last_name, email_univ, email_priv, tv_user, tv_pw, ad_cred, photo);
 
             Optional<CarreraEntity> opCarrera = carreraRep.findById(idCarrera);
             if (opCarrera.isPresent()) {
