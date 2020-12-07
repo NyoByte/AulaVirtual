@@ -38,21 +38,9 @@ public class AulaVirtualRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception{
-        /*Optional<AlumnoEntity> temp = alumnoRep.findById(Long.parseLong("1"));
-        Optional<GeneroEntity> gen = generoRep.findById(Long.parseLong("1"));
-        temp.get().setGender(gen.get());
-        alumnoRep.save(temp.get());
-         */
-        /*
 
-        PARA ELIMINAR
 
-        alumnoRep.deleteById(Long.parseLong("1"));
-
-         */
-
-        /*
-
+/*
         // PAISES:
         PaisEntity pais1 = new PaisEntity(null,"Perú");         paisRep.save(pais1);
         PaisEntity pais2 = new PaisEntity(null,"Argentina");    paisRep.save(pais2);
@@ -231,9 +219,9 @@ public class AulaVirtualRunner implements CommandLineRunner {
                 "20170284@aloe.ulima.edu.pe","gabrielCarmelo@hotmail.com",
                 "10TV04","gabrielC","ADC004",genero1,carrera12,pais2);
 
-        AlumnoEntity alumno5 = new AlumnoEntity(null,20170005,"Nombre5","Apellido5",
-                "20170005@aloe.ulima.edu.pe","correo5@hotmail.com",
-                "user5","pw5","cred05",genero2,carrera7,pais4);
+        AlumnoEntity alumno5 = new AlumnoEntity(null,20170005,"Jonny","Bravo Macho",
+                "20170005@aloe.ulima.edu.pe","jonnyBravo@hotmail.com",
+                "10TV05","jonnyB","ADC005",genero2,carrera7,pais4);
 
         alumnoRep.save(alumno1);
         alumnoRep.save(alumno2);
@@ -247,7 +235,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
         SeccionEntity seccion3 = new SeccionEntity(null,103,c6_Curso5,periodo8);    seccionRep.save(seccion3);
         SeccionEntity seccion4 = new SeccionEntity(null,104,c6_Curso2,periodo7);    seccionRep.save(seccion4);
         SeccionEntity seccion5 = new SeccionEntity(null,105,c8_Curso5,periodo7);    seccionRep.save(seccion5);
-        SeccionEntity seccion6 = new SeccionEntity(null,106,c11_Curso7,periodo8);    seccionRep.save(seccion6);
+        SeccionEntity seccion6 = new SeccionEntity(null,106,c11_Curso7,periodo8);   seccionRep.save(seccion6);
         SeccionEntity seccion7 = new SeccionEntity(null,107,c9_Curso3,periodo8);    seccionRep.save(seccion7);
 
         // PROFESORES:
@@ -368,7 +356,7 @@ public class AulaVirtualRunner implements CommandLineRunner {
         UsuarioProfesorEntity userProf3 = new UsuarioProfesorEntity(null,"amatuk@aloe.ulima.edu.pe","20120478",profesor3);      usuarioRep.save(userProf3);
         UsuarioProfesorEntity userProf4 = new UsuarioProfesorEntity(null,"jaqueda@aloe.ulima.edu.pe","20140157",profesor4);     usuarioRep.save(userProf4);
         UsuarioProfesorEntity userProf5 = new UsuarioProfesorEntity(null,"bgrados@aloe.ulima.edu.pe","20152184",profesor5);     usuarioRep.save(userProf5);
-        UsuarioProfesorEntity userProf6 = new UsuarioProfesorEntity(null,"pvalvidia@aloe.ulima.edu.pe","20135487",profesor6);  usuarioRep.save(userProf6);
+        UsuarioProfesorEntity userProf6 = new UsuarioProfesorEntity(null,"pvalvidia@aloe.ulima.edu.pe","20135487",profesor6);   usuarioRep.save(userProf6);
         UsuarioProfesorEntity userProf7 = new UsuarioProfesorEntity(null,"jflores@aloe.ulima.edu.pe","20152317",profesor7);     usuarioRep.save(userProf7);
 
         UsuarioAdministradorEntity userAdm1 = new UsuarioAdministradorEntity(null,"Nyo","Byte");            usuarioRep.save(userAdm1);
@@ -376,7 +364,9 @@ public class AulaVirtualRunner implements CommandLineRunner {
         UsuarioAdministradorEntity userAdm3 = new UsuarioAdministradorEntity(null,"Jsatch","HernanWeb");    usuarioRep.save(userAdm3);
         UsuarioAdministradorEntity userAdm4 = new UsuarioAdministradorEntity(null,"Beater","Zuko");         usuarioRep.save(userAdm4);
 
-         */
+ */
+
+
 
 
         /*
