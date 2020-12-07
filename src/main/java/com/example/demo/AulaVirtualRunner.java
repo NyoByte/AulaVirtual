@@ -217,23 +217,23 @@ public class AulaVirtualRunner implements CommandLineRunner {
         // ALUMNOS:
         AlumnoEntity alumno1 = new AlumnoEntity(null,20173527,"Andy","Lazo Hilario",
                 "20173527@aloe.ulima.edu.pe","andyLazo@hotmail.com",
-                "10TV01","andyl","ADC001","fotito.jpe",genero1,carrera12,pais1);
+                "10TV01","andyl","ADC001",genero1,carrera12,pais1);
 
         AlumnoEntity alumno2 = new AlumnoEntity(null,20173240,"Dante","Cordova Molina",
                 "20173240@aloe.ulima.edu.pe","danteCordova@hotmail.com",
-                "10TV02","danteC","ADC002","fotito.jpe",genero1,carrera6,pais1);
+                "10TV02","danteC","ADC002",genero1,carrera6,pais1);
 
         AlumnoEntity alumno3 = new AlumnoEntity(null,20173828,"Edgar","Rodriguez Rojas",
                 "20173828@aloe.ulima.edu.pe","edgarRodriguez@hotmail.com",
-                "10TV03","edgarR","ADC003","fotito.jpe",genero1,carrera7,pais3);
+                "10TV03","edgarR","ADC003",genero1,carrera7,pais3);
 
         AlumnoEntity alumno4 = new AlumnoEntity(null,20170284,"Gabriel","Carmelo Villaverde",
                 "20170284@aloe.ulima.edu.pe","gabrielCarmelo@hotmail.com",
-                "10TV04","gabrielC","ADC004","fotito.jpe",genero1,carrera12,pais2);
+                "10TV04","gabrielC","ADC004",genero1,carrera12,pais2);
 
         AlumnoEntity alumno5 = new AlumnoEntity(null,20170005,"Nombre5","Apellido5",
                 "20170005@aloe.ulima.edu.pe","correo5@hotmail.com",
-                "user5","pw5","cred05","fotito.jpe",genero2,carrera7,pais4);
+                "user5","pw5","cred05",genero2,carrera7,pais4);
 
         alumnoRep.save(alumno1);
         alumnoRep.save(alumno2);
@@ -251,21 +251,24 @@ public class AulaVirtualRunner implements CommandLineRunner {
         SeccionEntity seccion7 = new SeccionEntity(null,107,c9_Curso3,periodo8);    seccionRep.save(seccion7);
 
         // PROFESORES:
+
+        //public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, GeneroEntity gender, PaisEntity pais, ProfesorTipoEntity type) {
+
         ProfesorEntity profesor1 = new ProfesorEntity(null,20140147,"Hernan","Quintana Cruz",
-                "hquintana@aloe.ulima.edu.pe","hernan@jsatch.com","fotito.jpe",genero1,pais1,tipo1);
+                "hquintana@aloe.ulima.edu.pe","hernan@jsatch.com",genero1,pais1,tipo1);
         ProfesorEntity profesor2 = new ProfesorEntity(null,20152145,"Julio","Padilla Solis",
-                "jpadilla@aloe.ulima.edu.pe","julioPadilla@hotmail.com","fotito.jpe",genero1,pais2,tipo1);
+                "jpadilla@aloe.ulima.edu.pe","julioPadilla@hotmail.com",genero1,pais2,tipo1);
         ProfesorEntity profesor3 = new ProfesorEntity(null,20120478,"Andrea","Matuk Chijner",
-                "amatuk@aloe.ulima.edu.pe","andreMatuk@hotmail.com","fotito.jpe",genero1,pais2,tipo1);
+                "amatuk@aloe.ulima.edu.pe","andreMatuk@hotmail.com",genero1,pais2,tipo1);
         ProfesorEntity profesor4 = new ProfesorEntity(null,20140157,"Julia","Agueda Valencia",
-                "jagueda@aloe.ulima.edu.pe","juliaAgueda@hotmail.com","fotito.jpe",genero2,pais3,tipo1);
+                "jagueda@aloe.ulima.edu.pe","juliaAgueda@hotmail.com",genero2,pais3,tipo1);
         //Jefes de prácticas:
         ProfesorEntity profesor5 = new ProfesorEntity(null,20152187,"Billy","Grados Licham",
-                "bgrados@aloe.ulima.edu.pe","billyGrados@hotmail.com","fotito.jpe",genero1,pais4,tipo2);
+                "bgrados@aloe.ulima.edu.pe","billyGrados@hotmail.com",genero1,pais4,tipo2);
         ProfesorEntity profesor6 = new ProfesorEntity(null,20135487,"Pepe","Valvidia",
-                "pvalvidia@aloe.ulima.edu.pe","pepeValvidia@hotmail.com","fotito.jpe",genero1,pais1,tipo2);
+                "pvalvidia@aloe.ulima.edu.pe","pepeValvidia@hotmail.com",genero1,pais1,tipo2);
         ProfesorEntity profesor7 = new ProfesorEntity(null,20152317,"Jenny","FLores Díaz",
-                "jflores@aloe.ulima.edu.pe","jennyFlores@hotmail.com","fotito.jpe",genero2,pais3,tipo2);
+                "jflores@aloe.ulima.edu.pe","jennyFlores@hotmail.com",genero2,pais3,tipo2);
 
         profesoresRep.save(profesor1);
         profesoresRep.save(profesor2);
