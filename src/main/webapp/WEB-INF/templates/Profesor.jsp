@@ -88,11 +88,11 @@
                 <div class="form-row mb-3">
                     <div class="col">
                         <p class="mb-1">Correo de la Universidad</p>
-                        <input class="form-control" type="text" name="email_univ" value="${profesor.email_univ}" readonly="true"/>
+                        <input class="form-control" type="email" name="email_univ" value="${profesor.email_univ}" readonly="true"/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Correo Personal</p>
-                        <input class="form-control" type="text" name="email_priv" value="${profesor.email_priv}" required/>
+                        <input class="form-control" type="email" name="email_priv" maxlength="50" value="${profesor.email_priv}" required/>
                     </div>
                     <div class="col">
                         <p class="mb-1">Género</p>

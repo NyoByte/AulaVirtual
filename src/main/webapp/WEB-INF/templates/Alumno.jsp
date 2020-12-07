@@ -133,7 +133,12 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <img class="img-fluid" alt="Imagen responsive" src="/images/default_profile_image.jpg">
+                    <c:if test="${imagenBase64!=null}">
+                        <img class="img-fluid" id="image-field" src="data:image/jpeg;base64,${imagenBase64}">
+                    </c:if>
+                    <c:if test="${imagenBase64==null}">
+                        <img class="img-fluid" id="image-field" src="/profiles/default.jpg">
+                    </c:if>
                 </div>
             </div>
         </div>
