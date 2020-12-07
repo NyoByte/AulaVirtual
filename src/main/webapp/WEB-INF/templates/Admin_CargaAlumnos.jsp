@@ -227,7 +227,7 @@
                         <c:otherwise>
                             <c:if test="${pagActual>0}">
 
-                                <a href= "${filtro}&page=0" id="boton_primera_pag">
+                                <a href="${filtro}&page=0" id="boton_primera_pag">
                                     <svg width="1em" height="1em" stroke="black" viewBox="0 0 16 16"
                                         class="bi bi-chevron-double-left" fill="currentColor"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -294,21 +294,21 @@
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
+                            <img class="w-100 h-100" src="/profiles/nyo.jpg">
                         </div>
                         <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Andy Lazo</div>
                         <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
+                            <img class="w-100 h-100" src="/profiles/gabu.jpg">
                         </div>
                         <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Gabriel Carmelo</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
+                            <img class="w-100 h-100" src="/profiles/dante.jpg">
                         </div>
                         <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Dante Córdova</div>
                         <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
+                            <img class="w-100 h-100" src="/profiles/edgar.jpg">
                         </div>
                         <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Edgar Rodriguez</div>
                     </div>

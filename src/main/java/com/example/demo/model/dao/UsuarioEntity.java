@@ -9,10 +9,10 @@ public abstract class UsuarioEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @Column(name = "Usuario", unique = true, length = 45)
+    @Column(name = "Usuario", unique = true, length = 50)
     protected String user;
 
-    @Column(name = "Contraseña", length = 45)
+    @Column(name = "Contraseña", length = 50)
     protected String pw;
 
     public UsuarioEntity() {

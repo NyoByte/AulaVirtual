@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 
 @Controller
 public class FileUploadController {
+    /* NO FUNCIONÓ EL PATH, LO CAMBIAMOS A TIPI IMAGEN :D
 
     private String RUTA_UPLOAD = this.getClass().getClassLoader().getResource("").getPath() +"static/profiles/";
     private String RUTA_UPLOAD2 = "E:/Programas Estudio/DesktopGitHub/Repositorios locales/AulaVirtual/src/main/resources/static/profiles/";
@@ -35,9 +36,10 @@ public class FileUploadController {
         System.out.println("Cargado bien");
         return "redirect:/";
     }
-
+     */
     /*@RequestMapping(value = "/test", method = RequestMethod.GET)
     public String index(){
         return "upload";
     }*/
+
 }

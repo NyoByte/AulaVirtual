@@ -350,45 +350,45 @@
         <p class="text-right font-weight-bold text-muted pr-2">Universidad de Lima 2020-II</p>
     </div>
 
-    <!-- Modal -->
-    <div id="ayudaModal" class="modal fade " tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title font-weight-bold">Integrantes del Grupo:</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<!-- Modal -->
+<div id="ayudaModal" class="modal fade " tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold">Integrantes del Grupo:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <img class="w-100 h-100" src="/profiles/nyo.jpg">
+                    </div>
+                    <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Andy Lazo</div>
+                    <div class="col-3">
+                        <img class="w-100 h-100" src="/profiles/gabu.jpg">
+                    </div>
+                    <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Gabriel Carmelo</div>
                 </div>
-                <div class="modal-body">
-                    <div class="row mb-3">
-                        <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
-                        </div>
-                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Andy Lazo</div>
-                        <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
-                        </div>
-                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Gabriel Carmelo</div>
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <img class="w-100 h-100" src="/profiles/dante.jpg">
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
-                        </div>
-                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Dante Córdova</div>
-                        <div class="col-3">
-                            <img class="w-100 h-100" src="/images/spidy.jpeg">
-                        </div>
-                        <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Edgar Rodriguez</div>
+                    <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Dante Córdova</div>
+                    <div class="col-3">
+                        <img class="w-100 h-100" src="/profiles/edgar.jpg">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
-                    </div>
+                    <div class="col-3 modal-dialog modal-dialog-centered font-weight-bold">Edgar Rodriguez</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Fin Modal -->
+</div>
+<!-- Fin Modal -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
