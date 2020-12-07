@@ -55,7 +55,7 @@
                         </c:when>
                         <c:otherwise>
                             <input type="text" class="form-control" required="true" placeholder="Usuario"
-                                name="username" required pattern="[1-9]{8}@aloe.ulima.edu.pe"
+                                name="username" required pattern="[1-9]{1}[0-9]{7}@aloe.ulima.edu.pe"
                                 title="example: 12345678@aloe.ulima.edu.pe">
                         </c:otherwise>
                     </c:choose>

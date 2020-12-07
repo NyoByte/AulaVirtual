@@ -57,10 +57,16 @@ public class AlumnoController {
         String tv_pw = form.getTv_pw();
         String ad_cred = form.getAd_cred();
         //Procesamiento de imagen
-        InputStream inputStream = image.getInputStream();
-        byte[] bytesImg = new byte[inputStream.available()];
-        inputStream.read(bytesImg);
-        byte[] photo= bytesImg;
+        byte[] photo;
+        if (!image.isEmpty()){
+            InputStream inputStream = image.getInputStream();
+            byte[] bytesImg = new byte[inputStream.available()];
+            inputStream.read(bytesImg);
+            photo= bytesImg;
+        }else {
+            photo = null;
+        }
+
 
         Long idCarrera = Long.parseLong(form.getCareer());
         Long idPais = Long.parseLong(form.getPais());

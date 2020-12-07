@@ -83,7 +83,8 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" min="1" max="99999999" name="cod" required/>
+                                    <input class="form-control" type="number" min="10000000" max="99999999" name="cod"
+                                    required/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Nombres</p>
@@ -97,7 +98,8 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="email" maxlength="50" name="email_univ" required pattern="[1-9]{8}@aloe.ulima.edu.pe"/>
+                                    <input class="form-control" type="email" maxlength="50" name="email_univ" required pattern="[a-Aa-z]{32}@aloe.ulima.edu.pe"
+                                    title="example: example@aloe.edu.pe"/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
@@ -106,6 +108,7 @@
                                 <div class="col">
                                     <p class="mb-1">Género</p>
                                     <select class="form-control" name="gender" required>
+                                        <option value="">Choose...</option>
                                         <c:forEach var="genero" items="${listaGeneros}">
                                             <option value="${genero.id}">${genero.name}</option>
                                         </c:forEach>
@@ -116,6 +119,7 @@
                                 <div class="col">
                                     <p class="mb-1">País</p>
                                     <select class="form-control" type="text" name="pais" required/>
+                                    <option value="">Choose...</option>
                                     <c:forEach var="pais" items="${listaPaises}">
                                         <option value="${pais.id}">${pais.name}</option>
                                     </c:forEach>
@@ -124,6 +128,7 @@
                                 <div class="col">
                                     <p class="mb-1">Tipo de Docente</p>
                                     <select class="form-control" name="type" required>
+                                        <option value="">Choose...</option>
                                         <c:forEach var="tipo" items="${listaTipos}">
                                             <option value="${tipo.id}">${tipo.name}</option>
                                         </c:forEach>
@@ -167,8 +172,12 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <img class="img-fluid" id="image-field" src="data:image/jpeg;base64,${imagenBase64}">
-                            <span id="visor_foto" class="justify-content-center row"></span>
+                            <c:if test="${imagenBase64!=null}">
+                                <img class="img-fluid" id="image-field" src="data:image/jpeg;base64,${imagenBase64}">
+                            </c:if>
+                            <c:if test="${imagenBase64==null}">
+                                <img class="img-fluid" id="image-field" src="/profiles/default.jpg">
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -188,7 +197,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Código</p>
-                                    <input class="form-control" type="number" min="1" max="99999999" name="cod"
+                                    <input class="form-control" type="number" min="10000000" max="99999999" name="cod"
                                         value="${profesor.cod}"    required/>
                                 </div>
                                 <div class="col">
@@ -206,7 +215,8 @@
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
                                     <input class="form-control" type="email" maxlength="50" name="email_univ"
-                                        value="${profesor.email_univ}" required pattern="[1-9]{8}@aloe.ulima.edu.pe"/>
+                                        value="${profesor.email_univ}" required pattern="[a-Aa-z]{32}@aloe.ulima.edu.pe"
+                                        title="example: example@aloe.edu.pe"/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
@@ -286,8 +296,12 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <img class="img-fluid" id="image-field" src="data:image/jpeg;base64,${imagenBase64}">
-                            <span id="visor_foto" class="justify-content-center row"></span>
+                            <c:if test="${imagenBase64!=null}">
+                                <img class="img-fluid" id="image-field" src="data:image/jpeg;base64,${imagenBase64}">
+                            </c:if>
+                            <c:if test="${imagenBase64==null}">
+                                <img class="img-fluid" id="image-field" src="/profiles/default.jpg">
+                            </c:if>
                         </div>
                     </div>
                 </div>

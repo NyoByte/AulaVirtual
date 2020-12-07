@@ -78,13 +78,16 @@ public class ProfesorController {
         String email_priv = form.getEmail_priv();
         String type = form.getType();
 
-        //Procesamiento de la imagen
-
-        InputStream inputStream = image.getInputStream();
-        byte[] bytesImg = new byte[inputStream.available()];
-        inputStream.read(bytesImg);
-        byte[] photo= bytesImg;
-
+        //Procesamiento de imagen
+        byte[] photo;
+        if (!image.isEmpty()){
+            InputStream inputStream = image.getInputStream();
+            byte[] bytesImg = new byte[inputStream.available()];
+            inputStream.read(bytesImg);
+            photo= bytesImg;
+        }else {
+            photo = null;
+        }
         Long idTipo = Long.parseLong(form.getType());
         Long idPais = Long.parseLong(form.getPais());
         Long idGenero = Long.parseLong(form.getGender());

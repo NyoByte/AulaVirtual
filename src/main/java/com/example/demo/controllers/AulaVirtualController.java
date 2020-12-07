@@ -155,12 +155,15 @@ public class AulaVirtualController {
                 model.addAttribute("listaGeneros",generos);
                 List<CarreraEntity> carreras = carreraRep.findAll();
                 model.addAttribute("listaCarreras",carreras);
-                if(!alumnoId.isEmpty()){
+                if(alumnoId.isPresent()){
                     Optional<AlumnoEntity> alumnoSeleccionado = alumnoRep.findById(Long.parseLong(alumnoId.get()));
                     if(alumnoSeleccionado.isPresent()){
                         model.addAttribute("alumno",alumnoSeleccionado.get());
-                        byte[] img = alumnoSeleccionado.get().getImagen();
-                        model.addAttribute("imagenBase64",DatatypeConverter.printBase64Binary(img));
+                        if (alumnoSeleccionado.get().getImagen()!=null){
+                            byte[] img = alumnoSeleccionado.get().getImagen();
+                            model.addAttribute("imagenBase64",DatatypeConverter.printBase64Binary(img));
+                        }
+
                     }
                 }else{
                     model.addAttribute("alumno",null);
@@ -248,14 +251,16 @@ public class AulaVirtualController {
                 model.addAttribute("listaGeneros",generos);
                 List<ProfesorTipoEntity> tipos = tipoRep.findAll();
                 model.addAttribute("listaTipos",tipos);
-                if(!profesorId.isEmpty()){
+                if(profesorId.isPresent()){
                     Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(profesorId.get()));
                     if(profesorSeleccionado.isPresent()){
                         model.addAttribute("profesor",profesorSeleccionado.get());
 
                         //Obtener imagen
-                        byte[] img = profesorSeleccionado.get().getImagen();
-                        model.addAttribute("imagenBase64", DatatypeConverter.printBase64Binary(img));
+                        if (profesorSeleccionado.get().getImagen()!=null) {
+                            byte[] img = profesorSeleccionado.get().getImagen();
+                            model.addAttribute("imagenBase64", DatatypeConverter.printBase64Binary(img));
+                        }
 
                     }
                 }else {
