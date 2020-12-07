@@ -48,7 +48,17 @@
                     </c:choose> 
                 </div>
                 <div class="form-group ">
-                    <input type="text" class="form-control" required="true" placeholder="Usuario" name="username">
+                    <c:choose>
+                        <c:when test="${usuario=='administrador'}">
+                            <input type="text" class="form-control" required="true" placeholder="Usuario"
+                                name="username" required>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="text" class="form-control" required="true" placeholder="Usuario"
+                                name="username" required pattern="[1-9]{8}@aloe.ulima.edu.pe"
+                                title="example: 12345678@aloe.ulima.edu.pe">
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" required="true" placeholder="Contraseña" name="password">
