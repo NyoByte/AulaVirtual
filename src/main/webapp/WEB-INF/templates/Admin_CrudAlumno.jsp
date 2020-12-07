@@ -70,7 +70,7 @@
     <!--Marco blanco...-->
     <c:choose>
         <c:when test="${alumno==null}">
-            <form action="/alumno/guardar" method="post">
+            <form action="/alumno/guardar" method="post" >
                 <div class="main-border">
                     <div class="row">
                         <div class="col-9">
@@ -97,7 +97,7 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="email" maxlength="50" name="email_univ" required/>
+                                    <input class="form-control" type="email" maxlength="50" name="email_univ" required pattern="[1-9]{8}@aloe.ulima.edu.pe"/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
@@ -169,19 +169,19 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-warning" type="button"><svg width="2em" height="1.5em"
+                                        <button class="btn btn-warning" id="boton_subir" type="button" ><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-cloud-arrow-up-fill"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 1 0V6.707l1.146 1.147a.5.5 0 0 0 .708-.708z" />
-                                            </svg>Subir</a>
+                                            </svg>Subir</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <img class="img-fluid" id="image-field" src="/images/default_profile_image.jpg">
-                            <span id="visor_foto" class="justify-content-center row"></span>
+                            <input name="photo_url" class="invisible" id="visor_foto" value="${alumno.photo_url}" readonly="true">
                         </div>
                     </div>
                 </div>
@@ -215,13 +215,13 @@
                             <div class="form-row mb-3">
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
-                                    <input class="form-control" type="text" maxlength="50" name="email_univ"
-                                        value="${alumno.email_univ}" required/>
+                                    <input class="form-control" type="email" maxlength="50" name="email_univ"
+                                        value="${alumno.email_univ}" required pattern="[1-9]{8}@aloe.ulima.edu.pe"/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
-                                    <input class="form-control" type="text" maxlength="50" name="email_priv"
-                                        value="${alumno.email_priv}" required/>
+                                    <input class="form-control" type="email" maxlength="50" name="email_priv"
+                                        value="${alumno.email_priv}"/>
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Género</p>
@@ -300,19 +300,19 @@
                                     </div>
                                     <div class="px-2">
                                         <p class="mb-1">&nbsp</p>
-                                        <a class="btn btn-warning" type="button"><svg width="2em" height="1.5em"
+                                        <button class="btn btn-warning" type="button"><svg width="2em" height="1.5em"
                                                 viewBox="0 0 16 16" class="bi bi-cloud-arrow-up-fill"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
                                                     d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 1 0V6.707l1.146 1.147a.5.5 0 0 0 .708-.708z" />
-                                            </svg>Subir</a>
+                                            </svg>Subir</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <img class="img-fluid" id="image-field" src="/images/default_profile_image.jpg">
-                            <span id="visor_foto" class="justify-content-center row"></span>
+                            <input name="photo_url" class="invisible" id="visor_foto" value="${alumno.photo_url}" readonly="true">
                         </div>
                     </div>
                 </div>
@@ -373,6 +373,7 @@
         crossorigin="anonymous"></script>
     <script src="/js/index.js"></script>
     <script src="/js/SeleccionarFoto.js"></script>
+    <script src="/js/SubirFoto.js"></script>
 </body>
 
 </html>
