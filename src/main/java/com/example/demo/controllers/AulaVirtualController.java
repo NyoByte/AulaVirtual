@@ -88,7 +88,9 @@ public class AulaVirtualController {
                 model.addAttribute("profesor", profesorBD.get());
                 // ENVIAR IMAGEN
                 byte[] img = profesorBD.get().getImagen();
-                model.addAttribute("imagenBase64",DatatypeConverter.printBase64Binary(img));
+                if (img != null) {
+                    model.addAttribute("imagenBase64", DatatypeConverter.printBase64Binary(img));
+                }
             }
             return "Profesor";
         }else if((boolean)sesion.getAttribute("esAlumno")){
@@ -100,7 +102,9 @@ public class AulaVirtualController {
                 model.addAttribute("alumno", alumnoBD.get());
                 // ENVIAR IMAGEN
                 byte[] img = alumnoBD.get().getImagen();
-                model.addAttribute("imagenBase64",DatatypeConverter.printBase64Binary(img));
+                if (img != null) {
+                    model.addAttribute("imagenBase64", DatatypeConverter.printBase64Binary(img));
+                }
             }
             return "Alumno";
         }else if((boolean)sesion.getAttribute("esAdministrador")){
