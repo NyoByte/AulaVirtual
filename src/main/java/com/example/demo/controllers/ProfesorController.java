@@ -110,6 +110,14 @@ public class ProfesorController {
             profesor.setGender(generoRep.findById(idGenero).get());
             profesorRep.save(profesor);
 
+            //Actualizar usuario
+            String user = profesor.getEmail_univ();
+            String pw = Integer.toString(profesor.getCod());
+            UsuarioProfesorEntity usuarioSeleccionado = profesor.getUsuarioProfesor();
+            usuarioSeleccionado.setUser(user);
+            usuarioSeleccionado.setPw(pw);
+            usuarioRep.save(usuarioSeleccionado);
+
         }else{
             ProfesorEntity newProfesor = new ProfesorEntity( null, cod, first_name, last_name, email_univ, email_priv, photo);
 
