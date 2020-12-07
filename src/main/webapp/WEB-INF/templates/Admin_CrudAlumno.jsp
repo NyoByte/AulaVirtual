@@ -99,7 +99,7 @@
                                 <div class="col">
                                     <p class="mb-1">Correo de la Universidad</p>
                                     <input class="form-control" type="email" maxlength="50" name="email_univ" required
-                                        pattern="[1-9]{8}@aloe.ulima.edu.pe" title="example: 12345678@aloe.edu.pe" />
+                                        pattern="[1-9]{1}[0-9]{7}@aloe.ulima.edu.pe" title="example: 12345678@aloe.edu.pe" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
@@ -230,7 +230,7 @@
                                     <p class="mb-1">Correo de la Universidad</p>
                                     <input class="form-control" type="email" maxlength="50" name="email_univ"
                                         value="${alumno.email_univ}" required
-                                        pattern="[1-9]{8}@aloe.ulima.edu.pe" title="example: 12345678@aloe.edu.pe" />
+                                        pattern="[1-9]{1}[0-9]{7}@aloe.ulima.edu.pe" title="example: 12345678@aloe.edu.pe" />
                                 </div>
                                 <div class="col">
                                     <p class="mb-1">Correo Personal</p>
