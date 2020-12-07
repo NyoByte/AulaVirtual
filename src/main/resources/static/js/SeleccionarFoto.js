@@ -12,7 +12,7 @@ var seleccionarFotoOnClick = function(){
 
 var handleIMG = function (files){
     var fotoElegido = files[0];
-    document.querySelector("#visor_foto").innerHTML = fotoElegido.name
+    document.querySelector("#visor_foto").value = fotoElegido.name
 }
 
 var leerFoto= function(){
