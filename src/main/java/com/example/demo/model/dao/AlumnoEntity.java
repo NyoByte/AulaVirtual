@@ -1,5 +1,7 @@
 package com.example.demo.model.dao;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -34,8 +36,10 @@ public class AlumnoEntity{
     @Column(name = "AnyDesk_Credencial", unique = true, length = 6)
     private String ad_cred;
 
-    @Column(name = "Foto_Url", length = 100)
-    private String photo_url;
+    @Lob
+    @Column(name = "Foto")
+    @Type(type = "org.hibernate.type.BinaryType")
+    private byte[] imagen;
 
     //[Alumno]M-------1[Género]
     @ManyToOne
@@ -59,7 +63,7 @@ public class AlumnoEntity{
     public AlumnoEntity() {
     }
 
-    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, String photo_url) {
+    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, byte[] imagen) {
         this.id = id;
         this.cod = cod;
         this.first_name = first_name;
@@ -69,10 +73,10 @@ public class AlumnoEntity{
         this.tv_user = tv_user;
         this.tv_pw = tv_pw;
         this.ad_cred = ad_cred;
-        this.photo_url = photo_url;
+        this.imagen = imagen;
     }
 
-    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, String photo_url, GeneroEntity gender, CarreraEntity career, PaisEntity pais) {
+    public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred, byte[] imagen, GeneroEntity gender, CarreraEntity career, PaisEntity pais) {
         this.id = id;
         this.cod = cod;
         this.first_name = first_name;
@@ -82,11 +86,12 @@ public class AlumnoEntity{
         this.tv_user = tv_user;
         this.tv_pw = tv_pw;
         this.ad_cred = ad_cred;
-        this.photo_url = photo_url;
+        this.imagen = imagen;
         this.gender = gender;
         this.career = career;
         this.pais = pais;
     }
+
     // Para el CSV, se le quito que pida url
     public AlumnoEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String tv_user, String tv_pw, String ad_cred) {
         this.id = id;
@@ -187,12 +192,12 @@ public class AlumnoEntity{
         this.ad_cred = ad_cred;
     }
 
-    public String getPhoto_url() {
-        return photo_url;
+    public byte[] getImagen() {
+        return imagen;
     }
 
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 
     public GeneroEntity getGender() {

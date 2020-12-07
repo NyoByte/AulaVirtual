@@ -1,5 +1,7 @@
 package com.example.demo.model.dao;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,8 +27,10 @@ public class ProfesorEntity {
     @Column(name = "Correo_Personal", unique = true, length = 50)
     private String email_priv;
 
-    @Column(name = "Foto_Url", length = 100)
-    private String photo_url;
+    @Lob
+    @Column(name = "Foto")
+    @Type(type = "org.hibernate.type.BinaryType")
+    private byte[] imagen;
 
     //[Profesor]M-------1[Género]
     @ManyToOne
@@ -49,24 +53,24 @@ public class ProfesorEntity {
     public ProfesorEntity() {
     }
 
-    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String photo_url) {
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, byte[] imagen) {
         this.id = id;
         this.cod = cod;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_univ = email_univ;
         this.email_priv = email_priv;
-        this.photo_url = photo_url;
+        this.imagen = imagen;
     }
 
-    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, String photo_url, GeneroEntity gender, PaisEntity pais, ProfesorTipoEntity type) {
+    public ProfesorEntity(Long id, int cod, String first_name, String last_name, String email_univ, String email_priv, byte[] imagen, GeneroEntity gender, PaisEntity pais, ProfesorTipoEntity type) {
         this.id = id;
         this.cod = cod;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_univ = email_univ;
         this.email_priv = email_priv;
-        this.photo_url = photo_url;
+        this.imagen = imagen;
         this.gender = gender;
         this.pais = pais;
         this.type = type;
@@ -141,12 +145,12 @@ public class ProfesorEntity {
         this.email_priv = email_priv;
     }
 
-    public String getPhoto_url() {
-        return photo_url;
+    public byte[] getImagen() {
+        return imagen;
     }
 
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 
     public GeneroEntity getGender() {
