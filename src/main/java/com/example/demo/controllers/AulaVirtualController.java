@@ -20,15 +20,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Convert;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +59,7 @@ public class AulaVirtualController {
     private SeccionRepostitory seccionRep;
     @Autowired
     private UsuarioRepository usuarioRep;
+    
 
     // HTTP Session
     private HttpSession ObtenerSesion(){
@@ -244,6 +250,11 @@ public class AulaVirtualController {
                     Optional<ProfesorEntity> profesorSeleccionado = profesorRep.findById(Long.parseLong(profesorId.get()));
                     if(profesorSeleccionado.isPresent()){
                         model.addAttribute("profesor",profesorSeleccionado.get());
+
+                        //Obtener imagen
+                        byte[] img = profesorSeleccionado.get().getImagen();
+                        model.addAttribute("imagenBase64", DatatypeConverter.printBase64Binary(img));
+
                     }
                 }else {
                     model.addAttribute("profesor",null);
@@ -474,19 +485,6 @@ public class AulaVirtualController {
     }
 
     /* FUNCIONES */
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    @ResponseBody
-    public String testing(Model model) {
-        String prueba = "20302602, Nombre11, Apellido11, 20302602@aloe.ulima.edu.pe, correop11@hotmail.com,user15, pw15, ZZXX4,,1,,";
-        prueba = prueba.replace(" ","");
-        String[] pruebaArray = prueba.split(",");
-        int i=0;
-        for (String dato: pruebaArray){
-            i++;
-            System.out.println("-"+dato+"-"+i);
-            if (dato.equals("")) System.out.println("vacio");
-        }
-        return "testing";
-    }
+
 
 }

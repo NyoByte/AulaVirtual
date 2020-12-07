@@ -67,9 +67,8 @@ public class ProfesorController {
         }
         return  "redirect:/profesor";
     }
-    @RequestMapping(value = "/profesor/guardar", method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String guardarProfesor(GuardarProfesorForm form) {
+    @RequestMapping(value = "/profesor/guardar", method = RequestMethod.POST)
+    public String guardarProfesor(GuardarProfesorForm form, @RequestParam MultipartFile image) throws IOException{
         //Si es un nuevo profesor
 
         int cod = Integer.parseInt(form.getCod());
@@ -78,8 +77,13 @@ public class ProfesorController {
         String email_univ = form.getEmail_univ();
         String email_priv = form.getEmail_priv();
         String type = form.getType();
-        String photo_url = form.getPhoto_url();
 
+        //Procesamiento de la imagen
+
+        InputStream inputStream = image.getInputStream();
+        byte[] bytesImg = new byte[inputStream.available()];
+        inputStream.read(bytesImg);
+        byte[] photo= bytesImg;
 
         Long idTipo = Long.parseLong(form.getType());
         Long idPais = Long.parseLong(form.getPais());
@@ -94,7 +98,7 @@ public class ProfesorController {
             profesor.setLast_name(last_name);
             profesor.setEmail_univ(email_univ);
             profesor.setEmail_priv(email_univ);
-            profesor.setPhoto_url("newFoto.img");
+            profesor.setImagen(photo);
 
             profesor.setType(tipoRep.findById(idTipo).get());
             profesorRep.save(profesor);
@@ -104,7 +108,7 @@ public class ProfesorController {
             profesorRep.save(profesor);
 
         }else{
-            ProfesorEntity newProfesor = new ProfesorEntity( null, cod, first_name, last_name, email_univ, email_priv, "fotito.png");
+            ProfesorEntity newProfesor = new ProfesorEntity( null, cod, first_name, last_name, email_univ, email_priv, photo);
 
             Optional<ProfesorTipoEntity> opTipo = tipoRep.findById(idTipo);
             if (opTipo.isPresent()) {
