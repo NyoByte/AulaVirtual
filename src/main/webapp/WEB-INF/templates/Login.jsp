@@ -84,6 +84,9 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
+                <c:if test="${loginCorrecto==false}">
+                    <div class="row justify-content-center">Usuario y/o contraseña incorrecto(s)</div>
+                </c:if>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
                 </div>
