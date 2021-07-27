@@ -446,7 +446,7 @@ public class AulaVirtualController {
                 }
                 return "Admin_CrudSeccion";
             }else{
-                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina),10);
+                Pageable pageSizeTen = PageRequest.of(Integer.parseInt(pagina),3);
                 Page<SeccionEntity> paginaSecciones = seccionRep.findAll(pageSizeTen);
 
                 model.addAttribute("numPaginas", paginaSecciones.getTotalPages());
